@@ -1,0 +1,341 @@
+input:
+    job:
+        package-manager: nuget
+        allowed-updates:
+            - update-type: all
+        experiments:
+            nuget_generate_simple_pr_body: true
+            nuget_install_dotnet_sdks: true
+            nuget_native_updater: true
+            nuget_use_direct_discovery: true
+            nuget_use_new_file_updater: true
+        ignore-conditions:
+            - dependency-name: AspNetCore.HealthChecks.Rabbitmq
+              source: ../smoke-tests/tests/smoke-nuget-resolvability.yaml
+              version-requirement: '>7.0.0'
+            - dependency-name: Microsoft.Extensions.Diagnostics.HealthChecks
+              source: ../smoke-tests/tests/smoke-nuget-resolvability.yaml
+              version-requirement: '>7.0.9'
+        source:
+            provider: github
+            repo: dependabot/smoke-tests
+            directory: /nuget/resolvability
+            commit: 1204ab6852a4872bbb0ba4fff1343fefb39663d6
+    credentials:
+        - host: github.com
+          password: $LOCAL_GITHUB_ACCESS_TOKEN
+          type: git_source
+          username: x-access-token
+output:
+    - type: update_dependency_list
+      expect:
+        data:
+            dependencies:
+                - name: AspNetCore.HealthChecks.Rabbitmq
+                  requirements:
+                    - file: /nuget/resolvability/A/A.csproj
+                      groups:
+                        - dependencies
+                      requirement: 5.0.2
+                      source: null
+                  version: 5.0.2
+                - name: Microsoft.Extensions.Configuration.Abstractions
+                  requirements:
+                    - file: /nuget/resolvability/A/A.csproj
+                      groups:
+                        - dependencies
+                      requirement: 5.0.0
+                      source: null
+                  version: 5.0.0
+                - name: Microsoft.Extensions.DependencyInjection.Abstractions
+                  requirements:
+                    - file: /nuget/resolvability/A/A.csproj
+                      groups:
+                        - dependencies
+                      requirement: 5.0.0
+                      source: null
+                  version: 5.0.0
+                - name: Microsoft.Extensions.Diagnostics.HealthChecks
+                  requirements:
+                    - file: /nuget/resolvability/A/A.csproj
+                      groups:
+                        - dependencies
+                      requirement: 5.0.1
+                      source: null
+                  version: 5.0.1
+                - name: Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions
+                  requirements:
+                    - file: /nuget/resolvability/A/A.csproj
+                      groups:
+                        - dependencies
+                      requirement: 5.0.1
+                      source: null
+                  version: 5.0.1
+                - name: Microsoft.Extensions.FileProviders.Abstractions
+                  requirements:
+                    - file: /nuget/resolvability/A/A.csproj
+                      groups:
+                        - dependencies
+                      requirement: 5.0.0
+                      source: null
+                  version: 5.0.0
+                - name: Microsoft.Extensions.Hosting.Abstractions
+                  requirements:
+                    - file: /nuget/resolvability/A/A.csproj
+                      groups:
+                        - dependencies
+                      requirement: 5.0.0
+                      source: null
+                  version: 5.0.0
+                - name: Microsoft.Extensions.Logging.Abstractions
+                  requirements:
+                    - file: /nuget/resolvability/A/A.csproj
+                      groups:
+                        - dependencies
+                      requirement: 5.0.0
+                      source: null
+                  version: 5.0.0
+                - name: Microsoft.Extensions.Options
+                  requirements:
+                    - file: /nuget/resolvability/A/A.csproj
+                      groups:
+                        - dependencies
+                      requirement: 5.0.0
+                      source: null
+                  version: 5.0.0
+                - name: Microsoft.Extensions.Primitives
+                  requirements:
+                    - file: /nuget/resolvability/A/A.csproj
+                      groups:
+                        - dependencies
+                      requirement: 5.0.0
+                      source: null
+                  version: 5.0.0
+                - name: RabbitMQ.Client
+                  requirements:
+                    - file: /nuget/resolvability/A/A.csproj
+                      groups:
+                        - dependencies
+                      requirement: 6.2.1
+                      source: null
+                  version: 6.2.1
+                - name: System.Memory
+                  requirements:
+                    - file: /nuget/resolvability/A/A.csproj
+                      groups:
+                        - dependencies
+                      requirement: 4.5.4
+                      source: null
+                  version: 4.5.4
+                - name: System.Threading.Channels
+                  requirements:
+                    - file: /nuget/resolvability/A/A.csproj
+                      groups:
+                        - dependencies
+                      requirement: 6.0.0
+                      source: null
+                  version: 6.0.0
+                - name: AspNetCore.HealthChecks.Rabbitmq
+                  requirements:
+                    - file: /nuget/resolvability/B/B.csproj
+                      groups:
+                        - dependencies
+                      requirement: 5.0.2
+                      source: null
+                  version: 5.0.2
+                - name: Microsoft.Extensions.Configuration.Abstractions
+                  requirements:
+                    - file: /nuget/resolvability/B/B.csproj
+                      groups:
+                        - dependencies
+                      requirement: 5.0.0
+                      source: null
+                  version: 5.0.0
+                - name: Microsoft.Extensions.DependencyInjection.Abstractions
+                  requirements:
+                    - file: /nuget/resolvability/B/B.csproj
+                      groups:
+                        - dependencies
+                      requirement: 5.0.0
+                      source: null
+                  version: 5.0.0
+                - name: Microsoft.Extensions.Diagnostics.HealthChecks
+                  requirements:
+                    - file: /nuget/resolvability/B/B.csproj
+                      groups:
+                        - dependencies
+                      requirement: 5.0.17
+                      source: null
+                  version: 5.0.17
+                - name: Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions
+                  requirements:
+                    - file: /nuget/resolvability/B/B.csproj
+                      groups:
+                        - dependencies
+                      requirement: 5.0.17
+                      source: null
+                  version: 5.0.17
+                - name: Microsoft.Extensions.FileProviders.Abstractions
+                  requirements:
+                    - file: /nuget/resolvability/B/B.csproj
+                      groups:
+                        - dependencies
+                      requirement: 5.0.0
+                      source: null
+                  version: 5.0.0
+                - name: Microsoft.Extensions.Hosting.Abstractions
+                  requirements:
+                    - file: /nuget/resolvability/B/B.csproj
+                      groups:
+                        - dependencies
+                      requirement: 5.0.0
+                      source: null
+                  version: 5.0.0
+                - name: Microsoft.Extensions.Logging.Abstractions
+                  requirements:
+                    - file: /nuget/resolvability/B/B.csproj
+                      groups:
+                        - dependencies
+                      requirement: 5.0.0
+                      source: null
+                  version: 5.0.0
+                - name: Microsoft.Extensions.Options
+                  requirements:
+                    - file: /nuget/resolvability/B/B.csproj
+                      groups:
+                        - dependencies
+                      requirement: 5.0.0
+                      source: null
+                  version: 5.0.0
+                - name: Microsoft.Extensions.Primitives
+                  requirements:
+                    - file: /nuget/resolvability/B/B.csproj
+                      groups:
+                        - dependencies
+                      requirement: 5.0.0
+                      source: null
+                  version: 5.0.0
+                - name: RabbitMQ.Client
+                  requirements:
+                    - file: /nuget/resolvability/B/B.csproj
+                      groups:
+                        - dependencies
+                      requirement: 6.2.1
+                      source: null
+                  version: 6.2.1
+                - name: System.Memory
+                  requirements:
+                    - file: /nuget/resolvability/B/B.csproj
+                      groups:
+                        - dependencies
+                      requirement: 4.5.4
+                      source: null
+                  version: 4.5.4
+                - name: System.Threading.Channels
+                  requirements:
+                    - file: /nuget/resolvability/B/B.csproj
+                      groups:
+                        - dependencies
+                      requirement: 6.0.0
+                      source: null
+                  version: 6.0.0
+            dependency_files:
+                - /nuget/resolvability/A/A.csproj
+                - /nuget/resolvability/B/B.csproj
+                - /nuget/resolvability/Directory.Packages.props
+    - type: create_pull_request
+      expect:
+        data:
+            base-commit-sha: 1204ab6852a4872bbb0ba4fff1343fefb39663d6
+            dependencies:
+                - name: AspNetCore.HealthChecks.Rabbitmq
+                  previous-requirements:
+                    - file: /nuget/resolvability/A/A.csproj
+                      groups:
+                        - dependencies
+                      requirement: 5.0.2
+                      source: null
+                  previous-version: 5.0.2
+                  requirements:
+                    - file: /nuget/resolvability/A/A.csproj
+                      groups:
+                        - dependencies
+                      requirement: 7.0.0
+                      source:
+                        source_url: https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks
+                        type: nuget_repo
+                  version: 7.0.0
+            updated-dependency-files:
+                - content: |-
+                    <Project>
+                      <!--https://learn.microsoft.com/en-us/nuget/consume-packages/central-package-management-->
+                      <PropertyGroup>
+                        <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+                      </PropertyGroup>
+                      <ItemGroup>
+                        <PackageVersion Include="AspNetCore.HealthChecks.Rabbitmq" Version="7.0.0" />
+                        <PackageVersion Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="5.0.17" />
+                      </ItemGroup>
+                    </Project>
+                  content_encoding: utf-8
+                  deleted: false
+                  directory: /nuget/resolvability
+                  name: Directory.Packages.props
+                  operation: update
+                  support_file: false
+                  type: file
+            pr-title: Bump AspNetCore.HealthChecks.Rabbitmq from 5.0.2 to 7.0.0
+            pr-body: |-
+                Performed the following updates:
+                - Updated AspNetCore.HealthChecks.Rabbitmq from 5.0.2 to 7.0.0
+            commit-message: Bump AspNetCore.HealthChecks.Rabbitmq from 5.0.2 to 7.0.0
+    - type: create_pull_request
+      expect:
+        data:
+            base-commit-sha: 1204ab6852a4872bbb0ba4fff1343fefb39663d6
+            dependencies:
+                - name: Microsoft.Extensions.Diagnostics.HealthChecks
+                  previous-requirements:
+                    - file: /nuget/resolvability/B/B.csproj
+                      groups:
+                        - dependencies
+                      requirement: 5.0.17
+                      source: null
+                  previous-version: 5.0.17
+                  requirements:
+                    - file: /nuget/resolvability/B/B.csproj
+                      groups:
+                        - dependencies
+                      requirement: 7.0.9
+                      source:
+                        source_url: https://github.com/dotnet/aspnetcore
+                        type: nuget_repo
+                  version: 7.0.9
+            updated-dependency-files:
+                - content: |-
+                    <Project>
+                      <!--https://learn.microsoft.com/en-us/nuget/consume-packages/central-package-management-->
+                      <PropertyGroup>
+                        <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+                      </PropertyGroup>
+                      <ItemGroup>
+                        <PackageVersion Include="AspNetCore.HealthChecks.Rabbitmq" Version="5.0.2" />
+                        <PackageVersion Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="7.0.9" />
+                      </ItemGroup>
+                    </Project>
+                  content_encoding: utf-8
+                  deleted: false
+                  directory: /nuget/resolvability
+                  name: Directory.Packages.props
+                  operation: update
+                  support_file: false
+                  type: file
+            pr-title: Bump Microsoft.Extensions.Diagnostics.HealthChecks from 5.0.17 to 7.0.9
+            pr-body: |-
+                Performed the following updates:
+                - Updated Microsoft.Extensions.Diagnostics.HealthChecks from 5.0.17 to 7.0.9
+            commit-message: Bump Microsoft.Extensions.Diagnostics.HealthChecks from 5.0.17 to 7.0.9
+    - type: mark_as_processed
+      expect:
+        data:
+            base-commit-sha: 1204ab6852a4872bbb0ba4fff1343fefb39663d6

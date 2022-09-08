@@ -1,0 +1,102 @@
+input:
+    job:
+        command: graph
+        package-manager: go_modules
+        allowed-updates:
+            - update-type: all
+        experiments:
+            enable_dependency_submission_poc: true
+        source:
+            provider: github
+            repo: dependabot/smoke-tests
+            directories:
+                - go
+            commit: 0c2115f14189548b864736e1dc239b22631d66dc
+            hostname: github.com
+            api-endpoint: https://api.github.com
+    credentials:
+        - host: github.com
+          password: $LOCAL_GITHUB_ACCESS_TOKEN
+          type: git_source
+          username: x-access-token
+output:
+    - type: create_dependency_submission
+      expect:
+        data:
+            version: 1
+            sha: 0c2115f14189548b864736e1dc239b22631d66dc
+            ref: refs/heads/main
+            job:
+                correlator: dependabot-go_modules-go
+                id: cli
+            detector:
+                name: dependabot
+                url: https://github.com/dependabot/dependabot-core
+                version: 0.371.0
+            manifests:
+                /go/go.mod:
+                    file:
+                        source_location: go/go.mod
+                    metadata:
+                        ecosystem: golang
+                    name: /go/go.mod
+                    resolved:
+                        pkg:golang/github.com/fatih/color@v1.17.0:
+                            dependencies:
+                                - pkg:golang/github.com/mattn/go-colorable@v0.1.13
+                                - pkg:golang/github.com/mattn/go-isatty@v0.0.20
+                                - pkg:golang/golang.org/x/sys@v0.37.0
+                            package_url: pkg:golang/github.com/fatih/color@v1.17.0
+                            relationship: direct
+                            scope: runtime
+                        pkg:golang/github.com/inconshreveable/mousetrap@v0.0.0-20141017200713-76626ae9c91c:
+                            dependencies: []
+                            package_url: pkg:golang/github.com/inconshreveable/mousetrap@v0.0.0-20141017200713-76626ae9c91c
+                            relationship: direct
+                            scope: runtime
+                        pkg:golang/github.com/mattn/go-colorable@v0.1.13:
+                            dependencies:
+                                - pkg:golang/github.com/mattn/go-isatty@v0.0.20
+                            package_url: pkg:golang/github.com/mattn/go-colorable@v0.1.13
+                            relationship: indirect
+                            scope: runtime
+                        pkg:golang/github.com/mattn/go-isatty@v0.0.20:
+                            dependencies:
+                                - pkg:golang/golang.org/x/sys@v0.37.0
+                                - pkg:golang/golang.org/x/sys@v0.37.0
+                            package_url: pkg:golang/github.com/mattn/go-isatty@v0.0.20
+                            relationship: indirect
+                            scope: runtime
+                        pkg:golang/golang.org/x/crypto@v0.0.0-20180617042118-027cca12c2d6:
+                            dependencies: []
+                            package_url: pkg:golang/golang.org/x/crypto@v0.0.0-20180617042118-027cca12c2d6
+                            relationship: direct
+                            scope: runtime
+                        pkg:golang/golang.org/x/sys@v0.37.0:
+                            dependencies: []
+                            package_url: pkg:golang/golang.org/x/sys@v0.37.0
+                            relationship: indirect
+                            scope: runtime
+                        pkg:golang/golang.org/x/text@v0.3.7:
+                            dependencies: []
+                            package_url: pkg:golang/golang.org/x/text@v0.3.7
+                            relationship: indirect
+                            scope: runtime
+                        pkg:golang/rsc.io/quote@v1.4.0:
+                            dependencies:
+                                - pkg:golang/rsc.io/sampler@v1.0.0
+                            package_url: pkg:golang/rsc.io/quote@v1.4.0
+                            relationship: direct
+                            scope: runtime
+                        pkg:golang/rsc.io/sampler@v1.0.0:
+                            dependencies: []
+                            package_url: pkg:golang/rsc.io/sampler@v1.0.0
+                            relationship: indirect
+                            scope: runtime
+            metadata:
+                scanned_manifest_path: golang::/go
+                status: ok
+    - type: mark_as_processed
+      expect:
+        data:
+            base-commit-sha: 0c2115f14189548b864736e1dc239b22631d66dc

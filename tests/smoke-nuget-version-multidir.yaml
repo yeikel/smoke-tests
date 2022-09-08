@@ -1,0 +1,604 @@
+input:
+    job:
+        command: update
+        package-manager: nuget
+        allowed-updates:
+            - dependency-type: direct
+              update-type: all
+        dependency-groups:
+            - name: nuget_pkgs
+              rules:
+                patterns:
+                    - '*'
+        experiments:
+            nuget_generate_simple_pr_body: true
+            nuget_install_dotnet_sdks: true
+            nuget_native_updater: true
+            nuget_use_direct_discovery: true
+            nuget_use_new_file_updater: true
+        ignore-conditions:
+            - dependency-name: Microsoft.Extensions.Http
+              source: tests/smoke-nuget-version-multidir.yaml
+              version-requirement: '>8.0.0'
+            - dependency-name: Microsoft.Extensions.Logging
+              source: tests/smoke-nuget-version-multidir.yaml
+              version-requirement: '>8.0.0'
+            - dependency-name: NuGet.Versioning
+              source: tests/smoke-nuget-version-multidir.yaml
+              version-requirement: '>6.8.0'
+        source:
+            provider: github
+            repo: dependabot/smoke-tests
+            directories:
+                - /nuget/multi-dir/foo
+                - /nuget/multi-dir/bar
+            commit: 2c4f15887b3829988403e4bbe7fcb4c222ad0f72
+    credentials:
+        - host: github.com
+          password: $LOCAL_GITHUB_ACCESS_TOKEN
+          type: git_source
+          username: x-access-token
+output:
+    - type: update_dependency_list
+      expect:
+        data:
+            dependencies:
+                - name: Microsoft.Extensions.Configuration
+                  requirements:
+                    - file: /nuget/multi-dir/foo/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 2.2.0
+                      source: null
+                  version: 2.2.0
+                - name: Microsoft.Extensions.Configuration.Abstractions
+                  requirements:
+                    - file: /nuget/multi-dir/foo/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 2.2.0
+                      source: null
+                  version: 2.2.0
+                - name: Microsoft.Extensions.Configuration.Binder
+                  requirements:
+                    - file: /nuget/multi-dir/foo/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 2.2.0
+                      source: null
+                  version: 2.2.0
+                - name: Microsoft.Extensions.DependencyInjection.Abstractions
+                  requirements:
+                    - file: /nuget/multi-dir/foo/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 2.2.0
+                      source: null
+                  version: 2.2.0
+                - name: Microsoft.Extensions.Logging
+                  requirements:
+                    - file: /nuget/multi-dir/foo/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 2.2.0
+                      source: null
+                  version: 2.2.0
+                - name: Microsoft.Extensions.Logging.Abstractions
+                  requirements:
+                    - file: /nuget/multi-dir/foo/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 2.2.0
+                      source: null
+                  version: 2.2.0
+                - name: Microsoft.Extensions.Options
+                  requirements:
+                    - file: /nuget/multi-dir/foo/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 2.2.0
+                      source: null
+                  version: 2.2.0
+                - name: Microsoft.Extensions.Primitives
+                  requirements:
+                    - file: /nuget/multi-dir/foo/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 2.2.0
+                      source: null
+                  version: 2.2.0
+                - name: NuGet.Versioning
+                  requirements:
+                    - file: /nuget/multi-dir/foo/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 6.1.0
+                      source: null
+                  version: 6.1.0
+                - name: System.ComponentModel.Annotations
+                  requirements:
+                    - file: /nuget/multi-dir/foo/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 4.5.0
+                      source: null
+                  version: 4.5.0
+                - name: System.Memory
+                  requirements:
+                    - file: /nuget/multi-dir/foo/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 4.5.1
+                      source: null
+                  version: 4.5.1
+                - name: System.Runtime.CompilerServices.Unsafe
+                  requirements:
+                    - file: /nuget/multi-dir/foo/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 6.0.0
+                      source: null
+                  version: 6.0.0
+            dependency_files:
+                - /nuget/multi-dir/foo/project.csproj
+    - type: update_dependency_list
+      expect:
+        data:
+            dependencies:
+                - name: Microsoft.Extensions.Configuration
+                  requirements:
+                    - file: /nuget/multi-dir/bar/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 2.2.0
+                      source: null
+                  version: 2.2.0
+                - name: Microsoft.Extensions.Configuration.Abstractions
+                  requirements:
+                    - file: /nuget/multi-dir/bar/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 2.2.0
+                      source: null
+                  version: 2.2.0
+                - name: Microsoft.Extensions.Configuration.Binder
+                  requirements:
+                    - file: /nuget/multi-dir/bar/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 2.2.0
+                      source: null
+                  version: 2.2.0
+                - name: Microsoft.Extensions.DependencyInjection.Abstractions
+                  requirements:
+                    - file: /nuget/multi-dir/bar/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 2.2.0
+                      source: null
+                  version: 2.2.0
+                - name: Microsoft.Extensions.Http
+                  requirements:
+                    - file: /nuget/multi-dir/bar/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 2.2.0
+                      source: null
+                  version: 2.2.0
+                - name: Microsoft.Extensions.Logging
+                  requirements:
+                    - file: /nuget/multi-dir/bar/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 2.2.0
+                      source: null
+                  version: 2.2.0
+                - name: Microsoft.Extensions.Logging.Abstractions
+                  requirements:
+                    - file: /nuget/multi-dir/bar/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 2.2.0
+                      source: null
+                  version: 2.2.0
+                - name: Microsoft.Extensions.Options
+                  requirements:
+                    - file: /nuget/multi-dir/bar/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 2.2.0
+                      source: null
+                  version: 2.2.0
+                - name: Microsoft.Extensions.Primitives
+                  requirements:
+                    - file: /nuget/multi-dir/bar/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 2.2.0
+                      source: null
+                  version: 2.2.0
+                - name: NuGet.Versioning
+                  requirements:
+                    - file: /nuget/multi-dir/bar/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 6.2.2
+                      source: null
+                  version: 6.2.2
+                - name: System.ComponentModel.Annotations
+                  requirements:
+                    - file: /nuget/multi-dir/bar/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 4.5.0
+                      source: null
+                  version: 4.5.0
+                - name: System.Memory
+                  requirements:
+                    - file: /nuget/multi-dir/bar/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 4.5.1
+                      source: null
+                  version: 4.5.1
+                - name: System.Runtime.CompilerServices.Unsafe
+                  requirements:
+                    - file: /nuget/multi-dir/bar/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 6.0.0
+                      source: null
+                  version: 6.0.0
+            dependency_files:
+                - /nuget/multi-dir/bar/project.csproj
+    - type: create_pull_request
+      expect:
+        data:
+            base-commit-sha: 2c4f15887b3829988403e4bbe7fcb4c222ad0f72
+            dependencies:
+                - name: Microsoft.Extensions.Logging
+                  previous-requirements:
+                    - file: /nuget/multi-dir/foo/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 2.2.0
+                      source: null
+                  previous-version: 2.2.0
+                  requirements:
+                    - file: /nuget/multi-dir/foo/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 8.0.0
+                      source:
+                        source_url: https://github.com/dotnet/runtime
+                        type: nuget_repo
+                  version: 8.0.0
+                - name: NuGet.Versioning
+                  previous-requirements:
+                    - file: /nuget/multi-dir/foo/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 6.1.0
+                      source: null
+                  previous-version: 6.1.0
+                  requirements:
+                    - file: /nuget/multi-dir/foo/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 6.8.0
+                      source:
+                        source_url: https://github.com/NuGet/NuGet.Client
+                        type: nuget_repo
+                  version: 6.8.0
+                - name: Microsoft.Extensions.Http
+                  previous-requirements:
+                    - file: /nuget/multi-dir/bar/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 2.2.0
+                      source: null
+                  previous-version: 2.2.0
+                  requirements:
+                    - file: /nuget/multi-dir/bar/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 8.0.0
+                      source:
+                        source_url: https://github.com/dotnet/runtime
+                        type: nuget_repo
+                  version: 8.0.0
+                - name: NuGet.Versioning
+                  previous-requirements:
+                    - file: /nuget/multi-dir/bar/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 6.2.2
+                      source: null
+                  previous-version: 6.2.2
+                  requirements:
+                    - file: /nuget/multi-dir/bar/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 6.8.0
+                      source:
+                        source_url: https://github.com/NuGet/NuGet.Client
+                        type: nuget_repo
+                  version: 6.8.0
+            updated-dependency-files:
+                - content: |
+                    <Project Sdk="Microsoft.NET.Sdk">
+
+                      <PropertyGroup>
+                        <OutputType>Exe</OutputType>
+                        <TargetFramework>net6.0</TargetFramework>
+                        <ImplicitUsings>enable</ImplicitUsings>
+                        <Nullable>enable</Nullable>
+                      </PropertyGroup>
+
+                      <ItemGroup>
+                        <PackageReference Include="NuGet.Versioning" Version="6.8.0" />
+                        <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0" />
+                      </ItemGroup>
+
+                    </Project>
+                  content_encoding: utf-8
+                  deleted: false
+                  directory: /nuget/multi-dir/bar
+                  name: project.csproj
+                  operation: update
+                  support_file: false
+                  type: file
+                - content: |
+                    <Project Sdk="Microsoft.NET.Sdk">
+
+                      <PropertyGroup>
+                        <OutputType>Exe</OutputType>
+                        <TargetFramework>net6.0</TargetFramework>
+                        <ImplicitUsings>enable</ImplicitUsings>
+                        <Nullable>enable</Nullable>
+                      </PropertyGroup>
+
+                      <ItemGroup>
+                        <PackageReference Include="NuGet.Versioning" Version="6.8.0" />
+                        <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0" />
+                      </ItemGroup>
+
+                    </Project>
+                  content_encoding: utf-8
+                  deleted: false
+                  directory: /nuget/multi-dir/foo
+                  name: project.csproj
+                  operation: update
+                  support_file: false
+                  type: file
+            pr-title: Bump the nuget_pkgs group with 3 updates
+            pr-body: |-
+                Performed the following updates:
+                - Updated Microsoft.Extensions.Logging from 2.2.0 to 8.0.0
+                - Updated NuGet.Versioning from 6.1.0 to 6.8.0
+                - Updated Microsoft.Extensions.Http from 2.2.0 to 8.0.0
+                - Updated NuGet.Versioning from 6.2.2 to 6.8.0
+            commit-message: |-
+                Bump the nuget_pkgs group with 3 updates
+
+                Bumps Microsoft.Extensions.Http from 2.2.0 to 8.0.0
+                Bumps Microsoft.Extensions.Logging from 2.2.0 to 8.0.0
+                Bumps NuGet.Versioning to 6.8.0
+            dependency-group:
+                name: nuget_pkgs
+    - type: update_dependency_list
+      expect:
+        data:
+            dependencies:
+                - name: Microsoft.Extensions.Configuration
+                  requirements:
+                    - file: /nuget/multi-dir/foo/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 2.2.0
+                      source: null
+                  version: 2.2.0
+                - name: Microsoft.Extensions.Configuration.Abstractions
+                  requirements:
+                    - file: /nuget/multi-dir/foo/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 2.2.0
+                      source: null
+                  version: 2.2.0
+                - name: Microsoft.Extensions.Configuration.Binder
+                  requirements:
+                    - file: /nuget/multi-dir/foo/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 2.2.0
+                      source: null
+                  version: 2.2.0
+                - name: Microsoft.Extensions.DependencyInjection.Abstractions
+                  requirements:
+                    - file: /nuget/multi-dir/foo/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 2.2.0
+                      source: null
+                  version: 2.2.0
+                - name: Microsoft.Extensions.Logging
+                  requirements:
+                    - file: /nuget/multi-dir/foo/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 2.2.0
+                      source: null
+                  version: 2.2.0
+                - name: Microsoft.Extensions.Logging.Abstractions
+                  requirements:
+                    - file: /nuget/multi-dir/foo/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 2.2.0
+                      source: null
+                  version: 2.2.0
+                - name: Microsoft.Extensions.Options
+                  requirements:
+                    - file: /nuget/multi-dir/foo/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 2.2.0
+                      source: null
+                  version: 2.2.0
+                - name: Microsoft.Extensions.Primitives
+                  requirements:
+                    - file: /nuget/multi-dir/foo/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 2.2.0
+                      source: null
+                  version: 2.2.0
+                - name: NuGet.Versioning
+                  requirements:
+                    - file: /nuget/multi-dir/foo/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 6.1.0
+                      source: null
+                  version: 6.1.0
+                - name: System.ComponentModel.Annotations
+                  requirements:
+                    - file: /nuget/multi-dir/foo/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 4.5.0
+                      source: null
+                  version: 4.5.0
+                - name: System.Memory
+                  requirements:
+                    - file: /nuget/multi-dir/foo/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 4.5.1
+                      source: null
+                  version: 4.5.1
+                - name: System.Runtime.CompilerServices.Unsafe
+                  requirements:
+                    - file: /nuget/multi-dir/foo/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 6.0.0
+                      source: null
+                  version: 6.0.0
+            dependency_files:
+                - /nuget/multi-dir/foo/project.csproj
+    - type: update_dependency_list
+      expect:
+        data:
+            dependencies:
+                - name: Microsoft.Extensions.Configuration
+                  requirements:
+                    - file: /nuget/multi-dir/bar/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 2.2.0
+                      source: null
+                  version: 2.2.0
+                - name: Microsoft.Extensions.Configuration.Abstractions
+                  requirements:
+                    - file: /nuget/multi-dir/bar/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 2.2.0
+                      source: null
+                  version: 2.2.0
+                - name: Microsoft.Extensions.Configuration.Binder
+                  requirements:
+                    - file: /nuget/multi-dir/bar/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 2.2.0
+                      source: null
+                  version: 2.2.0
+                - name: Microsoft.Extensions.DependencyInjection.Abstractions
+                  requirements:
+                    - file: /nuget/multi-dir/bar/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 2.2.0
+                      source: null
+                  version: 2.2.0
+                - name: Microsoft.Extensions.Http
+                  requirements:
+                    - file: /nuget/multi-dir/bar/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 2.2.0
+                      source: null
+                  version: 2.2.0
+                - name: Microsoft.Extensions.Logging
+                  requirements:
+                    - file: /nuget/multi-dir/bar/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 2.2.0
+                      source: null
+                  version: 2.2.0
+                - name: Microsoft.Extensions.Logging.Abstractions
+                  requirements:
+                    - file: /nuget/multi-dir/bar/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 2.2.0
+                      source: null
+                  version: 2.2.0
+                - name: Microsoft.Extensions.Options
+                  requirements:
+                    - file: /nuget/multi-dir/bar/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 2.2.0
+                      source: null
+                  version: 2.2.0
+                - name: Microsoft.Extensions.Primitives
+                  requirements:
+                    - file: /nuget/multi-dir/bar/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 2.2.0
+                      source: null
+                  version: 2.2.0
+                - name: NuGet.Versioning
+                  requirements:
+                    - file: /nuget/multi-dir/bar/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 6.2.2
+                      source: null
+                  version: 6.2.2
+                - name: System.ComponentModel.Annotations
+                  requirements:
+                    - file: /nuget/multi-dir/bar/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 4.5.0
+                      source: null
+                  version: 4.5.0
+                - name: System.Memory
+                  requirements:
+                    - file: /nuget/multi-dir/bar/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 4.5.1
+                      source: null
+                  version: 4.5.1
+                - name: System.Runtime.CompilerServices.Unsafe
+                  requirements:
+                    - file: /nuget/multi-dir/bar/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 6.0.0
+                      source: null
+                  version: 6.0.0
+            dependency_files:
+                - /nuget/multi-dir/bar/project.csproj
+    - type: mark_as_processed
+      expect:
+        data:
+            base-commit-sha: 2c4f15887b3829988403e4bbe7fcb4c222ad0f72

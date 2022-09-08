@@ -1,0 +1,155 @@
+input:
+    job:
+        package-manager: nuget
+        allowed-updates:
+            - update-type: all
+        experiments:
+            nuget_generate_simple_pr_body: true
+            nuget_native_updater: true
+            nuget_use_direct_discovery: true
+            nuget_use_new_file_updater: true
+        ignore-conditions:
+            - dependency-name: Microsoft.CodeAnalysis.Analyzers
+              source: tests/smoke-nuget-props-and-targets.yaml
+              version-requirement: '>3.3.4'
+            - dependency-name: NuGet.Versioning
+              source: tests/smoke-nuget-props-and-targets.yaml
+              version-requirement: '>6.8.0'
+        source:
+            provider: github
+            repo: dependabot/smoke-tests
+            directory: /nuget/props-and-targets
+            commit: 7dbbef7b02f40ddfa7d32fc3099caf19f370bb9b
+    credentials:
+        - host: github.com
+          password: $LOCAL_GITHUB_ACCESS_TOKEN
+          type: git_source
+          username: x-access-token
+output:
+    - type: update_dependency_list
+      expect:
+        data:
+            dependencies:
+                - name: Microsoft.CodeAnalysis.Analyzers
+                  requirements:
+                    - file: /nuget/props-and-targets/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 3.3.0
+                      source: null
+                  version: 3.3.0
+                - name: NuGet.Versioning
+                  requirements:
+                    - file: /nuget/props-and-targets/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 6.1.0
+                      source: null
+                  version: 6.1.0
+            dependency_files:
+                - /nuget/props-and-targets/Directory.Build.props
+                - /nuget/props-and-targets/Directory.Build.targets
+                - /nuget/props-and-targets/project.csproj
+    - type: create_pull_request
+      expect:
+        data:
+            base-commit-sha: 7dbbef7b02f40ddfa7d32fc3099caf19f370bb9b
+            dependencies:
+                - name: Microsoft.CodeAnalysis.Analyzers
+                  previous-requirements:
+                    - file: /nuget/props-and-targets/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 3.3.0
+                      source: null
+                  previous-version: 3.3.0
+                  requirements:
+                    - file: /nuget/props-and-targets/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 3.3.4
+                      source:
+                        source_url: https://github.com/dotnet/roslyn-analyzers
+                        type: nuget_repo
+                  version: 3.3.4
+            updated-dependency-files:
+                - content: |-
+                    <!--
+                    This build configuration file will be automatically imported by MSBuild in all projects in the
+                    solution, because it's placed in the root directory.
+                    See https://docs.microsoft.com/en-us/visualstudio/msbuild/customize-your-build?view=vs-2019
+                    -->
+                    <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+                      <ItemGroup>
+                        <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4">
+                          <PrivateAssets>all</PrivateAssets>
+                          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+                        </PackageReference>
+                      </ItemGroup>
+
+                    </Project>
+                  content_encoding: utf-8
+                  deleted: false
+                  directory: /nuget/props-and-targets
+                  name: Directory.Build.targets
+                  operation: update
+                  support_file: false
+                  type: file
+            pr-title: Bump Microsoft.CodeAnalysis.Analyzers from 3.3.0 to 3.3.4
+            pr-body: |-
+                Performed the following updates:
+                - Updated Microsoft.CodeAnalysis.Analyzers from 3.3.0 to 3.3.4
+            commit-message: Bump Microsoft.CodeAnalysis.Analyzers from 3.3.0 to 3.3.4
+    - type: create_pull_request
+      expect:
+        data:
+            base-commit-sha: 7dbbef7b02f40ddfa7d32fc3099caf19f370bb9b
+            dependencies:
+                - name: NuGet.Versioning
+                  previous-requirements:
+                    - file: /nuget/props-and-targets/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 6.1.0
+                      source: null
+                  previous-version: 6.1.0
+                  requirements:
+                    - file: /nuget/props-and-targets/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 6.8.0
+                      source:
+                        source_url: https://github.com/NuGet/NuGet.Client
+                        type: nuget_repo
+                  version: 6.8.0
+            updated-dependency-files:
+                - content: |-
+                    <!--
+                    This build configuration file will be automatically imported by MSBuild in all projects in the
+                    solution, because it's placed in the root directory.
+                    See https://docs.microsoft.com/en-us/visualstudio/msbuild/customize-your-build?view=vs-2019
+                    -->
+                    <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+                      <ItemGroup>
+                        <PackageReference Include="NuGet.Versioning" Version="6.8.0" />
+                      </ItemGroup>
+
+                    </Project>
+                  content_encoding: utf-8
+                  deleted: false
+                  directory: /nuget/props-and-targets
+                  name: Directory.Build.props
+                  operation: update
+                  support_file: false
+                  type: file
+            pr-title: Bump NuGet.Versioning from 6.1.0 to 6.8.0
+            pr-body: |-
+                Performed the following updates:
+                - Updated NuGet.Versioning from 6.1.0 to 6.8.0
+            commit-message: Bump NuGet.Versioning from 6.1.0 to 6.8.0
+    - type: mark_as_processed
+      expect:
+        data:
+            base-commit-sha: 7dbbef7b02f40ddfa7d32fc3099caf19f370bb9b

@@ -1,0 +1,12 @@
+# dependabot temp directory
+tmp
+# avoid checking in downloaded cli
+/dependabot*
+# vscode generates this on load
+bin/
+obj/
+*.lscache
+# avoid checking local cache dir
+cache
+# cargo build output
+target

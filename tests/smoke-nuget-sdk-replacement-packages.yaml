@@ -1,0 +1,108 @@
+input:
+    job:
+        package-manager: nuget
+        allowed-updates:
+            - update-type: all
+        dependencies:
+            - System.Text.Json
+        experiments:
+            nuget_generate_simple_pr_body: true
+            nuget_install_dotnet_sdks: true
+            nuget_native_updater: true
+            nuget_use_direct_discovery: true
+            nuget_use_new_file_updater: true
+        ignore-conditions:
+            - dependency-name: System.Text.Json
+              source: tests/smoke-nuget-sdk-replacement-packages.yaml
+              version-requirement: '>8.0.5'
+        security-advisories:
+            - dependency-name: System.Text.Json
+              affected-versions:
+                - '>= 8.0.0, < 8.0.5'
+              patched-versions: []
+              unaffected-versions: []
+        security-updates-only: true
+        source:
+            provider: github
+            repo: dependabot/smoke-tests
+            directory: /nuget/sdk-replacement-packages
+            commit: 5be15d5493766923b409f269ea8ca7864301845f
+    credentials:
+        - host: github.com
+          password: $LOCAL_GITHUB_ACCESS_TOKEN
+          type: git_source
+          username: x-access-token
+output:
+    - type: update_dependency_list
+      expect:
+        data:
+            dependencies:
+                - name: System.Text.Encodings.Web
+                  requirements:
+                    - file: /nuget/sdk-replacement-packages/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 8.0.0
+                      source: null
+                  version: 8.0.0
+                - name: System.Text.Json
+                  requirements:
+                    - file: /nuget/sdk-replacement-packages/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 8.0.4
+                      source: null
+                  version: 8.0.4
+            dependency_files:
+                - /nuget/sdk-replacement-packages/global.json
+                - /nuget/sdk-replacement-packages/project.csproj
+    - type: create_pull_request
+      expect:
+        data:
+            base-commit-sha: 5be15d5493766923b409f269ea8ca7864301845f
+            dependencies:
+                - name: System.Text.Json
+                  previous-requirements:
+                    - file: /nuget/sdk-replacement-packages/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 8.0.4
+                      source: null
+                  previous-version: 8.0.4
+                  requirements:
+                    - file: /nuget/sdk-replacement-packages/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 8.0.5
+                      source:
+                        source_url: https://github.com/dotnet/runtime
+                        type: nuget_repo
+                  version: 8.0.5
+            updated-dependency-files:
+                - content: |
+                    <Project Sdk="Microsoft.NET.Sdk">
+                      <PropertyGroup>
+                        <TargetFramework>net8.0</TargetFramework>
+                      </PropertyGroup>
+
+                      <ItemGroup>
+                        <!-- because of the SDK 8.0.304 specified in `global.json`, this reference will be replaced with version `8.0.4` then updated to `8.0.5` -->
+                        <PackageReference Include="System.Text.Json" Version="8.0.5" />
+                      </ItemGroup>
+                    </Project>
+                  content_encoding: utf-8
+                  deleted: false
+                  directory: /nuget/sdk-replacement-packages
+                  name: project.csproj
+                  operation: update
+                  support_file: false
+                  type: file
+            pr-title: Bump System.Text.Json from 8.0.4 to 8.0.5
+            pr-body: |-
+                Performed the following updates:
+                - Updated System.Text.Json from 8.0.4 to 8.0.5
+            commit-message: Bump System.Text.Json from 8.0.4 to 8.0.5
+    - type: mark_as_processed
+      expect:
+        data:
+            base-commit-sha: 5be15d5493766923b409f269ea8ca7864301845f

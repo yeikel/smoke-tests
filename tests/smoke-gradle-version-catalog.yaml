@@ -1,0 +1,1520 @@
+input:
+    job:
+        command: update
+        package-manager: gradle
+        allowed-updates:
+            - update-type: all
+        ignore-conditions:
+            - dependency-name: com.android.application
+              source: tests/smoke-gradle-version-catalog.yaml
+              version-requirement: '>7.4.2'
+            - dependency-name: com.android.library
+              source: tests/smoke-gradle-version-catalog.yaml
+              version-requirement: '>7.4.2'
+            - dependency-name: org.jetbrains.kotlin.android
+              source: tests/smoke-gradle-version-catalog.yaml
+              version-requirement: '>1.8.10'
+            - dependency-name: androidx.core:core-ktx
+              source: tests/smoke-gradle-version-catalog.yaml
+              version-requirement: '>1.9.0'
+            - dependency-name: androidx.lifecycle:lifecycle-runtime-ktx
+              source: tests/smoke-gradle-version-catalog.yaml
+              version-requirement: '>2.6.0'
+            - dependency-name: androidx.activity:activity-compose
+              source: tests/smoke-gradle-version-catalog.yaml
+              version-requirement: '>1.6.1'
+            - dependency-name: androidx.compose.ui:ui
+              source: tests/smoke-gradle-version-catalog.yaml
+              version-requirement: '>1.3.3'
+            - dependency-name: androidx.compose.ui:ui-tooling-preview
+              source: tests/smoke-gradle-version-catalog.yaml
+              version-requirement: '>1.3.3'
+            - dependency-name: androidx.compose.ui:ui-test-junit4
+              source: tests/smoke-gradle-version-catalog.yaml
+              version-requirement: '>1.3.3'
+            - dependency-name: androidx.compose.ui:ui-tooling
+              source: tests/smoke-gradle-version-catalog.yaml
+              version-requirement: '>1.3.3'
+            - dependency-name: androidx.compose.ui:ui-test-manifest
+              source: tests/smoke-gradle-version-catalog.yaml
+              version-requirement: '>1.3.3'
+            - dependency-name: androidx.test.ext:junit
+              source: tests/smoke-gradle-version-catalog.yaml
+              version-requirement: '>1.1.5'
+            - dependency-name: androidx.test.espresso:espresso-core
+              source: tests/smoke-gradle-version-catalog.yaml
+              version-requirement: '>3.5.1'
+            - dependency-name: org.jmailen.kotlinter
+              source: tests/smoke-gradle-version-catalog.yaml
+              version-requirement: '>3.13.0'
+            - dependency-name: gradle-wrapper
+              source: tests/smoke-gradle-version-catalog.yaml
+              version-requirement: '>9.3.1'
+        source:
+            provider: github
+            repo: dependabot/smoke-tests
+            directory: /gradle-version-catalog/
+            commit: 943c1eaeb4ed9383ec77c0ffe95ec727c1f7c5e6
+    credentials:
+        - host: github.com
+          password: $LOCAL_GITHUB_ACCESS_TOKEN
+          type: git_source
+          username: x-access-token
+output:
+    - type: update_dependency_list
+      expect:
+        data:
+            dependencies:
+                - name: com.android.application
+                  requirements:
+                    - file: build.gradle
+                      groups:
+                        - plugins
+                      requirement: 7.3.1
+                      source: null
+                  version: 7.3.1
+                - name: com.android.library
+                  requirements:
+                    - file: build.gradle
+                      groups:
+                        - plugins
+                      requirement: 7.3.1
+                      source: null
+                  version: 7.3.1
+                - name: org.jetbrains.kotlin.android
+                  requirements:
+                    - file: build.gradle
+                      groups:
+                        - plugins
+                      requirement: 1.7.0
+                      source: null
+                  version: 1.7.0
+                - name: androidx.core:core-ktx
+                  requirements:
+                    - file: app/build.gradle
+                      groups: []
+                      requirement: 1.7.0
+                      source: null
+                    - file: gradle/libs.versions.toml
+                      groups: []
+                      metadata:
+                        property_name: corektx
+                      requirement: 1.7.0
+                      source: null
+                  version: 1.7.0
+                - name: gradle-wrapper
+                  requirements:
+                    - file: gradle/wrapper/gradle-wrapper.properties
+                      groups: []
+                      requirement: "7.5"
+                      source:
+                        property: distributionUrl
+                        type: gradle-distribution
+                        url: https://services.gradle.org/distributions/gradle-7.5-bin.zip
+                  version: "7.5"
+                - name: androidx.lifecycle:lifecycle-runtime-ktx
+                  requirements:
+                    - file: gradle/libs.versions.toml
+                      groups: []
+                      metadata:
+                        property_name: lifecycleRuntime
+                      requirement: 2.3.1
+                      source: null
+                  version: 2.3.1
+                - name: androidx.activity:activity-compose
+                  requirements:
+                    - file: gradle/libs.versions.toml
+                      groups: []
+                      requirement: 1.3.1
+                      source: null
+                  version: 1.3.1
+                - name: androidx.compose.ui:ui
+                  requirements:
+                    - file: gradle/libs.versions.toml
+                      groups: []
+                      metadata:
+                        property_name: composeUi
+                      requirement: 1.2.0
+                      source: null
+                  version: 1.2.0
+                - name: androidx.compose.ui:ui-tooling-preview
+                  requirements:
+                    - file: gradle/libs.versions.toml
+                      groups: []
+                      metadata:
+                        property_name: composeUi
+                      requirement: 1.2.0
+                      source: null
+                  version: 1.2.0
+                - name: junit:junit
+                  requirements:
+                    - file: gradle/libs.versions.toml
+                      groups: []
+                      metadata:
+                        property_name: jUnitVersion
+                      requirement: 4.13.2
+                      source: null
+                  version: 4.13.2
+                - name: androidx.test.ext:junit
+                  requirements:
+                    - file: gradle/libs.versions.toml
+                      groups: []
+                      metadata:
+                        property_name: androidxJunit
+                      requirement: 1.1.3
+                      source: null
+                  version: 1.1.3
+                - name: androidx.compose.ui:ui-test-junit4
+                  requirements:
+                    - file: gradle/libs.versions.toml
+                      groups: []
+                      metadata:
+                        property_name: composeUi
+                      requirement: 1.2.0
+                      source: null
+                  version: 1.2.0
+                - name: androidx.compose.ui:ui-tooling
+                  requirements:
+                    - file: gradle/libs.versions.toml
+                      groups: []
+                      metadata:
+                        property_name: composeUi
+                      requirement: 1.2.0
+                      source: null
+                  version: 1.2.0
+                - name: androidx.compose.ui:ui-test-manifest
+                  requirements:
+                    - file: gradle/libs.versions.toml
+                      groups: []
+                      metadata:
+                        property_name: composeUi
+                      requirement: 1.2.0
+                      source: null
+                  version: 1.2.0
+                - name: androidx.test.espresso:espresso-core
+                  requirements:
+                    - file: gradle/libs.versions.toml
+                      groups: []
+                      metadata:
+                        property_name: espresso
+                      requirement: 3.5.0
+                      source: null
+                  version: 3.5.0
+                - name: org.jmailen.kotlinter
+                  requirements:
+                    - file: gradle/libs.versions.toml
+                      groups:
+                        - plugins
+                      requirement: 3.11.0
+                      source: null
+                  version: 3.11.0
+            dependency_files:
+                - /gradle-version-catalog/build.gradle
+                - /gradle-version-catalog/settings.gradle
+                - /gradle-version-catalog/gradle/libs.versions.toml
+                - /gradle-version-catalog/gradlew
+                - /gradle-version-catalog/gradlew.bat
+                - /gradle-version-catalog/gradle/wrapper/gradle-wrapper.jar
+                - /gradle-version-catalog/gradle/wrapper/gradle-wrapper.properties
+                - /gradle-version-catalog/app/build.gradle
+    - type: create_pull_request
+      expect:
+        data:
+            base-commit-sha: 943c1eaeb4ed9383ec77c0ffe95ec727c1f7c5e6
+            dependencies:
+                - name: com.android.application
+                  previous-requirements:
+                    - file: build.gradle
+                      groups:
+                        - plugins
+                      requirement: 7.3.1
+                      source: null
+                  previous-version: 7.3.1
+                  requirements:
+                    - file: build.gradle
+                      groups:
+                        - plugins
+                      requirement: 7.4.2
+                      source:
+                        type: maven_repo
+                        url: https://maven.google.com
+                  version: 7.4.2
+                  directory: /gradle-version-catalog
+            updated-dependency-files:
+                - content: |
+                    buildscript {
+                        allprojects {
+                            repositories {
+                                google()
+                                mavenCentral()
+                                maven { url 'https://jitpack.io' }
+                            }
+                        }
+                    }
+
+                    plugins {
+                        id 'com.android.application' version '7.4.2' apply false
+                        id 'com.android.library' version '7.3.1' apply false
+                        id 'org.jetbrains.kotlin.android' version '1.7.0' apply false
+                        alias(libs.plugins.kotlinter)
+                    }
+                  content_encoding: utf-8
+                  deleted: false
+                  directory: /gradle-version-catalog
+                  name: build.gradle
+                  operation: update
+                  support_file: false
+                  type: file
+            pr-title: Bump com.android.application from 7.3.1 to 7.4.2 in /gradle-version-catalog
+            pr-body: |
+                Bumps com.android.application from 7.3.1 to 7.4.2.
+            commit-message: |-
+                Bump com.android.application in /gradle-version-catalog
+
+                Bumps com.android.application from 7.3.1 to 7.4.2.
+    - type: create_pull_request
+      expect:
+        data:
+            base-commit-sha: 943c1eaeb4ed9383ec77c0ffe95ec727c1f7c5e6
+            dependencies:
+                - name: com.android.library
+                  previous-requirements:
+                    - file: build.gradle
+                      groups:
+                        - plugins
+                      requirement: 7.3.1
+                      source: null
+                  previous-version: 7.3.1
+                  requirements:
+                    - file: build.gradle
+                      groups:
+                        - plugins
+                      requirement: 7.4.2
+                      source:
+                        type: maven_repo
+                        url: https://maven.google.com
+                  version: 7.4.2
+                  directory: /gradle-version-catalog
+            updated-dependency-files:
+                - content: |
+                    buildscript {
+                        allprojects {
+                            repositories {
+                                google()
+                                mavenCentral()
+                                maven { url 'https://jitpack.io' }
+                            }
+                        }
+                    }
+
+                    plugins {
+                        id 'com.android.application' version '7.3.1' apply false
+                        id 'com.android.library' version '7.4.2' apply false
+                        id 'org.jetbrains.kotlin.android' version '1.7.0' apply false
+                        alias(libs.plugins.kotlinter)
+                    }
+                  content_encoding: utf-8
+                  deleted: false
+                  directory: /gradle-version-catalog
+                  name: build.gradle
+                  operation: update
+                  support_file: false
+                  type: file
+            pr-title: Bump com.android.library from 7.3.1 to 7.4.2 in /gradle-version-catalog
+            pr-body: |
+                Bumps com.android.library from 7.3.1 to 7.4.2.
+            commit-message: |-
+                Bump com.android.library from 7.3.1 to 7.4.2 in /gradle-version-catalog
+
+                Bumps com.android.library from 7.3.1 to 7.4.2.
+    - type: create_pull_request
+      expect:
+        data:
+            base-commit-sha: 943c1eaeb4ed9383ec77c0ffe95ec727c1f7c5e6
+            dependencies:
+                - name: org.jetbrains.kotlin.android
+                  previous-requirements:
+                    - file: build.gradle
+                      groups:
+                        - plugins
+                      requirement: 1.7.0
+                      source: null
+                  previous-version: 1.7.0
+                  requirements:
+                    - file: build.gradle
+                      groups:
+                        - plugins
+                      requirement: 1.8.10
+                      source:
+                        type: maven_repo
+                        url: https://repo.maven.apache.org/maven2
+                  version: 1.8.10
+                  directory: /gradle-version-catalog
+            updated-dependency-files:
+                - content: |
+                    buildscript {
+                        allprojects {
+                            repositories {
+                                google()
+                                mavenCentral()
+                                maven { url 'https://jitpack.io' }
+                            }
+                        }
+                    }
+
+                    plugins {
+                        id 'com.android.application' version '7.3.1' apply false
+                        id 'com.android.library' version '7.3.1' apply false
+                        id 'org.jetbrains.kotlin.android' version '1.8.10' apply false
+                        alias(libs.plugins.kotlinter)
+                    }
+                  content_encoding: utf-8
+                  deleted: false
+                  directory: /gradle-version-catalog
+                  name: build.gradle
+                  operation: update
+                  support_file: false
+                  type: file
+            pr-title: Bump org.jetbrains.kotlin.android from 1.7.0 to 1.8.10 in /gradle-version-catalog
+            pr-body: |
+                Bumps [org.jetbrains.kotlin.android](https://github.com/JetBrains/kotlin) from 1.7.0 to 1.8.10.
+                <details>
+                <summary>Release notes</summary>
+                <p><em>Sourced from <a href="https://github.com/JetBrains/kotlin/releases">org.jetbrains.kotlin.android's releases</a>.</em></p>
+                <blockquote>
+                <h2>Kotlin 1.8.10</h2>
+                <h2>Changelog</h2>
+                <h3>Compiler</h3>
+                <ul>
+                <li><a href="https://youtrack.jetbrains.com/issue/KT-55483"><code>KT-55483</code></a> K2: Fir is not initialized for FirRegularClassSymbol java/lang/invoke/LambdaMetafactory</li>
+                <li><a href="https://youtrack.jetbrains.com/issue/KT-55729"><code>KT-55729</code></a> &quot;None of the following functions can be called with the arguments supplied:&quot; in 1.8.0</li>
+                <li><a href="https://youtrack.jetbrains.com/issue/KT-55769"><code>KT-55769</code></a> &quot;ERROR: Could not find accessor&quot;: Android DataBinding fails with Kotlin 1.8.0</li>
+                <li><a href="https://youtrack.jetbrains.com/issue/KT-55308"><code>KT-55308</code></a> InnerClass attributes should be sorted (innermost last)</li>
+                </ul>
+                <h3>JavaScript</h3>
+                <ul>
+                <li><a href="https://youtrack.jetbrains.com/issue/KT-56282"><code>KT-56282</code></a> KJS: Invalidate incremental cache in case of compiler internal errors</li>
+                <li><a href="https://youtrack.jetbrains.com/issue/KT-55852"><code>KT-55852</code></a> JS: &quot;IllegalStateException: Unexpected ir type argument&quot; caused by List with star projection type</li>
+                <li><a href="https://youtrack.jetbrains.com/issue/KT-55716"><code>KT-55716</code></a> KJS / IC: &quot;Cannot read properties of undefined&quot; with overriding variables with 1.8.0</li>
+                <li><a href="https://youtrack.jetbrains.com/issue/KT-55758"><code>KT-55758</code></a> KJS / IR: Checking implemented interface on a class implementing a <a href="https://github.com/JsExport"><code>@​JsExport</code></a> interface returns the wrong result</li>
+                </ul>
+                <h3>Reflection</h3>
+                <ul>
+                <li><a href="https://youtrack.jetbrains.com/issue/KT-56093"><code>KT-56093</code></a> Metaspace leak in a Gradle plugin built with Kotlin 1.8.0</li>
+                </ul>
+                <h3>Tools. Compiler plugins. Serialization</h3>
+                <ul>
+                <li><a href="https://youtrack.jetbrains.com/issue/KT-56347"><code>KT-56347</code></a> [Kotlin 1.8] Regression kotlinx.serialization compiler plugin internal error</li>
+                <li><a href="https://youtrack.jetbrains.com/issue/KT-55681"><code>KT-55681</code></a> Serialization: NullPointerException after update to 1.8.0 caused by <code>@Serializer(forClass= ..)</code></li>
+                <li><a href="https://youtrack.jetbrains.com/issue/KT-56244"><code>KT-56244</code></a> kotlinx.serialization compiler intrinsic does not work with encodeToString function in 1.8.0</li>
+                <li><a href="https://youtrack.jetbrains.com/issue/KT-55683"><code>KT-55683</code></a> Serialization: &quot;IllegalStateException: Expected to have a primary constructor&quot; with expect class and companion object</li>
+                <li><a href="https://youtrack.jetbrains.com/issue/KT-55682"><code>KT-55682</code></a> Serialization: &quot;IllegalStateException: Function has no body: FUN name:serializer&quot; with 1.8.0</li>
+                </ul>
+                <h3>Tools. Gradle</h3>
+                <ul>
+                <li><a href="https://youtrack.jetbrains.com/issue/KT-55697"><code>KT-55697</code></a> KGP 1.8.0 adds compileOnly dependencies to unit test compile classpath</li>
+                </ul>
+                <h3>Tools. Gradle. Multiplatform</h3>
+                <ul>
+                <li><a href="https://youtrack.jetbrains.com/issue/KT-55730"><code>KT-55730</code></a> MPP / Gradle: compileKotlinMetadata fails to resolve symbols in additional source sets</li>
+                </ul>
+                <h3>Tools. Gradle. Native</h3>
+                <ul>
+                <li><a href="https://youtrack.jetbrains.com/issue/KT-56280"><code>KT-56280</code></a> Gradle: freeCompilerArgs are no longer propagated from compilations to Native binaries</li>
+                </ul>
+                <h3>Tools. Kapt</h3>
+                <ul>
+                <li><a href="https://youtrack.jetbrains.com/issue/KT-48013"><code>KT-48013</code></a> Kapt generates illegal stubs for private interface methods</li>
+                </ul>
+                <h2>Checksums</h2>
+                <table>
+                <thead>
+                <tr>
+                <th>File</th>
+                <th>Sha256</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                <td>kotlin-compiler-1.8.10.zip</td>
+                <td>4c3fa7bc1bb9ef3058a2319d8bcc3b7196079f88e92fdcd8d304a46f4b6b5787</td>
+                </tr>
+                <tr>
+                <td>kotlin-native-linux-x86_64-1.8.10.tar.gz</td>
+                <td>4c5c8a82a63a3a9845be2514d536ca407340db7fc558b97c43ed003f866a9742</td>
+                </tr>
+                </tbody>
+                </table>
+                <!-- raw HTML omitted -->
+                </blockquote>
+                <p>... (truncated)</p>
+                </details>
+                <details>
+                <summary>Changelog</summary>
+                <p><em>Sourced from <a href="https://github.com/JetBrains/kotlin/blob/master/ChangeLog.md">org.jetbrains.kotlin.android's changelog</a>.</em></p>
+                <blockquote>
+                <h2>1.8.21</h2>
+                <h3>Compiler</h3>
+                <ul>
+                <li><a href="https://youtrack.jetbrains.com/issue/KT-57848"><code>KT-57848</code></a> Native: compilation of dynamic/static library fails with Xcode 14.3</li>
+                <li><a href="https://youtrack.jetbrains.com/issue/KT-57875"><code>KT-57875</code></a> Native compilation failure: Suspend functions should be lowered out at this point, but FUN LOCAL_FUNCTION_FOR_LAMBDA</li>
+                <li><a href="https://youtrack.jetbrains.com/issue/KT-57946"><code>KT-57946</code></a> KAPT: &quot;RuntimeException: No type for expression&quot; with delegate</li>
+                </ul>
+                <h3>JavaScript</h3>
+                <ul>
+                <li><a href="https://youtrack.jetbrains.com/issue/KT-57356"><code>KT-57356</code></a> KJS: StackOverflowException on <a href="https://github.com/JsExport"><code>@​JsExport</code></a> with type parameters referring to one another</li>
+                </ul>
+                <h3>Tools. Compiler plugins. Serialization</h3>
+                <ul>
+                <li><a href="https://youtrack.jetbrains.com/issue/KT-58067"><code>KT-58067</code></a> Serialization: NullPointerException caused by <a href="https://github.com/Contextual"><code>@​Contextual</code></a> property with type with generic</li>
+                <li><a href="https://youtrack.jetbrains.com/issue/KT-57730"><code>KT-57730</code></a> Serialization: &quot;IllegalStateException: Serializer for element of type <!-- raw HTML omitted -->.Foo has not been found&quot; caused by serialization of Java type</li>
+                </ul>
+                <h3>Tools. Gradle. JS</h3>
+                <ul>
+                <li><a href="https://youtrack.jetbrains.com/issue/KT-57766"><code>KT-57766</code></a> KJS / Gradle &quot;Module not found: Error: Can't resolve 'kotlin-kotlin-stdlib-js-ir'&quot; when using &quot;useEsModules&quot;</li>
+                </ul>
+                <h3>Tools. Kapt</h3>
+                <ul>
+                <li><a href="https://youtrack.jetbrains.com/issue/KT-58027"><code>KT-58027</code></a> Kotlin 1.8.20 kapt issue &quot;null: KtCallExpression: build()&quot;</li>
+                </ul>
+                <h3>Tools. Maven</h3>
+                <ul>
+                <li><a href="https://youtrack.jetbrains.com/issue/KT-58048"><code>KT-58048</code></a> Maven: &quot;Too many source module declarations found&quot; after upgrading to 1.8.20</li>
+                <li><a href="https://youtrack.jetbrains.com/issue/KT-58101"><code>KT-58101</code></a> 'Unable to access class' in kotlin-maven-plugin after updating to Kotlin 1.8.20</li>
+                </ul>
+                <h2>1.8.20</h2>
+                <h3>Analysis API</h3>
+                <ul>
+                <li><a href="https://youtrack.jetbrains.com/issue/KT-55510"><code>KT-55510</code></a> K2: Lost designation for local classes</li>
+                <li><a href="https://youtrack.jetbrains.com/issue/KT-55191"><code>KT-55191</code></a> AA: add an API to compare symbol pointers</li>
+                <li><a href="https://youtrack.jetbrains.com/issue/KT-55487"><code>KT-55487</code></a> K2: symbol pointer restoring doesn't work for static members</li>
+                <li><a href="https://youtrack.jetbrains.com/issue/KT-55336"><code>KT-55336</code></a> K2 IDE: &quot;java.lang.IllegalStateException: Required value was null.&quot; exception while importing a compiled JPS project</li>
+                <li><a href="https://youtrack.jetbrains.com/issue/KT-55098"><code>KT-55098</code></a> AA: KtDeclarationRenderer should render a context receivers</li>
+                <li><a href="https://youtrack.jetbrains.com/issue/KT-51181"><code>KT-51181</code></a> LL API: errors for SAM with suspend function from another module</li>
+                <li><a href="https://youtrack.jetbrains.com/issue/KT-50250"><code>KT-50250</code></a> Analysis API: Implement Analysis API of KtExpression.isUsedAsExpression</li>
+                <li><a href="https://youtrack.jetbrains.com/issue/KT-54360"><code>KT-54360</code></a> KtPropertySymbol: support JvmField in javaSetterName and javaGetterName</li>
+                </ul>
+                <h3>Analysis API. FE1.0</h3>
+                <ul>
+                <li><a href="https://youtrack.jetbrains.com/issue/KT-55825"><code>KT-55825</code></a> AA FE1.0: stackoverflow when resolution to a function with a recursive type parameter</li>
+                </ul>
+                <h3>Analysis API. FIR</h3>
+                <!-- raw HTML omitted -->
+                </blockquote>
+                <p>... (truncated)</p>
+                </details>
+                <details>
+                <summary>Commits</summary>
+                <ul>
+                <li><a href="https://github.com/JetBrains/kotlin/commit/3d65420f78e384d2e4f1eeb49b935696a50f0bff"><code>3d65420</code></a> Add changelog for 1.8.10</li>
+                <li><a href="https://github.com/JetBrains/kotlin/commit/a8fee4d4bb8a46f652356847d4102481ab84fa8f"><code>a8fee4d</code></a> Don't override compilation freeCompilerArgs in link task</li>
+                <li><a href="https://github.com/JetBrains/kotlin/commit/e2b4317ebc2d199955a6bbf522465368a6f2c881"><code>e2b4317</code></a> [Gradle] Legacy metadata compilation should contain all source sets from</li>
+                <li><a href="https://github.com/JetBrains/kotlin/commit/b6cde890e95a480e8f93f1e41c2394c8943e04e1"><code>b6cde89</code></a> [JS IR] Invalidate an incremental cache in case of errors</li>
+                <li><a href="https://github.com/JetBrains/kotlin/commit/08dd52faa9c7dc8718666c74d8a252da6a16838d"><code>08dd52f</code></a> Address classloader leak in a recently-introduced ClassValueCache</li>
+                <li><a href="https://github.com/JetBrains/kotlin/commit/46ddcac4f7dc925dbca828117c318589dd8de11e"><code>46ddcac</code></a> Support intrinsifying of serializer() function when it is seen inside multifi...</li>
+                <li><a href="https://github.com/JetBrains/kotlin/commit/2d1e8db9b93b742efb8de7aad43a708ee57f0e6c"><code>2d1e8db</code></a> Handle <a href="https://github.com/Serializable"><code>@​Serializable</code></a> classes that implement interfaces by delegation</li>
+                <li><a href="https://github.com/JetBrains/kotlin/commit/d5e97c696d31da931cdb721783b8b6699c37deab"><code>d5e97c6</code></a> Skip properties from Java classes for which the getter type is unknown</li>
+                <li><a href="https://github.com/JetBrains/kotlin/commit/c8a4ba1ce30370f364bcb89d3aa0ec55f6f11fb6"><code>c8a4ba1</code></a> [JS IR] Don't check an interface method default impl during JS translation</li>
+                <li><a href="https://github.com/JetBrains/kotlin/commit/eaa61d2328ec12aa38eb545128c17cd1d256ca52"><code>eaa61d2</code></a> K1: Fix regression with callable references as last statements in lambda</li>
+                <li>Additional commits viewable in <a href="https://github.com/JetBrains/kotlin/compare/v1.7.0...v1.8.10">compare view</a></li>
+                </ul>
+                </details>
+                <br />
+            commit-message: |-
+                Bump org.jetbrains.kotlin.android in /gradle-version-catalog
+
+                Bumps [org.jetbrains.kotlin.android](https://github.com/JetBrains/kotlin) from 1.7.0 to 1.8.10.
+                - [Release notes](https://github.com/JetBrains/kotlin/releases)
+                - [Changelog](https://github.com/JetBrains/kotlin/blob/master/ChangeLog.md)
+                - [Commits](https://github.com/JetBrains/kotlin/compare/v1.7.0...v1.8.10)
+    - type: create_pull_request
+      expect:
+        data:
+            base-commit-sha: 943c1eaeb4ed9383ec77c0ffe95ec727c1f7c5e6
+            dependencies:
+                - name: androidx.core:core-ktx
+                  previous-requirements:
+                    - file: app/build.gradle
+                      groups: []
+                      requirement: 1.7.0
+                      source: null
+                    - file: gradle/libs.versions.toml
+                      groups: []
+                      metadata:
+                        property_name: corektx
+                      requirement: 1.7.0
+                      source: null
+                  previous-version: 1.7.0
+                  requirements:
+                    - file: app/build.gradle
+                      groups: []
+                      requirement: 1.9.0
+                      source:
+                        type: maven_repo
+                        url: https://maven.google.com
+                    - file: gradle/libs.versions.toml
+                      groups: []
+                      metadata:
+                        property_name: corektx
+                      requirement: 1.9.0
+                      source:
+                        type: maven_repo
+                        url: https://maven.google.com
+                  version: 1.9.0
+                  directory: /gradle-version-catalog
+            updated-dependency-files:
+                - content: |-
+                    [versions]
+                    corektx = "1.9.0"
+                    lifecycleRuntime = "2.3.1"
+                    composeUi = "1.2.0"
+                    jUnitVersion = "4.13.2"
+                    androidxJunit = "1.1.3"
+                    espresso = "3.5.0"
+
+                    [libraries]
+                    corektx = { module = "androidx.core:core-ktx", version.ref = "corektx" }
+                    lifecycleRuntimeKtx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycleRuntime" }
+
+                    compose-activity = { module = "androidx.activity:activity-compose", version = "1.3.1" }
+                    compose-ui = { module = "androidx.compose.ui:ui", version.ref = "composeUi" }
+                    compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "composeUi" }
+                    compose-material = { module = "androidx.compose.material:material", version = { strictly = "[1.2.0, 1.3.1[", prefer="1.3.0" } }
+
+                    test-junit = { module = "junit:junit", version.ref = "jUnitVersion" }
+                    test-andoridx-junit = { module = "androidx.test.ext:junit", version.ref = "androidxJunit" }
+                    test-compose-ui = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "composeUi" }
+                    test-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "composeUi" }
+                    test-compose-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "composeUi" }
+                    test-espresso-Core = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso" }
+
+                    [bundles]
+                    compose = ["compose-activity", "compose-ui", "compose-ui-tooling", "compose-material"]
+
+                    [plugins]
+                    kotlinter = { id = "org.jmailen.kotlinter", version = "3.11.0" }
+                  content_encoding: utf-8
+                  deleted: false
+                  directory: /gradle-version-catalog
+                  name: gradle/libs.versions.toml
+                  operation: update
+                  support_file: false
+                  type: file
+                - content: |
+                    plugins {
+                        id 'com.android.application'
+                        id 'org.jetbrains.kotlin.android'
+                    }
+
+                    android {
+                        namespace 'com.example.versioncatalog'
+                        compileSdk 33
+
+                        defaultConfig {
+                            applicationId "com.example.versioncatalog"
+                            minSdk 24
+                            targetSdk 33
+                            versionCode 1
+                            versionName "1.0"
+
+                            testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+                            vectorDrawables {
+                                useSupportLibrary true
+                            }
+                        }
+
+                        buildTypes {
+                            release {
+                                minifyEnabled false
+                                proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+                            }
+                        }
+                        compileOptions {
+                            sourceCompatibility JavaVersion.VERSION_1_8
+                            targetCompatibility JavaVersion.VERSION_1_8
+                        }
+                        kotlinOptions {
+                            jvmTarget = '1.8'
+                        }
+                        buildFeatures {
+                            compose true
+                        }
+                        composeOptions {
+                            kotlinCompilerExtensionVersion '1.2.0'
+                        }
+                        packagingOptions {
+                            resources {
+                                excludes += '/META-INF/{AL2.0,LGPL2.1}'
+                            }
+                        }
+                    }
+
+                    dependencies {
+
+                        implementation 'androidx.core:core-ktx:1.9.0'
+
+                        implementation libs.lifecycleRuntimeKtx
+                        implementation libs.bundles.compose
+
+                        testImplementation libs.test.junit
+
+                        androidTestImplementation libs.test.andoridx.junit
+                        androidTestImplementation libs.test.espresso.core
+                        androidTestImplementation libs.test.compose.ui
+                        androidTestImplementation libs.test.compose.ui.tooling
+
+                        debugImplementation libs.test.compose.ui.tooling
+                        debugImplementation libs.test.compose.manifest
+                    }
+                  content_encoding: utf-8
+                  deleted: false
+                  directory: /gradle-version-catalog
+                  name: app/build.gradle
+                  operation: update
+                  support_file: false
+                  type: file
+            pr-title: Bump androidx.core:core-ktx from 1.7.0 to 1.9.0 in /gradle-version-catalog
+            pr-body: |
+                Bumps androidx.core:core-ktx from 1.7.0 to 1.9.0.
+            commit-message: |-
+                Bump androidx.core:core-ktx in /gradle-version-catalog
+
+                Bumps androidx.core:core-ktx from 1.7.0 to 1.9.0.
+    - type: create_pull_request
+      expect:
+        data:
+            base-commit-sha: 943c1eaeb4ed9383ec77c0ffe95ec727c1f7c5e6
+            dependencies:
+                - name: gradle-wrapper
+                  previous-requirements:
+                    - file: gradle/wrapper/gradle-wrapper.properties
+                      groups: []
+                      requirement: "7.5"
+                      source:
+                        property: distributionUrl
+                        type: gradle-distribution
+                        url: https://services.gradle.org/distributions/gradle-7.5-bin.zip
+                  previous-version: "7.5"
+                  requirements:
+                    - file: gradle/wrapper/gradle-wrapper.properties
+                      groups: []
+                      requirement: 9.3.1
+                      source:
+                        property: distributionUrl
+                        type: gradle-distribution
+                        url: https://services.gradle.org/distributions/gradle-9.3.1-bin.zip
+                  version: 9.3.1
+                  directory: /gradle-version-catalog
+            updated-dependency-files:
+                - content: |
+                    #!/bin/sh
+
+                    #
+                    # Copyright © 2015 the original authors.
+                    #
+                    # Licensed under the Apache License, Version 2.0 (the "License");
+                    # you may not use this file except in compliance with the License.
+                    # You may obtain a copy of the License at
+                    #
+                    #      https://www.apache.org/licenses/LICENSE-2.0
+                    #
+                    # Unless required by applicable law or agreed to in writing, software
+                    # distributed under the License is distributed on an "AS IS" BASIS,
+                    # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+                    # See the License for the specific language governing permissions and
+                    # limitations under the License.
+                    #
+                    # SPDX-License-Identifier: Apache-2.0
+                    #
+
+                    ##############################################################################
+                    #
+                    #   Gradle start up script for POSIX generated by Gradle.
+                    #
+                    #   Important for running:
+                    #
+                    #   (1) You need a POSIX-compliant shell to run this script. If your /bin/sh is
+                    #       noncompliant, but you have some other compliant shell such as ksh or
+                    #       bash, then to run this script, type that shell name before the whole
+                    #       command line, like:
+                    #
+                    #           ksh Gradle
+                    #
+                    #       Busybox and similar reduced shells will NOT work, because this script
+                    #       requires all of these POSIX shell features:
+                    #         * functions;
+                    #         * expansions «$var», «${var}», «${var:-default}», «${var+SET}»,
+                    #           «${var#prefix}», «${var%suffix}», and «$( cmd )»;
+                    #         * compound commands having a testable exit status, especially «case»;
+                    #         * various built-in commands including «command», «set», and «ulimit».
+                    #
+                    #   Important for patching:
+                    #
+                    #   (2) This script targets any POSIX shell, so it avoids extensions provided
+                    #       by Bash, Ksh, etc; in particular arrays are avoided.
+                    #
+                    #       The "traditional" practice of packing multiple parameters into a
+                    #       space-separated string is a well documented source of bugs and security
+                    #       problems, so this is (mostly) avoided, by progressively accumulating
+                    #       options in "$@", and eventually passing that to Java.
+                    #
+                    #       Where the inherited environment variables (DEFAULT_JVM_OPTS, JAVA_OPTS,
+                    #       and GRADLE_OPTS) rely on word-splitting, this is performed explicitly;
+                    #       see the in-line comments for details.
+                    #
+                    #       There are tweaks for specific operating systems such as AIX, CygWin,
+                    #       Darwin, MinGW, and NonStop.
+                    #
+                    #   (3) This script is generated from the Groovy template
+                    #       https://github.com/gradle/gradle/blob/HEAD/platforms/jvm/plugins-application/src/main/resources/org/gradle/api/internal/plugins/unixStartScript.txt
+                    #       within the Gradle project.
+                    #
+                    #       You can find Gradle at https://github.com/gradle/gradle/.
+                    #
+                    ##############################################################################
+
+                    # Attempt to set APP_HOME
+
+                    # Resolve links: $0 may be a link
+                    app_path=$0
+
+                    # Need this for daisy-chained symlinks.
+                    while
+                        APP_HOME=${app_path%"${app_path##*/}"}  # leaves a trailing /; empty if no leading path
+                        [ -h "$app_path" ]
+                    do
+                        ls=$( ls -ld "$app_path" )
+                        link=${ls#*' -> '}
+                        case $link in             #(
+                          /*)   app_path=$link ;; #(
+                          *)    app_path=$APP_HOME$link ;;
+                        esac
+                    done
+
+                    # This is normally unused
+                    # shellcheck disable=SC2034
+                    APP_BASE_NAME=${0##*/}
+                    # Discard cd standard output in case $CDPATH is set (https://github.com/gradle/gradle/issues/25036)
+                    APP_HOME=$( cd -P "${APP_HOME:-./}" > /dev/null && printf '%s\n' "$PWD" ) || exit
+
+                    # Use the maximum available, or set MAX_FD != -1 to use that value.
+                    MAX_FD=maximum
+
+                    warn () {
+                        echo "$*"
+                    } >&2
+
+                    die () {
+                        echo
+                        echo "$*"
+                        echo
+                        exit 1
+                    } >&2
+
+                    # OS specific support (must be 'true' or 'false').
+                    cygwin=false
+                    msys=false
+                    darwin=false
+                    nonstop=false
+                    case "$( uname )" in                #(
+                      CYGWIN* )         cygwin=true  ;; #(
+                      Darwin* )         darwin=true  ;; #(
+                      MSYS* | MINGW* )  msys=true    ;; #(
+                      NONSTOP* )        nonstop=true ;;
+                    esac
+
+
+
+                    # Determine the Java command to use to start the JVM.
+                    if [ -n "$JAVA_HOME" ] ; then
+                        if [ -x "$JAVA_HOME/jre/sh/java" ] ; then
+                            # IBM's JDK on AIX uses strange locations for the executables
+                            JAVACMD=$JAVA_HOME/jre/sh/java
+                        else
+                            JAVACMD=$JAVA_HOME/bin/java
+                        fi
+                        if [ ! -x "$JAVACMD" ] ; then
+                            die "ERROR: JAVA_HOME is set to an invalid directory: $JAVA_HOME
+
+                    Please set the JAVA_HOME variable in your environment to match the
+                    location of your Java installation."
+                        fi
+                    else
+                        JAVACMD=java
+                        if ! command -v java >/dev/null 2>&1
+                        then
+                            die "ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.
+
+                    Please set the JAVA_HOME variable in your environment to match the
+                    location of your Java installation."
+                        fi
+                    fi
+
+                    # Increase the maximum file descriptors if we can.
+                    if ! "$cygwin" && ! "$darwin" && ! "$nonstop" ; then
+                        case $MAX_FD in #(
+                          max*)
+                            # In POSIX sh, ulimit -H is undefined. That's why the result is checked to see if it worked.
+                            # shellcheck disable=SC2039,SC3045
+                            MAX_FD=$( ulimit -H -n ) ||
+                                warn "Could not query maximum file descriptor limit"
+                        esac
+                        case $MAX_FD in  #(
+                          '' | soft) :;; #(
+                          *)
+                            # In POSIX sh, ulimit -n is undefined. That's why the result is checked to see if it worked.
+                            # shellcheck disable=SC2039,SC3045
+                            ulimit -n "$MAX_FD" ||
+                                warn "Could not set maximum file descriptor limit to $MAX_FD"
+                        esac
+                    fi
+
+                    # Collect all arguments for the java command, stacking in reverse order:
+                    #   * args from the command line
+                    #   * the main class name
+                    #   * -classpath
+                    #   * -D...appname settings
+                    #   * --module-path (only if needed)
+                    #   * DEFAULT_JVM_OPTS, JAVA_OPTS, and GRADLE_OPTS environment variables.
+
+                    # For Cygwin or MSYS, switch paths to Windows format before running java
+                    if "$cygwin" || "$msys" ; then
+                        APP_HOME=$( cygpath --path --mixed "$APP_HOME" )
+
+                        JAVACMD=$( cygpath --unix "$JAVACMD" )
+
+                        # Now convert the arguments - kludge to limit ourselves to /bin/sh
+                        for arg do
+                            if
+                                case $arg in                                #(
+                                  -*)   false ;;                            # don't mess with options #(
+                                  /?*)  t=${arg#/} t=/${t%%/*}              # looks like a POSIX filepath
+                                        [ -e "$t" ] ;;                      #(
+                                  *)    false ;;
+                                esac
+                            then
+                                arg=$( cygpath --path --ignore --mixed "$arg" )
+                            fi
+                            # Roll the args list around exactly as many times as the number of
+                            # args, so each arg winds up back in the position where it started, but
+                            # possibly modified.
+                            #
+                            # NB: a `for` loop captures its iteration list before it begins, so
+                            # changing the positional parameters here affects neither the number of
+                            # iterations, nor the values presented in `arg`.
+                            shift                   # remove old arg
+                            set -- "$@" "$arg"      # push replacement arg
+                        done
+                    fi
+
+
+                    # Add default JVM options here. You can also use JAVA_OPTS and GRADLE_OPTS to pass JVM options to this script.
+                    DEFAULT_JVM_OPTS='"-Xmx64m" "-Xms64m"'
+
+                    # Collect all arguments for the java command:
+                    #   * DEFAULT_JVM_OPTS, JAVA_OPTS, and optsEnvironmentVar are not allowed to contain shell fragments,
+                    #     and any embedded shellness will be escaped.
+                    #   * For example: A user cannot expect ${Hostname} to be expanded, as it is an environment variable and will be
+                    #     treated as '${Hostname}' itself on the command line.
+
+                    set -- \
+                            "-Dorg.gradle.appname=$APP_BASE_NAME" \
+                            -jar "$APP_HOME/gradle/wrapper/gradle-wrapper.jar" \
+                            "$@"
+
+                    # Stop when "xargs" is not available.
+                    if ! command -v xargs >/dev/null 2>&1
+                    then
+                        die "xargs is not available"
+                    fi
+
+                    # Use "xargs" to parse quoted args.
+                    #
+                    # With -n1 it outputs one arg per line, with the quotes and backslashes removed.
+                    #
+                    # In Bash we could simply go:
+                    #
+                    #   readarray ARGS < <( xargs -n1 <<<"$var" ) &&
+                    #   set -- "${ARGS[@]}" "$@"
+                    #
+                    # but POSIX shell has neither arrays nor command substitution, so instead we
+                    # post-process each arg (as a line of input to sed) to backslash-escape any
+                    # character that might be a shell metacharacter, then use eval to reverse
+                    # that process (while maintaining the separation between arguments), and wrap
+                    # the whole thing up as a single "set" statement.
+                    #
+                    # This will of course break if any of these variables contains a newline or
+                    # an unmatched quote.
+                    #
+
+                    eval "set -- $(
+                            printf '%s\n' "$DEFAULT_JVM_OPTS $JAVA_OPTS $GRADLE_OPTS" |
+                            xargs -n1 |
+                            sed ' s~[^-[:alnum:]+,./:=@_]~\\&~g; ' |
+                            tr '\n' ' '
+                        )" '"$@"'
+
+                    exec "$JAVACMD" "$@"
+                  content_encoding: utf-8
+                  deleted: false
+                  directory: /gradle-version-catalog
+                  name: gradlew
+                  operation: update
+                  support_file: false
+                  type: file
+                  mode: "100755"
+                - content: "@rem\r\n@rem Copyright 2015 the original author or authors.\r\n@rem\r\n@rem Licensed under the Apache License, Version 2.0 (the \"License\");\r\n@rem you may not use this file except in compliance with the License.\r\n@rem You may obtain a copy of the License at\r\n@rem\r\n@rem      https://www.apache.org/licenses/LICENSE-2.0\r\n@rem\r\n@rem Unless required by applicable law or agreed to in writing, software\r\n@rem distributed under the License is distributed on an \"AS IS\" BASIS,\r\n@rem WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\r\n@rem See the License for the specific language governing permissions and\r\n@rem limitations under the License.\r\n@rem\r\n@rem SPDX-License-Identifier: Apache-2.0\r\n@rem\r\n\r\n@if \"%DEBUG%\"==\"\" @echo off\r\n@rem ##########################################################################\r\n@rem\r\n@rem  Gradle startup script for Windows\r\n@rem\r\n@rem ##########################################################################\r\n\r\n@rem Set local scope for the variables with windows NT shell\r\nif \"%OS%\"==\"Windows_NT\" setlocal\r\n\r\nset DIRNAME=%~dp0\r\nif \"%DIRNAME%\"==\"\" set DIRNAME=.\r\n@rem This is normally unused\r\nset APP_BASE_NAME=%~n0\r\nset APP_HOME=%DIRNAME%\r\n\r\n@rem Resolve any \".\" and \"..\" in APP_HOME to make it shorter.\r\nfor %%i in (\"%APP_HOME%\") do set APP_HOME=%%~fi\r\n\r\n@rem Add default JVM options here. You can also use JAVA_OPTS and GRADLE_OPTS to pass JVM options to this script.\r\nset DEFAULT_JVM_OPTS=\"-Xmx64m\" \"-Xms64m\"\r\n\r\n@rem Find java.exe\r\nif defined JAVA_HOME goto findJavaFromJavaHome\r\n\r\nset JAVA_EXE=java.exe\r\n%JAVA_EXE% -version >NUL 2>&1\r\nif %ERRORLEVEL% equ 0 goto execute\r\n\r\necho. 1>&2\r\necho ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH. 1>&2\r\necho. 1>&2\r\necho Please set the JAVA_HOME variable in your environment to match the 1>&2\r\necho location of your Java installation. 1>&2\r\n\r\ngoto fail\r\n\r\n:findJavaFromJavaHome\r\nset JAVA_HOME=%JAVA_HOME:\"=%\r\nset JAVA_EXE=%JAVA_HOME%/bin/java.exe\r\n\r\nif exist \"%JAVA_EXE%\" goto execute\r\n\r\necho. 1>&2\r\necho ERROR: JAVA_HOME is set to an invalid directory: %JAVA_HOME% 1>&2\r\necho. 1>&2\r\necho Please set the JAVA_HOME variable in your environment to match the 1>&2\r\necho location of your Java installation. 1>&2\r\n\r\ngoto fail\r\n\r\n:execute\r\n@rem Setup the command line\r\n\r\n\r\n\r\n@rem Execute Gradle\r\n\"%JAVA_EXE%\" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %GRADLE_OPTS% \"-Dorg.gradle.appname=%APP_BASE_NAME%\" -jar \"%APP_HOME%\\gradle\\wrapper\\gradle-wrapper.jar\" %*\r\n\r\n:end\r\n@rem End local scope for the variables with windows NT shell\r\nif %ERRORLEVEL% equ 0 goto mainEnd\r\n\r\n:fail\r\nrem Set variable GRADLE_EXIT_CONSOLE if you need the _script_ return code instead of\r\nrem the _cmd.exe /c_ return code!\r\nset EXIT_CODE=%ERRORLEVEL%\r\nif %EXIT_CODE% equ 0 set EXIT_CODE=1\r\nif not \"\"==\"%GRADLE_EXIT_CONSOLE%\" exit %EXIT_CODE%\r\nexit /b %EXIT_CODE%\r\n\r\n:mainEnd\r\nif \"%OS%\"==\"Windows_NT\" endlocal\r\n\r\n:omega\r\n"
+                  content_encoding: utf-8
+                  deleted: false
+                  directory: /gradle-version-catalog
+                  name: gradlew.bat
+                  operation: update
+                  support_file: false
+                  type: file
+                - content: 9d0710a56c83909362d60f924e7ddeb8d5f4bff0c8a6919630db2dfe8da56d6f
+                  content_encoding: sha256
+                  deleted: false
+                  directory: /gradle-version-catalog
+                  name: gradle/wrapper/gradle-wrapper.jar
+                  operation: update
+                  support_file: false
+                  type: file
+                - content: |
+                    distributionBase=GRADLE_USER_HOME
+                    distributionPath=wrapper/dists
+                    distributionUrl=https\://services.gradle.org/distributions/gradle-9.3.1-bin.zip
+                    networkTimeout=10000
+                    zipStoreBase=GRADLE_USER_HOME
+                    zipStorePath=wrapper/dists
+                  content_encoding: utf-8
+                  deleted: false
+                  directory: /gradle-version-catalog
+                  name: gradle/wrapper/gradle-wrapper.properties
+                  operation: update
+                  support_file: false
+                  type: file
+            pr-title: Bump gradle-wrapper from 7.5 to 9.3.1 in /gradle-version-catalog
+            pr-body: "Bumps [gradle-wrapper](https://github.com/gradle/gradle) from 7.5 to 9.3.1.\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/gradle/gradle/releases\">gradle-wrapper's releases</a>.</em></p>\n<blockquote>\n<h2>9.3.1</h2>\n<p>This is a patch release for 9.3.0. We recommend using 9.3.1 instead of 9.3.0.</p>\n<p>The following issues were resolved:</p>\n<ul>\n<li><a href=\"https://redirect.github.com/gradle/gradle/issues/36320\">Cannot find testcases from Android Screenshot Test plugin since Gradle 9.3.0</a></li>\n<li><a href=\"https://redirect.github.com/gradle/gradle/issues/36331\">Excluding dependencies from included builds doesn't work in Gradle 9.3.0</a></li>\n<li><a href=\"https://redirect.github.com/gradle/gradle/issues/36359\">ExternalDependency and DependencyConstraint cannot be passed to DependencyResolveDetails#useTarget</a></li>\n<li><a href=\"https://redirect.github.com/gradle/gradle/issues/36379\">Gradle 9.3.0 generate JUnit test result files with wrong name</a></li>\n<li><a href=\"https://redirect.github.com/gradle/gradle/issues/36387\">Build cache cannot handle outputs with non-BMP characters in the filename</a></li>\n<li><a href=\"https://redirect.github.com/gradle/gradle/issues/36395\">Emojis in test names should not break build caching</a></li>\n<li><a href=\"https://redirect.github.com/gradle/gradle/issues/36399\">Non utf-8 c code is no longer buildable</a></li>\n<li><a href=\"https://redirect.github.com/gradle/gradle/issues/36428\">Breaking change in 9.3.0 regarding cross-project dependency manipulation</a></li>\n<li><a href=\"https://redirect.github.com/gradle/gradle/issues/36451\">JUnit3 tests cannot be run with Gradle 9.3.0</a></li>\n<li><a href=\"https://redirect.github.com/gradle/gradle/issues/36508\">Test.setScanForTestClasses(false) causes all junit4 tests to be skipped</a></li>\n</ul>\n<p><a href=\"https://docs.gradle.org/9.3.1/release-notes.html\">Read the Release Notes</a></p>\n<h2>Upgrade instructions</h2>\n<p>Switch your build to use Gradle 9.3.1 by updating your wrapper:</p>\n<pre><code>./gradlew wrapper --gradle-version=9.3.1 &amp;&amp; ./gradlew wrapper\r\n</code></pre>\n<p>See the Gradle <a href=\"https://docs.gradle.org/9.3.1/userguide/upgrading_version_9.html\">9.x upgrade guide</a> to learn about deprecations, breaking changes and other considerations when upgrading.</p>\n<p>For Java, Groovy, Kotlin and Android compatibility, see the <a href=\"https://docs.gradle.org/9.3.1/userguide/compatibility.html\">full compatibility notes</a>.</p>\n<h2>Reporting problems</h2>\n<p>If you find a problem with this release, please file a bug on <a href=\"https://github.com/gradle/gradle/issues\">GitHub Issues</a> adhering to our issue guidelines.\nIf you're not sure you're encountering a bug, please use the <a href=\"https://discuss.gradle.org/c/help-discuss\">forum</a>.</p>\n<p>We hope you will build happiness with Gradle, and we look forward to your feedback via <a href=\"https://twitter.com/gradle\">Twitter</a> or on <a href=\"https://github.com/gradle\">GitHub</a>.</p>\n<h2>9.3.0</h2>\n<p>The Gradle team is excited to announce Gradle 9.3.0.</p>\n<p>Here are the highlights of this release:</p>\n<ul>\n<li>Test reporting improvements</li>\n<li>Error and warning improvements</li>\n<li>Build authoring improvements</li>\n</ul>\n<p><a href=\"https://docs.gradle.org/9.3.0/release-notes.html\">Read the Release Notes</a></p>\n<p>We would like to thank the following community members for their contributions to this release of Gradle:\n<a href=\"https://github.com/adam-enko\">Adam</a>,\n<a href=\"https://github.com/aSemy\">Adam</a>,\n<a href=\"https://github.com/Ahar28\">Aharnish Solanki</a>,</p>\n<!-- raw HTML omitted -->\n</blockquote>\n<p>... (truncated)</p>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/gradle/gradle/commit/44f4e8d3122ee6e7cbf5a248d7e20b4ca666bda3\"><code>44f4e8d</code></a> Release notes for 9.3.1 (<a href=\"https://redirect.github.com/gradle/gradle/issues/36516\">#36516</a>)</li>\n<li><a href=\"https://github.com/gradle/gradle/commit/6c94aa8760b0be0ff905c1d3da16be30cb38836f\"><code>6c94aa8</code></a> Release notes for 9.3.1</li>\n<li><a href=\"https://github.com/gradle/gradle/commit/5f30c912516d5b256280de61e5b3cf4dd6a612e9\"><code>5f30c91</code></a> Use JDK API for reading a link instead of readlink (<a href=\"https://redirect.github.com/gradle/gradle/issues/36504\">#36504</a>)</li>\n<li><a href=\"https://github.com/gradle/gradle/commit/b490fd49df3959115c4592ecca9f46406891b404\"><code>b490fd4</code></a> Use JDK API for reading a link instead of readlink</li>\n<li><a href=\"https://github.com/gradle/gradle/commit/987b770776880fdf63db3712c0a5c228370311b0\"><code>987b770</code></a> Reproduce and fix <a href=\"https://redirect.github.com/gradle/gradle/issues/36428\">#36428</a> (<a href=\"https://redirect.github.com/gradle/gradle/issues/36494\">#36494</a>)</li>\n<li><a href=\"https://github.com/gradle/gradle/commit/5ba4768d7d2b5ac08f16885f0b2cce6e16de5678\"><code>5ba4768</code></a> Add documentation to DependencyCollector about strict mutation behavior</li>\n<li><a href=\"https://github.com/gradle/gradle/commit/8d6c5f580aff954a494fccae27f8b8b9b08b0f17\"><code>8d6c5f5</code></a> Reproduce and fix <a href=\"https://redirect.github.com/gradle/gradle/issues/36428\">#36428</a></li>\n<li><a href=\"https://github.com/gradle/gradle/commit/6d8ef39daefc9a7be0fe37ada7cb6c4a90aa6bbf\"><code>6d8ef39</code></a> Note on Project referential equality for 9.3.0 - cherry-pick of <a href=\"https://redirect.github.com/gradle/gradle/issues/36459\">#36459</a> to rel...</li>\n<li><a href=\"https://github.com/gradle/gradle/commit/a9556e5542e9af8379e772f5333f367b49ecad67\"><code>a9556e5</code></a> Note on Project referential equality for 9.3.0 (<a href=\"https://redirect.github.com/gradle/gradle/issues/36459\">#36459</a>)</li>\n<li><a href=\"https://github.com/gradle/gradle/commit/752114225850d4bc1668a80016c96134ea9b5d15\"><code>7521142</code></a> Upgrade commons-lang3 3.20.0 (<a href=\"https://redirect.github.com/gradle/gradle/issues/36479\">#36479</a>)</li>\n<li>Additional commits viewable in <a href=\"https://github.com/gradle/gradle/compare/v7.5.0...v9.3.1\">compare view</a></li>\n</ul>\n</details>\n<br />\n"
+            commit-message: |-
+                Bump gradle-wrapper from 7.5 to 9.3.1 in /gradle-version-catalog
+
+                Bumps [gradle-wrapper](https://github.com/gradle/gradle) from 7.5 to 9.3.1.
+                - [Release notes](https://github.com/gradle/gradle/releases)
+                - [Commits](https://github.com/gradle/gradle/compare/v7.5.0...v9.3.1)
+    - type: create_pull_request
+      expect:
+        data:
+            base-commit-sha: 943c1eaeb4ed9383ec77c0ffe95ec727c1f7c5e6
+            dependencies:
+                - name: androidx.lifecycle:lifecycle-runtime-ktx
+                  previous-requirements:
+                    - file: gradle/libs.versions.toml
+                      groups: []
+                      metadata:
+                        property_name: lifecycleRuntime
+                      requirement: 2.3.1
+                      source: null
+                  previous-version: 2.3.1
+                  requirements:
+                    - file: gradle/libs.versions.toml
+                      groups: []
+                      metadata:
+                        property_name: lifecycleRuntime
+                      requirement: 2.6.0
+                      source:
+                        type: maven_repo
+                        url: https://maven.google.com
+                  version: 2.6.0
+                  directory: /gradle-version-catalog
+            updated-dependency-files:
+                - content: |-
+                    [versions]
+                    corektx = "1.7.0"
+                    lifecycleRuntime = "2.6.0"
+                    composeUi = "1.2.0"
+                    jUnitVersion = "4.13.2"
+                    androidxJunit = "1.1.3"
+                    espresso = "3.5.0"
+
+                    [libraries]
+                    corektx = { module = "androidx.core:core-ktx", version.ref = "corektx" }
+                    lifecycleRuntimeKtx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycleRuntime" }
+
+                    compose-activity = { module = "androidx.activity:activity-compose", version = "1.3.1" }
+                    compose-ui = { module = "androidx.compose.ui:ui", version.ref = "composeUi" }
+                    compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "composeUi" }
+                    compose-material = { module = "androidx.compose.material:material", version = { strictly = "[1.2.0, 1.3.1[", prefer="1.3.0" } }
+
+                    test-junit = { module = "junit:junit", version.ref = "jUnitVersion" }
+                    test-andoridx-junit = { module = "androidx.test.ext:junit", version.ref = "androidxJunit" }
+                    test-compose-ui = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "composeUi" }
+                    test-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "composeUi" }
+                    test-compose-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "composeUi" }
+                    test-espresso-Core = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso" }
+
+                    [bundles]
+                    compose = ["compose-activity", "compose-ui", "compose-ui-tooling", "compose-material"]
+
+                    [plugins]
+                    kotlinter = { id = "org.jmailen.kotlinter", version = "3.11.0" }
+                  content_encoding: utf-8
+                  deleted: false
+                  directory: /gradle-version-catalog
+                  name: gradle/libs.versions.toml
+                  operation: update
+                  support_file: false
+                  type: file
+            pr-title: Bump androidx.lifecycle:lifecycle-runtime-ktx from 2.3.1 to 2.6.0 in /gradle-version-catalog
+            pr-body: |
+                Bumps androidx.lifecycle:lifecycle-runtime-ktx from 2.3.1 to 2.6.0.
+            commit-message: |-
+                Bump androidx.lifecycle:lifecycle-runtime-ktx in /gradle-version-catalog
+
+                Bumps androidx.lifecycle:lifecycle-runtime-ktx from 2.3.1 to 2.6.0.
+    - type: create_pull_request
+      expect:
+        data:
+            base-commit-sha: 943c1eaeb4ed9383ec77c0ffe95ec727c1f7c5e6
+            dependencies:
+                - name: androidx.activity:activity-compose
+                  previous-requirements:
+                    - file: gradle/libs.versions.toml
+                      groups: []
+                      requirement: 1.3.1
+                      source: null
+                  previous-version: 1.3.1
+                  requirements:
+                    - file: gradle/libs.versions.toml
+                      groups: []
+                      requirement: 1.6.1
+                      source:
+                        type: maven_repo
+                        url: https://maven.google.com
+                  version: 1.6.1
+                  directory: /gradle-version-catalog
+            updated-dependency-files:
+                - content: |-
+                    [versions]
+                    corektx = "1.7.0"
+                    lifecycleRuntime = "2.3.1"
+                    composeUi = "1.2.0"
+                    jUnitVersion = "4.13.2"
+                    androidxJunit = "1.1.3"
+                    espresso = "3.5.0"
+
+                    [libraries]
+                    corektx = { module = "androidx.core:core-ktx", version.ref = "corektx" }
+                    lifecycleRuntimeKtx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycleRuntime" }
+
+                    compose-activity = { module = "androidx.activity:activity-compose", version = "1.6.1" }
+                    compose-ui = { module = "androidx.compose.ui:ui", version.ref = "composeUi" }
+                    compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "composeUi" }
+                    compose-material = { module = "androidx.compose.material:material", version = { strictly = "[1.2.0, 1.3.1[", prefer="1.3.0" } }
+
+                    test-junit = { module = "junit:junit", version.ref = "jUnitVersion" }
+                    test-andoridx-junit = { module = "androidx.test.ext:junit", version.ref = "androidxJunit" }
+                    test-compose-ui = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "composeUi" }
+                    test-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "composeUi" }
+                    test-compose-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "composeUi" }
+                    test-espresso-Core = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso" }
+
+                    [bundles]
+                    compose = ["compose-activity", "compose-ui", "compose-ui-tooling", "compose-material"]
+
+                    [plugins]
+                    kotlinter = { id = "org.jmailen.kotlinter", version = "3.11.0" }
+                  content_encoding: utf-8
+                  deleted: false
+                  directory: /gradle-version-catalog
+                  name: gradle/libs.versions.toml
+                  operation: update
+                  support_file: false
+                  type: file
+            pr-title: Bump androidx.activity:activity-compose from 1.3.1 to 1.6.1 in /gradle-version-catalog
+            pr-body: |
+                Bumps androidx.activity:activity-compose from 1.3.1 to 1.6.1.
+            commit-message: |-
+                Bump androidx.activity:activity-compose in /gradle-version-catalog
+
+                Bumps androidx.activity:activity-compose from 1.3.1 to 1.6.1.
+    - type: create_pull_request
+      expect:
+        data:
+            base-commit-sha: 943c1eaeb4ed9383ec77c0ffe95ec727c1f7c5e6
+            dependencies:
+                - name: androidx.compose.ui:ui
+                  previous-requirements:
+                    - file: gradle/libs.versions.toml
+                      groups: []
+                      metadata:
+                        property_name: composeUi
+                      requirement: 1.2.0
+                      source: null
+                  previous-version: 1.2.0
+                  requirements:
+                    - file: gradle/libs.versions.toml
+                      groups: []
+                      metadata:
+                        property_name: composeUi
+                      requirement: 1.3.3
+                      source:
+                        type: maven_repo
+                        url: https://maven.google.com
+                  version: 1.3.3
+                  directory: /gradle-version-catalog
+                - name: androidx.compose.ui:ui-tooling-preview
+                  previous-requirements:
+                    - file: gradle/libs.versions.toml
+                      groups: []
+                      metadata:
+                        property_name: composeUi
+                      requirement: 1.2.0
+                      source: null
+                  previous-version: 1.2.0
+                  requirements:
+                    - file: gradle/libs.versions.toml
+                      groups: []
+                      metadata:
+                        property_name: composeUi
+                      requirement: 1.3.3
+                      source:
+                        type: maven_repo
+                        url: https://maven.google.com
+                  version: 1.3.3
+                  directory: /gradle-version-catalog
+                - name: androidx.compose.ui:ui-test-junit4
+                  previous-requirements:
+                    - file: gradle/libs.versions.toml
+                      groups: []
+                      metadata:
+                        property_name: composeUi
+                      requirement: 1.2.0
+                      source: null
+                  previous-version: 1.2.0
+                  requirements:
+                    - file: gradle/libs.versions.toml
+                      groups: []
+                      metadata:
+                        property_name: composeUi
+                      requirement: 1.3.3
+                      source:
+                        type: maven_repo
+                        url: https://maven.google.com
+                  version: 1.3.3
+                  directory: /gradle-version-catalog
+                - name: androidx.compose.ui:ui-tooling
+                  previous-requirements:
+                    - file: gradle/libs.versions.toml
+                      groups: []
+                      metadata:
+                        property_name: composeUi
+                      requirement: 1.2.0
+                      source: null
+                  previous-version: 1.2.0
+                  requirements:
+                    - file: gradle/libs.versions.toml
+                      groups: []
+                      metadata:
+                        property_name: composeUi
+                      requirement: 1.3.3
+                      source:
+                        type: maven_repo
+                        url: https://maven.google.com
+                  version: 1.3.3
+                  directory: /gradle-version-catalog
+                - name: androidx.compose.ui:ui-test-manifest
+                  previous-requirements:
+                    - file: gradle/libs.versions.toml
+                      groups: []
+                      metadata:
+                        property_name: composeUi
+                      requirement: 1.2.0
+                      source: null
+                  previous-version: 1.2.0
+                  requirements:
+                    - file: gradle/libs.versions.toml
+                      groups: []
+                      metadata:
+                        property_name: composeUi
+                      requirement: 1.3.3
+                      source:
+                        type: maven_repo
+                        url: https://maven.google.com
+                  version: 1.3.3
+                  directory: /gradle-version-catalog
+            updated-dependency-files:
+                - content: |-
+                    [versions]
+                    corektx = "1.7.0"
+                    lifecycleRuntime = "2.3.1"
+                    composeUi = "1.3.3"
+                    jUnitVersion = "4.13.2"
+                    androidxJunit = "1.1.3"
+                    espresso = "3.5.0"
+
+                    [libraries]
+                    corektx = { module = "androidx.core:core-ktx", version.ref = "corektx" }
+                    lifecycleRuntimeKtx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycleRuntime" }
+
+                    compose-activity = { module = "androidx.activity:activity-compose", version = "1.3.1" }
+                    compose-ui = { module = "androidx.compose.ui:ui", version.ref = "composeUi" }
+                    compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "composeUi" }
+                    compose-material = { module = "androidx.compose.material:material", version = { strictly = "[1.2.0, 1.3.1[", prefer="1.3.0" } }
+
+                    test-junit = { module = "junit:junit", version.ref = "jUnitVersion" }
+                    test-andoridx-junit = { module = "androidx.test.ext:junit", version.ref = "androidxJunit" }
+                    test-compose-ui = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "composeUi" }
+                    test-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "composeUi" }
+                    test-compose-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "composeUi" }
+                    test-espresso-Core = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso" }
+
+                    [bundles]
+                    compose = ["compose-activity", "compose-ui", "compose-ui-tooling", "compose-material"]
+
+                    [plugins]
+                    kotlinter = { id = "org.jmailen.kotlinter", version = "3.11.0" }
+                  content_encoding: utf-8
+                  deleted: false
+                  directory: /gradle-version-catalog
+                  name: gradle/libs.versions.toml
+                  operation: update
+                  support_file: false
+                  type: file
+            pr-title: Bump composeUi from 1.2.0 to 1.3.3 in /gradle-version-catalog
+            pr-body: |
+                Bumps `composeUi` from 1.2.0 to 1.3.3.
+                Updates `androidx.compose.ui:ui` from 1.2.0 to 1.3.3
+
+                Updates `androidx.compose.ui:ui-tooling-preview` from 1.2.0 to 1.3.3
+
+                Updates `androidx.compose.ui:ui-test-junit4` from 1.2.0 to 1.3.3
+
+                Updates `androidx.compose.ui:ui-tooling` from 1.2.0 to 1.3.3
+
+                Updates `androidx.compose.ui:ui-test-manifest` from 1.2.0 to 1.3.3
+            commit-message: |-
+                Bump composeUi from 1.2.0 to 1.3.3 in /gradle-version-catalog
+
+                Bumps `composeUi` from 1.2.0 to 1.3.3.
+
+                Updates `androidx.compose.ui:ui` from 1.2.0 to 1.3.3
+
+                Updates `androidx.compose.ui:ui-tooling-preview` from 1.2.0 to 1.3.3
+
+                Updates `androidx.compose.ui:ui-test-junit4` from 1.2.0 to 1.3.3
+
+                Updates `androidx.compose.ui:ui-tooling` from 1.2.0 to 1.3.3
+
+                Updates `androidx.compose.ui:ui-test-manifest` from 1.2.0 to 1.3.3
+    - type: create_pull_request
+      expect:
+        data:
+            base-commit-sha: 943c1eaeb4ed9383ec77c0ffe95ec727c1f7c5e6
+            dependencies:
+                - name: androidx.test.ext:junit
+                  previous-requirements:
+                    - file: gradle/libs.versions.toml
+                      groups: []
+                      metadata:
+                        property_name: androidxJunit
+                      requirement: 1.1.3
+                      source: null
+                  previous-version: 1.1.3
+                  requirements:
+                    - file: gradle/libs.versions.toml
+                      groups: []
+                      metadata:
+                        property_name: androidxJunit
+                      requirement: 1.1.5
+                      source:
+                        type: maven_repo
+                        url: https://maven.google.com
+                  version: 1.1.5
+                  directory: /gradle-version-catalog
+            updated-dependency-files:
+                - content: |-
+                    [versions]
+                    corektx = "1.7.0"
+                    lifecycleRuntime = "2.3.1"
+                    composeUi = "1.2.0"
+                    jUnitVersion = "4.13.2"
+                    androidxJunit = "1.1.5"
+                    espresso = "3.5.0"
+
+                    [libraries]
+                    corektx = { module = "androidx.core:core-ktx", version.ref = "corektx" }
+                    lifecycleRuntimeKtx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycleRuntime" }
+
+                    compose-activity = { module = "androidx.activity:activity-compose", version = "1.3.1" }
+                    compose-ui = { module = "androidx.compose.ui:ui", version.ref = "composeUi" }
+                    compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "composeUi" }
+                    compose-material = { module = "androidx.compose.material:material", version = { strictly = "[1.2.0, 1.3.1[", prefer="1.3.0" } }
+
+                    test-junit = { module = "junit:junit", version.ref = "jUnitVersion" }
+                    test-andoridx-junit = { module = "androidx.test.ext:junit", version.ref = "androidxJunit" }
+                    test-compose-ui = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "composeUi" }
+                    test-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "composeUi" }
+                    test-compose-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "composeUi" }
+                    test-espresso-Core = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso" }
+
+                    [bundles]
+                    compose = ["compose-activity", "compose-ui", "compose-ui-tooling", "compose-material"]
+
+                    [plugins]
+                    kotlinter = { id = "org.jmailen.kotlinter", version = "3.11.0" }
+                  content_encoding: utf-8
+                  deleted: false
+                  directory: /gradle-version-catalog
+                  name: gradle/libs.versions.toml
+                  operation: update
+                  support_file: false
+                  type: file
+            pr-title: Bump androidx.test.ext:junit from 1.1.3 to 1.1.5 in /gradle-version-catalog
+            pr-body: |
+                Bumps androidx.test.ext:junit from 1.1.3 to 1.1.5.
+            commit-message: |-
+                Bump androidx.test.ext:junit in /gradle-version-catalog
+
+                Bumps androidx.test.ext:junit from 1.1.3 to 1.1.5.
+    - type: create_pull_request
+      expect:
+        data:
+            base-commit-sha: 943c1eaeb4ed9383ec77c0ffe95ec727c1f7c5e6
+            dependencies:
+                - name: androidx.test.espresso:espresso-core
+                  previous-requirements:
+                    - file: gradle/libs.versions.toml
+                      groups: []
+                      metadata:
+                        property_name: espresso
+                      requirement: 3.5.0
+                      source: null
+                  previous-version: 3.5.0
+                  requirements:
+                    - file: gradle/libs.versions.toml
+                      groups: []
+                      metadata:
+                        property_name: espresso
+                      requirement: 3.5.1
+                      source:
+                        type: maven_repo
+                        url: https://maven.google.com
+                  version: 3.5.1
+                  directory: /gradle-version-catalog
+            updated-dependency-files:
+                - content: |-
+                    [versions]
+                    corektx = "1.7.0"
+                    lifecycleRuntime = "2.3.1"
+                    composeUi = "1.2.0"
+                    jUnitVersion = "4.13.2"
+                    androidxJunit = "1.1.3"
+                    espresso = "3.5.1"
+
+                    [libraries]
+                    corektx = { module = "androidx.core:core-ktx", version.ref = "corektx" }
+                    lifecycleRuntimeKtx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycleRuntime" }
+
+                    compose-activity = { module = "androidx.activity:activity-compose", version = "1.3.1" }
+                    compose-ui = { module = "androidx.compose.ui:ui", version.ref = "composeUi" }
+                    compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "composeUi" }
+                    compose-material = { module = "androidx.compose.material:material", version = { strictly = "[1.2.0, 1.3.1[", prefer="1.3.0" } }
+
+                    test-junit = { module = "junit:junit", version.ref = "jUnitVersion" }
+                    test-andoridx-junit = { module = "androidx.test.ext:junit", version.ref = "androidxJunit" }
+                    test-compose-ui = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "composeUi" }
+                    test-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "composeUi" }
+                    test-compose-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "composeUi" }
+                    test-espresso-Core = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso" }
+
+                    [bundles]
+                    compose = ["compose-activity", "compose-ui", "compose-ui-tooling", "compose-material"]
+
+                    [plugins]
+                    kotlinter = { id = "org.jmailen.kotlinter", version = "3.11.0" }
+                  content_encoding: utf-8
+                  deleted: false
+                  directory: /gradle-version-catalog
+                  name: gradle/libs.versions.toml
+                  operation: update
+                  support_file: false
+                  type: file
+            pr-title: Bump androidx.test.espresso:espresso-core from 3.5.0 to 3.5.1 in /gradle-version-catalog
+            pr-body: |
+                Bumps androidx.test.espresso:espresso-core from 3.5.0 to 3.5.1.
+            commit-message: |-
+                Bump androidx.test.espresso:espresso-core in /gradle-version-catalog
+
+                Bumps androidx.test.espresso:espresso-core from 3.5.0 to 3.5.1.
+    - type: create_pull_request
+      expect:
+        data:
+            base-commit-sha: 943c1eaeb4ed9383ec77c0ffe95ec727c1f7c5e6
+            dependencies:
+                - name: org.jmailen.kotlinter
+                  previous-requirements:
+                    - file: gradle/libs.versions.toml
+                      groups:
+                        - plugins
+                      requirement: 3.11.0
+                      source: null
+                  previous-version: 3.11.0
+                  requirements:
+                    - file: gradle/libs.versions.toml
+                      groups:
+                        - plugins
+                      requirement: 3.13.0
+                      source:
+                        type: maven_repo
+                        url: https://plugins.gradle.org/m2
+                  version: 3.13.0
+                  directory: /gradle-version-catalog
+            updated-dependency-files:
+                - content: |-
+                    [versions]
+                    corektx = "1.7.0"
+                    lifecycleRuntime = "2.3.1"
+                    composeUi = "1.2.0"
+                    jUnitVersion = "4.13.2"
+                    androidxJunit = "1.1.3"
+                    espresso = "3.5.0"
+
+                    [libraries]
+                    corektx = { module = "androidx.core:core-ktx", version.ref = "corektx" }
+                    lifecycleRuntimeKtx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycleRuntime" }
+
+                    compose-activity = { module = "androidx.activity:activity-compose", version = "1.3.1" }
+                    compose-ui = { module = "androidx.compose.ui:ui", version.ref = "composeUi" }
+                    compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "composeUi" }
+                    compose-material = { module = "androidx.compose.material:material", version = { strictly = "[1.2.0, 1.3.1[", prefer="1.3.0" } }
+
+                    test-junit = { module = "junit:junit", version.ref = "jUnitVersion" }
+                    test-andoridx-junit = { module = "androidx.test.ext:junit", version.ref = "androidxJunit" }
+                    test-compose-ui = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "composeUi" }
+                    test-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "composeUi" }
+                    test-compose-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "composeUi" }
+                    test-espresso-Core = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso" }
+
+                    [bundles]
+                    compose = ["compose-activity", "compose-ui", "compose-ui-tooling", "compose-material"]
+
+                    [plugins]
+                    kotlinter = { id = "org.jmailen.kotlinter", version = "3.13.0" }
+                  content_encoding: utf-8
+                  deleted: false
+                  directory: /gradle-version-catalog
+                  name: gradle/libs.versions.toml
+                  operation: update
+                  support_file: false
+                  type: file
+            pr-title: Bump org.jmailen.kotlinter from 3.11.0 to 3.13.0 in /gradle-version-catalog
+            pr-body: |
+                Bumps org.jmailen.kotlinter from 3.11.0 to 3.13.0.
+            commit-message: |-
+                Bump org.jmailen.kotlinter in /gradle-version-catalog
+
+                Bumps org.jmailen.kotlinter from 3.11.0 to 3.13.0.
+    - type: mark_as_processed
+      expect:
+        data:
+            base-commit-sha: 943c1eaeb4ed9383ec77c0ffe95ec727c1f7c5e6

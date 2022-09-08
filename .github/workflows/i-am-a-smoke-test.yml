@@ -1,0 +1,17 @@
+name: Smoke test manifest
+on: workflow_dispatch
+
+permissions:
+  contents: read
+
+jobs:
+  body-moving:
+    name: This is a smoke test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Python
+        uses: actions/setup-python@d09bd5e6005b175076f227b13d9730d56e9dcfcb # v4.0.0
+      - name: Setup Ruby
+        uses: actions/setup-ruby@e932e7af67fc4a8fc77bd86b744acd4e42fe3543
+      - name: Setup Node
+        uses: actions/setup-node@v6

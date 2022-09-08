@@ -1,0 +1,181 @@
+input:
+    job:
+        command: update
+        package-manager: maven
+        allowed-updates:
+            - update-type: all
+        ignore-conditions:
+            - dependency-name: org.junit:junit-bom
+              source: tests/smoke-maven-wrapper-mvnd-distribution.yaml
+              version-requirement: '>6.0.3'
+        source:
+            provider: github
+            repo: yeikel/smoke-tests
+            directories:
+                - maven-wrapper/mvnd-distribution
+            commit: 18e9b91314053d3b6ecfbdd5e0261819de5adacb
+            hostname: github.com
+            api-endpoint: https://api.github.com
+output:
+    - type: update_dependency_list
+      expect:
+        data:
+            dependencies:
+                - name: org.junit:junit-bom
+                  requirements:
+                    - file: pom.xml
+                      groups: []
+                      metadata:
+                        packaging_type: pom
+                      requirement: 5.11.0
+                      source: null
+                  version: 5.11.0
+            dependency_files:
+                - /maven-wrapper/mvnd-distribution/pom.xml
+    - type: create_pull_request
+      expect:
+        data:
+            base-commit-sha: 18e9b91314053d3b6ecfbdd5e0261819de5adacb
+            dependencies:
+                - name: org.junit:junit-bom
+                  previous-requirements:
+                    - file: pom.xml
+                      groups: []
+                      metadata:
+                        packaging_type: pom
+                      requirement: 5.11.0
+                      source: null
+                  previous-version: 5.11.0
+                  requirements:
+                    - file: pom.xml
+                      groups: []
+                      metadata:
+                        packaging_type: pom
+                      requirement: 6.0.3
+                      source:
+                        type: maven_repo
+                        url: https://repo.maven.apache.org/maven2
+                  version: 6.0.3
+                  directory: /maven-wrapper/mvnd-distribution
+            updated-dependency-files:
+                - content: |
+                    <?xml version="1.0" encoding="UTF-8"?>
+                    <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                      xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+                      <modelVersion>4.0.0</modelVersion>
+
+                      <groupId>com.depedabot.test</groupId>
+                      <artifactId>maven-wrapper</artifactId>
+                      <version>1.0-SNAPSHOT</version>
+
+                      <name>maven-wrapper</name>
+
+                      <properties>
+                        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+                        <maven.compiler.release>17</maven.compiler.release>
+                      </properties>
+
+                      <dependencyManagement>
+                        <dependencies>
+                          <dependency>
+                            <groupId>org.junit</groupId>
+                            <artifactId>junit-bom</artifactId>
+                            <version>6.0.3</version>
+                            <type>pom</type>
+                            <scope>import</scope>
+                          </dependency>
+                        </dependencies>
+                      </dependencyManagement>
+                    </project>
+                  content_encoding: utf-8
+                  deleted: false
+                  directory: /maven-wrapper/mvnd-distribution
+                  name: pom.xml
+                  operation: update
+                  support_file: false
+                  type: file
+            pr-title: Bump org.junit:junit-bom from 5.11.0 to 6.0.3 in /maven-wrapper/mvnd-distribution
+            pr-body: |
+                Bumps [org.junit:junit-bom](https://github.com/junit-team/junit-framework) from 5.11.0 to 6.0.3.
+                <details>
+                <summary>Release notes</summary>
+                <p><em>Sourced from <a href="https://github.com/junit-team/junit-framework/releases">org.junit:junit-bom's releases</a>.</em></p>
+                <blockquote>
+                <p>JUnit 6.0.3 = Platform 6.0.3 + Jupiter 6.0.3 + Vintage 6.0.3</p>
+                <p>See <a href="https://docs.junit.org/6.0.3/release-notes.html">Release Notes</a>.</p>
+                <p><strong>Full Changelog</strong>: <a href="https://github.com/junit-team/junit-framework/compare/r6.0.2...r6.0.3">https://github.com/junit-team/junit-framework/compare/r6.0.2...r6.0.3</a></p>
+                <p>JUnit 6.0.2 = Platform 6.0.2 + Jupiter 6.0.2 + Vintage 6.0.2</p>
+                <p>See <a href="https://docs.junit.org/6.0.2/release-notes.html">Release Notes</a>.</p>
+                <p><strong>Full Changelog</strong>: <a href="https://github.com/junit-team/junit-framework/compare/r6.0.1...r6.0.2">https://github.com/junit-team/junit-framework/compare/r6.0.1...r6.0.2</a></p>
+                <p>JUnit 6.0.1 = Platform 6.0.1 + Jupiter 6.0.1 + Vintage 6.0.1</p>
+                <p>See <a href="https://docs.junit.org/6.0.1/release-notes/">Release Notes</a>.</p>
+                <p><strong>Full Changelog</strong>: <a href="https://github.com/junit-team/junit-framework/compare/r6.0.0...r6.0.1">https://github.com/junit-team/junit-framework/compare/r6.0.0...r6.0.1</a></p>
+                <p>JUnit 6.0.0 = Platform 6.0.0 + Jupiter 6.0.0 + Vintage 6.0.0</p>
+                <p>See <a href="https://docs.junit.org/6.0.0/release-notes/">Release Notes</a>.</p>
+                <h2>New Contributors</h2>
+                <ul>
+                <li><a href="https://github.com/2897robo"><code>@​2897robo</code></a> made their first contribution in <a href="https://redirect.github.com/junit-team/junit-framework/pull/4525">junit-team/junit-framework#4525</a></li>
+                <li><a href="https://github.com/strangelookingnerd"><code>@​strangelookingnerd</code></a> made their first contribution in <a href="https://redirect.github.com/junit-team/junit-framework/pull/4683">junit-team/junit-framework#4683</a></li>
+                <li><a href="https://github.com/eric6iese"><code>@​eric6iese</code></a> made their first contribution in <a href="https://redirect.github.com/junit-team/junit-framework/pull/4717">junit-team/junit-framework#4717</a></li>
+                <li><a href="https://github.com/raccoonback"><code>@​raccoonback</code></a> made their first contribution in <a href="https://redirect.github.com/junit-team/junit-framework/pull/4822">junit-team/junit-framework#4822</a></li>
+                <li><a href="https://github.com/currenjin"><code>@​currenjin</code></a> made their first contribution in <a href="https://redirect.github.com/junit-team/junit-framework/pull/4823">junit-team/junit-framework#4823</a></li>
+                <li><a href="https://github.com/mehulimukherjee"><code>@​mehulimukherjee</code></a> made their first contribution in <a href="https://redirect.github.com/junit-team/junit-framework/pull/4913">junit-team/junit-framework#4913</a></li>
+                <li><a href="https://github.com/lslonina"><code>@​lslonina</code></a> made their first contribution in <a href="https://redirect.github.com/junit-team/junit-framework/pull/4629">junit-team/junit-framework#4629</a></li>
+                </ul>
+                <p><strong>Full Changelog</strong>: <a href="https://github.com/junit-team/junit-framework/compare/r5.14.0...r6.0.0">https://github.com/junit-team/junit-framework/compare/r5.14.0...r6.0.0</a></p>
+                <p>JUnit 6.0.0-RC3 = Platform 6.0.0-RC3 + Jupiter 6.0.0-RC3 + Vintage 6.0.0-RC3</p>
+                <p>See <a href="https://docs.junit.org/6.0.0-RC3/release-notes/">Release Notes</a>.</p>
+                <h2>New Contributors</h2>
+                <ul>
+                <li><a href="https://github.com/mehulimukherjee"><code>@​mehulimukherjee</code></a> made their first contribution in <a href="https://redirect.github.com/junit-team/junit-framework/pull/4913">junit-team/junit-framework#4913</a></li>
+                <li><a href="https://github.com/lslonina"><code>@​lslonina</code></a> made their first contribution in <a href="https://redirect.github.com/junit-team/junit-framework/pull/4629">junit-team/junit-framework#4629</a></li>
+                </ul>
+                <p><strong>Full Changelog</strong>: <a href="https://github.com/junit-team/junit-framework/compare/r6.0.0-RC2...r6.0.0-RC3">https://github.com/junit-team/junit-framework/compare/r6.0.0-RC2...r6.0.0-RC3</a></p>
+                <p>JUnit 6.0.0-RC2 = Platform 6.0.0-RC2 + Jupiter 6.0.0-RC2 + Vintage 6.0.0-RC2</p>
+                <p>See <a href="https://docs.junit.org/6.0.0-RC2/release-notes/">Release Notes</a>.</p>
+                <p><strong>Full Changelog</strong>: <a href="https://github.com/junit-team/junit-framework/compare/r6.0.0-RC1...r6.0.0-RC2">https://github.com/junit-team/junit-framework/compare/r6.0.0-RC1...r6.0.0-RC2</a></p>
+                <p>JUnit 6.0.0-RC1 = Platform 6.0.0-RC1 + Jupiter 6.0.0-RC1 + Vintage 6.0.0-RC1</p>
+                <!-- raw HTML omitted -->
+                </blockquote>
+                <p>... (truncated)</p>
+                </details>
+                <details>
+                <summary>Commits</summary>
+                <ul>
+                <li><a href="https://github.com/junit-team/junit-framework/commit/36e3253b726fa13cb9a1d29e94b9119575078c4a"><code>36e3253</code></a> Release 6.0.3</li>
+                <li><a href="https://github.com/junit-team/junit-framework/commit/295561f38592f1682feceb64d361987da1d0fc9b"><code>295561f</code></a> Finalize 6.0.3 release notes</li>
+                <li><a href="https://github.com/junit-team/junit-framework/commit/ea18076da11599c1467929bf75bc260e13c611b9"><code>ea18076</code></a> Fix deadlock in NamespacedHierarchicalStore.computeIfAbsent() (<a href="https://redirect.github.com/junit-team/junit-framework/issues/5348">#5348</a>)</li>
+                <li><a href="https://github.com/junit-team/junit-framework/commit/869e232420f1c1c64ab9be29609fe3e241c3675e"><code>869e232</code></a> Add 5.14.3 release notes</li>
+                <li><a href="https://github.com/junit-team/junit-framework/commit/d4b34c468ddb697ff3fe4096b3d67c28751ddab2"><code>d4b34c4</code></a> Fix links to User Guide</li>
+                <li><a href="https://github.com/junit-team/junit-framework/commit/5c8fb0f2151fc277c3a0de7c3237d05c919439bb"><code>5c8fb0f</code></a> Reliably support JRE.OTHER with @⁠EnabledOnJre and @⁠DisabledOnJre</li>
+                <li><a href="https://github.com/junit-team/junit-framework/commit/febb13f70272a243742ea63d0f85535f7c51a67c"><code>febb13f</code></a> Check out entire repo so switching to <code>main</code> branch works in last step</li>
+                <li><a href="https://github.com/junit-team/junit-framework/commit/71fba9098655387c82d8ddbf137442bcb1fa56a0"><code>71fba90</code></a> Install <code>poppler-utils</code> for <code>pdfinfo</code></li>
+                <li><a href="https://github.com/junit-team/junit-framework/commit/740e9e050964c66da7cb5386f89a450985d51941"><code>740e9e0</code></a> Update API baseline</li>
+                <li><a href="https://github.com/junit-team/junit-framework/commit/2ba535f0c108ef5f8252578ee4c70547ff10d752"><code>2ba535f</code></a> Use release branch of examples repo</li>
+                <li>Additional commits viewable in <a href="https://github.com/junit-team/junit-framework/compare/r5.11.0...r6.0.3">compare view</a></li>
+                </ul>
+                </details>
+                <br />
+            commit-message: |-
+                Bump org.junit:junit-bom in /maven-wrapper/mvnd-distribution
+
+                Bumps [org.junit:junit-bom](https://github.com/junit-team/junit-framework) from 5.11.0 to 6.0.3.
+                - [Release notes](https://github.com/junit-team/junit-framework/releases)
+                - [Commits](https://github.com/junit-team/junit-framework/compare/r5.11.0...r6.0.3)
+    - type: record_ecosystem_meta
+      expect:
+        data:
+            - ecosystem:
+                name: maven
+                package_manager:
+                    name: maven
+                    version: NOT-AVAILABLE
+                    raw_version: NOT-AVAILABLE
+                language:
+                    name: java
+                    version: NOT-AVAILABLE
+                    raw_version: NOT-AVAILABLE
+    - type: mark_as_processed
+      expect:
+        data:
+            base-commit-sha: 18e9b91314053d3b6ecfbdd5e0261819de5adacb

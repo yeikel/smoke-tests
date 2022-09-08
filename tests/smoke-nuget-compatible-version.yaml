@@ -1,0 +1,164 @@
+input:
+    job:
+        package-manager: nuget
+        allowed-updates:
+            - update-type: all
+        experiments:
+            nuget_generate_simple_pr_body: true
+            nuget_install_dotnet_sdks: true
+            nuget_native_updater: true
+            nuget_use_direct_discovery: true
+            nuget_use_new_file_updater: true
+        ignore-conditions:
+            - dependency-name: Microsoft.AspNetCore.Authentication.JwtBearer
+              source: tests/smoke-nuget-compatible-version.yaml
+              version-requirement: '>6.0.25'
+        source:
+            provider: github
+            repo: dependabot/smoke-tests
+            directory: /nuget/compatible-version
+            commit: 582ce56c6800f3591d79ba09c62d0221a7e26a19
+    credentials:
+        - host: github.com
+          password: $LOCAL_GITHUB_ACCESS_TOKEN
+          type: git_source
+          username: x-access-token
+output:
+    - type: update_dependency_list
+      expect:
+        data:
+            dependencies:
+                - name: Microsoft.AspNetCore.Authentication.JwtBearer
+                  requirements:
+                    - file: /nuget/compatible-version/project/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 6.0.0
+                      source: null
+                  version: 6.0.0
+                - name: Microsoft.CSharp
+                  requirements:
+                    - file: /nuget/compatible-version/project/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 4.5.0
+                      source: null
+                  version: 4.5.0
+                - name: Microsoft.IdentityModel.JsonWebTokens
+                  requirements:
+                    - file: /nuget/compatible-version/project/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 6.10.0
+                      source: null
+                  version: 6.10.0
+                - name: Microsoft.IdentityModel.Logging
+                  requirements:
+                    - file: /nuget/compatible-version/project/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 6.10.0
+                      source: null
+                  version: 6.10.0
+                - name: Microsoft.IdentityModel.Protocols
+                  requirements:
+                    - file: /nuget/compatible-version/project/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 6.10.0
+                      source: null
+                  version: 6.10.0
+                - name: Microsoft.IdentityModel.Protocols.OpenIdConnect
+                  requirements:
+                    - file: /nuget/compatible-version/project/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 6.10.0
+                      source: null
+                  version: 6.10.0
+                - name: Microsoft.IdentityModel.Tokens
+                  requirements:
+                    - file: /nuget/compatible-version/project/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 6.10.0
+                      source: null
+                  version: 6.10.0
+                - name: System.IdentityModel.Tokens.Jwt
+                  requirements:
+                    - file: /nuget/compatible-version/project/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 6.10.0
+                      source: null
+                  version: 6.10.0
+                - name: System.Security.Cryptography.Cng
+                  requirements:
+                    - file: /nuget/compatible-version/project/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 4.5.0
+                      source: null
+                  version: 4.5.0
+            dependency_files:
+                - /nuget/compatible-version/global.json
+                - /nuget/compatible-version/library/library.csproj
+                - /nuget/compatible-version/project/project.csproj
+    - type: create_pull_request
+      expect:
+        data:
+            base-commit-sha: 582ce56c6800f3591d79ba09c62d0221a7e26a19
+            dependencies:
+                - name: Microsoft.AspNetCore.Authentication.JwtBearer
+                  previous-requirements:
+                    - file: /nuget/compatible-version/project/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 6.0.0
+                      source: null
+                  previous-version: 6.0.0
+                  requirements:
+                    - file: /nuget/compatible-version/project/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 6.0.25
+                      source:
+                        source_url: https://github.com/dotnet/aspnetcore
+                        type: nuget_repo
+                  version: 6.0.25
+            updated-dependency-files:
+                - content: |-
+                    <Project Sdk="Microsoft.NET.Sdk">
+
+                      <PropertyGroup>
+                        <OutputType>Exe</OutputType>
+                        <TargetFramework>net6.0</TargetFramework>
+                        <ImplicitUsings>enable</ImplicitUsings>
+                        <Nullable>enable</Nullable>
+                      </PropertyGroup>
+
+                      <ItemGroup>
+                        <ProjectReference Include="..\library\library.csproj" />
+                      </ItemGroup>
+
+                      <ItemGroup>
+                        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.25" />
+                      </ItemGroup>
+
+                    </Project>
+                  content_encoding: utf-8
+                  deleted: false
+                  directory: /nuget/compatible-version/project
+                  name: project.csproj
+                  operation: update
+                  support_file: false
+                  type: file
+            pr-title: Bump Microsoft.AspNetCore.Authentication.JwtBearer from 6.0.0 to 6.0.25
+            pr-body: |-
+                Performed the following updates:
+                - Updated Microsoft.AspNetCore.Authentication.JwtBearer from 6.0.0 to 6.0.25
+            commit-message: Bump Microsoft.AspNetCore.Authentication.JwtBearer from 6.0.0 to 6.0.25
+    - type: mark_as_processed
+      expect:
+        data:
+            base-commit-sha: 582ce56c6800f3591d79ba09c62d0221a7e26a19

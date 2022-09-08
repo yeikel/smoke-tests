@@ -1,0 +1,85 @@
+input:
+    job:
+        package-manager: nuget
+        allowed-updates:
+            - update-type: all
+        experiments:
+            nuget_generate_simple_pr_body: true
+            nuget_native_updater: true
+            nuget_use_direct_discovery: true
+            nuget_use_new_file_updater: true
+        ignore-conditions:
+            - dependency-name: Newtonsoft.Json
+              source: tests/smoke-nuget-version-property.yaml
+              version-requirement: '>13.0.3'
+        source:
+            provider: github
+            repo: dependabot/smoke-tests
+            directory: /nuget/version-property
+            commit: 7dbbef7b02f40ddfa7d32fc3099caf19f370bb9b
+    credentials:
+        - host: github.com
+          password: $LOCAL_GITHUB_ACCESS_TOKEN
+          type: git_source
+          username: x-access-token
+output:
+    - type: update_dependency_list
+      expect:
+        data:
+            dependencies:
+                - name: Newtonsoft.Json
+                  requirements:
+                    - file: /nuget/version-property/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 13.0.1
+                      source: null
+                  version: 13.0.1
+            dependency_files:
+                - /nuget/version-property/Packages.props
+                - /nuget/version-property/project.csproj
+    - type: create_pull_request
+      expect:
+        data:
+            base-commit-sha: 7dbbef7b02f40ddfa7d32fc3099caf19f370bb9b
+            dependencies:
+                - name: Newtonsoft.Json
+                  previous-requirements:
+                    - file: /nuget/version-property/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 13.0.1
+                      source: null
+                  previous-version: 13.0.1
+                  requirements:
+                    - file: /nuget/version-property/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 13.0.3
+                      source:
+                        source_url: https://github.com/JamesNK/Newtonsoft.Json
+                        type: nuget_repo
+                  version: 13.0.3
+            updated-dependency-files:
+                - content: |-
+                    <Project>
+                      <PropertyGroup>
+                        <NewtonsoftJsonPackageVersion>13.0.3</NewtonsoftJsonPackageVersion>
+                      </PropertyGroup>
+                    </Project>
+                  content_encoding: utf-8
+                  deleted: false
+                  directory: /nuget/version-property
+                  name: Packages.props
+                  operation: update
+                  support_file: false
+                  type: file
+            pr-title: Bump Newtonsoft.Json from 13.0.1 to 13.0.3
+            pr-body: |-
+                Performed the following updates:
+                - Updated Newtonsoft.Json from 13.0.1 to 13.0.3
+            commit-message: Bump Newtonsoft.Json from 13.0.1 to 13.0.3
+    - type: mark_as_processed
+      expect:
+        data:
+            base-commit-sha: 7dbbef7b02f40ddfa7d32fc3099caf19f370bb9b

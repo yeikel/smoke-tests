@@ -1,0 +1,1811 @@
+input:
+    job:
+        command: update
+        package-manager: npm_and_yarn
+        allowed-updates:
+            - update-type: all
+        dependency-groups:
+            - name: not major
+              rules:
+                update-types:
+                    - minor
+                    - patch
+        experiments:
+            enable_cooldown_for_npm_and_yarn: true
+            grouped-updates-experimental-rules: true
+            grouped-updates-prototype: true
+            record-ecosystem-versions: true
+        ignore-conditions:
+            - dependency-name: get-intrinsic
+              source: tests/smoke-npm-group-semver.yaml
+              version-requirement: '>1.0.3'
+            - dependency-name: call-bound
+              source: tests/smoke-npm-group-semver.yaml
+              version-requirement: '>1.0.3'
+        source:
+            provider: github
+            repo: dependabot/smoke-tests
+            directory: /npm/semver
+            commit: deb769e795beb877414bdc5aea2df16d4ff8d4df
+    credentials:
+        - host: github.com
+          password: $LOCAL_GITHUB_ACCESS_TOKEN
+          type: git_source
+          username: x-access-token
+output:
+    - type: record_ecosystem_versions
+      expect:
+        data:
+            ecosystem_versions:
+                package_managers:
+                    npm: 11
+    - type: update_dependency_list
+      expect:
+        data:
+            dependencies:
+                - name: axios
+                  requirements:
+                    - file: package.json
+                      groups:
+                        - dependencies
+                      requirement: 0.27.1
+                      source:
+                        type: registry
+                        url: https://registry.npmjs.org
+                  version: 0.27.1
+                - name: fetch-factory
+                  requirements:
+                    - file: package.json
+                      groups:
+                        - dependencies
+                      requirement: 0.0.1
+                      source:
+                        type: registry
+                        url: https://registry.npmjs.org
+                  version: 0.0.1
+                - name: lodash
+                  requirements:
+                    - file: package.json
+                      groups:
+                        - dependencies
+                      requirement: 4.16.6
+                      source:
+                        type: registry
+                        url: https://registry.npmjs.org
+                  version: 4.16.6
+                - name: asynckit
+                  requirements: []
+                  version: 0.4.0
+                - name: combined-stream
+                  requirements: []
+                  version: 1.0.8
+                - name: delayed-stream
+                  requirements: []
+                  version: 1.0.0
+                - name: encoding
+                  requirements: []
+                  version: 0.1.13
+                - name: es6-promise
+                  requirements: []
+                  version: 3.3.1
+                - name: follow-redirects
+                  requirements: []
+                  version: 1.15.2
+                - name: form-data
+                  requirements: []
+                  version: 4.0.0
+                - name: iconv-lite
+                  requirements: []
+                  version: 0.6.3
+                - name: is-stream
+                  requirements: []
+                  version: 1.1.0
+                - name: isomorphic-fetch
+                  requirements: []
+                  version: 2.2.1
+                - name: mime-db
+                  requirements: []
+                  version: 1.52.0
+                - name: mime-types
+                  requirements: []
+                  version: 2.1.35
+                - name: node-fetch
+                  requirements: []
+                  version: 1.7.3
+                - name: safer-buffer
+                  requirements: []
+                  version: 2.1.2
+                - name: whatwg-fetch
+                  requirements: []
+                  version: 3.6.17
+            dependency_files:
+                - /npm/semver/package.json
+                - /npm/semver/package-lock.json
+    - type: create_pull_request
+      expect:
+        data:
+            base-commit-sha: deb769e795beb877414bdc5aea2df16d4ff8d4df
+            dependencies:
+                - name: fetch-factory
+                  previous-requirements:
+                    - file: package.json
+                      groups:
+                        - dependencies
+                      requirement: 0.0.1
+                      source:
+                        type: registry
+                        url: https://registry.npmjs.org
+                  previous-version: 0.0.1
+                  requirements:
+                    - file: package.json
+                      groups:
+                        - dependencies
+                      requirement: 0.2.1
+                      source:
+                        type: registry
+                        url: https://registry.npmjs.org
+                  version: 0.2.1
+                  directory: /npm/semver
+                - name: lodash
+                  previous-requirements:
+                    - file: package.json
+                      groups:
+                        - dependencies
+                      requirement: 4.16.6
+                      source:
+                        type: registry
+                        url: https://registry.npmjs.org
+                  previous-version: 4.16.6
+                  requirements:
+                    - file: package.json
+                      groups:
+                        - dependencies
+                      requirement: 4.17.23
+                      source:
+                        type: registry
+                        url: https://registry.npmjs.org
+                  version: 4.17.23
+                  directory: /npm/semver
+                - name: follow-redirects
+                  previous-requirements: []
+                  previous-version: 1.15.2
+                  requirements: []
+                  version: 1.16.0
+                  directory: /npm/semver
+                - name: form-data
+                  previous-requirements: []
+                  previous-version: 4.0.0
+                  requirements: []
+                  version: 4.0.5
+                  directory: /npm/semver
+                - name: whatwg-fetch
+                  previous-requirements: []
+                  previous-version: 3.6.17
+                  requirements: []
+                  version: 3.6.20
+                  directory: /npm/semver
+            updated-dependency-files:
+                - content: |
+                    {
+                      "name": "npm-test",
+                      "version": "1.0.0",
+                      "description": "",
+                      "main": "index.js",
+                      "repository": {
+                        "type": "git",
+                        "url": "git+https://github.com/dsp-testing/dependabot-all-updates-test.git"
+                      },
+                      "author": "",
+                      "license": "ISC",
+                      "bugs": {
+                        "url": "https://github.com/dsp-testing/dependabot-all-updates-test/issues"
+                      },
+                      "homepage": "https://github.com/dsp-testing/dependabot-all-updates-test",
+                      "dependencies": {
+                        "axios": "0.27.1",
+                        "fetch-factory": "0.2.1",
+                        "lodash": "4.17.23"
+                      }
+                    }
+                  content_encoding: utf-8
+                  deleted: false
+                  directory: /npm/semver
+                  name: package.json
+                  operation: update
+                  support_file: false
+                  type: file
+                - content: |
+                    {
+                      "name": "npm-test",
+                      "version": "1.0.0",
+                      "lockfileVersion": 3,
+                      "requires": true,
+                      "packages": {
+                        "": {
+                          "name": "npm-test",
+                          "version": "1.0.0",
+                          "license": "ISC",
+                          "dependencies": {
+                            "axios": "0.27.1",
+                            "fetch-factory": "0.2.1",
+                            "lodash": "4.17.23"
+                          }
+                        },
+                        "node_modules/assertion-error": {
+                          "version": "1.1.0",
+                          "resolved": "https://registry.npmjs.org/assertion-error/-/assertion-error-1.1.0.tgz",
+                          "integrity": "sha512-jgsaNduz+ndvGyFt3uSuWqvy4lCnIJiovtouQN5JZHOKCS2QuhEdbcQHFhVksz2N2U9hXJo8odG7ETyWlEeuDw==",
+                          "license": "MIT",
+                          "engines": {
+                            "node": "*"
+                          }
+                        },
+                        "node_modules/asynckit": {
+                          "version": "0.4.0",
+                          "resolved": "https://registry.npmjs.org/asynckit/-/asynckit-0.4.0.tgz",
+                          "integrity": "sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q=="
+                        },
+                        "node_modules/axios": {
+                          "version": "0.27.1",
+                          "resolved": "https://registry.npmjs.org/axios/-/axios-0.27.1.tgz",
+                          "integrity": "sha512-ePNMai55xo5GsXajb/k756AqZqpqeDaGwGcdvbZLSSELbbYwsIn2jNmGfUPEwd8j/yu4OoMstLLIVa4t0MneEA==",
+                          "deprecated": "Formdata complete broken, incorrect build size",
+                          "dependencies": {
+                            "follow-redirects": "^1.14.9",
+                            "form-data": "^4.0.0"
+                          }
+                        },
+                        "node_modules/call-bind": {
+                          "version": "1.0.9",
+                          "resolved": "https://registry.npmjs.org/call-bind/-/call-bind-1.0.9.tgz",
+                          "integrity": "sha512-a/hy+pNsFUTR+Iz8TCJvXudKVLAnz/DyeSUo10I5yvFDQJBFU2s9uqQpoSrJlroHUKoKqzg+epxyP9lqFdzfBQ==",
+                          "license": "MIT",
+                          "dependencies": {
+                            "call-bind-apply-helpers": "^1.0.2",
+                            "es-define-property": "^1.0.1",
+                            "get-intrinsic": "^1.3.0",
+                            "set-function-length": "^1.2.2"
+                          },
+                          "engines": {
+                            "node": ">= 0.4"
+                          },
+                          "funding": {
+                            "url": "https://github.com/sponsors/ljharb"
+                          }
+                        },
+                        "node_modules/call-bind-apply-helpers": {
+                          "version": "1.0.2",
+                          "resolved": "https://registry.npmjs.org/call-bind-apply-helpers/-/call-bind-apply-helpers-1.0.2.tgz",
+                          "integrity": "sha512-Sp1ablJ0ivDkSzjcaJdxEunN5/XvksFJ2sMBFfq6x0ryhQV/2b/KwFe21cMpmHtPOSij8K99/wSfoEuTObmuMQ==",
+                          "license": "MIT",
+                          "dependencies": {
+                            "es-errors": "^1.3.0",
+                            "function-bind": "^1.1.2"
+                          },
+                          "engines": {
+                            "node": ">= 0.4"
+                          }
+                        },
+                        "node_modules/call-bound": {
+                          "version": "1.0.4",
+                          "resolved": "https://registry.npmjs.org/call-bound/-/call-bound-1.0.4.tgz",
+                          "integrity": "sha512-+ys997U96po4Kx/ABpBCqhA9EuxJaQWDQg7295H4hBphv3IZg0boBKuwYpt4YXp6MZ5AmZQnU/tyMTlRpaSejg==",
+                          "license": "MIT",
+                          "dependencies": {
+                            "call-bind-apply-helpers": "^1.0.2",
+                            "get-intrinsic": "^1.3.0"
+                          },
+                          "engines": {
+                            "node": ">= 0.4"
+                          },
+                          "funding": {
+                            "url": "https://github.com/sponsors/ljharb"
+                          }
+                        },
+                        "node_modules/chai": {
+                          "version": "3.5.0",
+                          "resolved": "https://registry.npmjs.org/chai/-/chai-3.5.0.tgz",
+                          "integrity": "sha512-eRYY0vPS2a9zt5w5Z0aCeWbrXTEyvk7u/Xf71EzNObrjSCPgMm1Nku/D/u2tiqHBX5j40wWhj54YJLtgn8g55A==",
+                          "license": "MIT",
+                          "dependencies": {
+                            "assertion-error": "^1.0.1",
+                            "deep-eql": "^0.1.3",
+                            "type-detect": "^1.0.0"
+                          },
+                          "engines": {
+                            "node": ">= 0.4.0"
+                          }
+                        },
+                        "node_modules/combined-stream": {
+                          "version": "1.0.8",
+                          "resolved": "https://registry.npmjs.org/combined-stream/-/combined-stream-1.0.8.tgz",
+                          "integrity": "sha512-FQN4MRfuJeHf7cBbBMJFXhKSDq+2kAArBlmRBvcvFE5BB1HZKXtSFASDhdlz9zOYwxh8lDdnvmMOe/+5cdoEdg==",
+                          "dependencies": {
+                            "delayed-stream": "~1.0.0"
+                          },
+                          "engines": {
+                            "node": ">= 0.8"
+                          }
+                        },
+                        "node_modules/debug": {
+                          "version": "1.0.5",
+                          "resolved": "https://registry.npmjs.org/debug/-/debug-1.0.5.tgz",
+                          "integrity": "sha512-SIKSrp4+XqcUaNWhwaPJbLFnvSXPsZ4xBdH2WRK0Xo++UzMC4eepYghGAVhVhOwmfq3kqowqJ5w45R3pmYZnuA==",
+                          "dependencies": {
+                            "ms": "2.0.0"
+                          }
+                        },
+                        "node_modules/deep-eql": {
+                          "version": "0.1.3",
+                          "resolved": "https://registry.npmjs.org/deep-eql/-/deep-eql-0.1.3.tgz",
+                          "integrity": "sha512-6sEotTRGBFiNcqVoeHwnfopbSpi5NbH1VWJmYCVkmxMmaVTT0bUTrNaGyBwhgP4MZL012W/mkzIn3Da+iDYweg==",
+                          "license": "MIT",
+                          "dependencies": {
+                            "type-detect": "0.1.1"
+                          },
+                          "engines": {
+                            "node": "*"
+                          }
+                        },
+                        "node_modules/deep-eql/node_modules/type-detect": {
+                          "version": "0.1.1",
+                          "resolved": "https://registry.npmjs.org/type-detect/-/type-detect-0.1.1.tgz",
+                          "integrity": "sha512-5rqszGVwYgBoDkIm2oUtvkfZMQ0vk29iDMU0W2qCa3rG0vPDNczCMT4hV/bLBgLg8k8ri6+u3Zbt+S/14eMzlA==",
+                          "license": "MIT",
+                          "engines": {
+                            "node": "*"
+                          }
+                        },
+                        "node_modules/deep-equal": {
+                          "version": "1.1.2",
+                          "resolved": "https://registry.npmjs.org/deep-equal/-/deep-equal-1.1.2.tgz",
+                          "integrity": "sha512-5tdhKF6DbU7iIzrIOa1AOUt39ZRm13cmL1cGEh//aqR8x9+tNfbywRf0n5FD/18OKMdo7DNEtrX2t22ZAkI+eg==",
+                          "license": "MIT",
+                          "dependencies": {
+                            "is-arguments": "^1.1.1",
+                            "is-date-object": "^1.0.5",
+                            "is-regex": "^1.1.4",
+                            "object-is": "^1.1.5",
+                            "object-keys": "^1.1.1",
+                            "regexp.prototype.flags": "^1.5.1"
+                          },
+                          "engines": {
+                            "node": ">= 0.4"
+                          },
+                          "funding": {
+                            "url": "https://github.com/sponsors/ljharb"
+                          }
+                        },
+                        "node_modules/define-data-property": {
+                          "version": "1.1.4",
+                          "resolved": "https://registry.npmjs.org/define-data-property/-/define-data-property-1.1.4.tgz",
+                          "integrity": "sha512-rBMvIzlpA8v6E+SJZoo++HAYqsLrkg7MSfIinMPFhmkorw7X+dOXVJQs+QT69zGkzMyfDnIMN2Wid1+NbL3T+A==",
+                          "license": "MIT",
+                          "dependencies": {
+                            "es-define-property": "^1.0.0",
+                            "es-errors": "^1.3.0",
+                            "gopd": "^1.0.1"
+                          },
+                          "engines": {
+                            "node": ">= 0.4"
+                          },
+                          "funding": {
+                            "url": "https://github.com/sponsors/ljharb"
+                          }
+                        },
+                        "node_modules/define-properties": {
+                          "version": "1.2.1",
+                          "resolved": "https://registry.npmjs.org/define-properties/-/define-properties-1.2.1.tgz",
+                          "integrity": "sha512-8QmQKqEASLd5nx0U1B1okLElbUuuttJ/AnYmRXbbbGDWh6uS208EjD4Xqq/I9wK7u0v6O08XhTWnt5XtEbR6Dg==",
+                          "license": "MIT",
+                          "dependencies": {
+                            "define-data-property": "^1.0.1",
+                            "has-property-descriptors": "^1.0.0",
+                            "object-keys": "^1.1.1"
+                          },
+                          "engines": {
+                            "node": ">= 0.4"
+                          },
+                          "funding": {
+                            "url": "https://github.com/sponsors/ljharb"
+                          }
+                        },
+                        "node_modules/delayed-stream": {
+                          "version": "1.0.0",
+                          "resolved": "https://registry.npmjs.org/delayed-stream/-/delayed-stream-1.0.0.tgz",
+                          "integrity": "sha512-ZySD7Nf91aLB0RxL4KGrKHBXl7Eds1DAmEdcoVawXnLD7SDhpNgtuII2aAkg7a7QS41jxPSZ17p4VdGnMHk3MQ==",
+                          "engines": {
+                            "node": ">=0.4.0"
+                          }
+                        },
+                        "node_modules/dunder-proto": {
+                          "version": "1.0.1",
+                          "resolved": "https://registry.npmjs.org/dunder-proto/-/dunder-proto-1.0.1.tgz",
+                          "integrity": "sha512-KIN/nDJBQRcXw0MLVhZE9iQHmG68qAVIBg9CqmUYjmQIhgij9U5MFvrqkUL5FbtyyzZuOeOt0zdeRe4UY7ct+A==",
+                          "license": "MIT",
+                          "dependencies": {
+                            "call-bind-apply-helpers": "^1.0.1",
+                            "es-errors": "^1.3.0",
+                            "gopd": "^1.2.0"
+                          },
+                          "engines": {
+                            "node": ">= 0.4"
+                          }
+                        },
+                        "node_modules/encoding": {
+                          "version": "0.1.13",
+                          "resolved": "https://registry.npmjs.org/encoding/-/encoding-0.1.13.tgz",
+                          "integrity": "sha512-ETBauow1T35Y/WZMkio9jiM0Z5xjHHmJ4XmjZOq1l/dXz3lr2sRn87nJy20RupqSh1F2m3HHPSp8ShIPQJrJ3A==",
+                          "dependencies": {
+                            "iconv-lite": "^0.6.2"
+                          }
+                        },
+                        "node_modules/es-define-property": {
+                          "version": "1.0.1",
+                          "resolved": "https://registry.npmjs.org/es-define-property/-/es-define-property-1.0.1.tgz",
+                          "integrity": "sha512-e3nRfgfUZ4rNGL232gUgX06QNyyez04KdjFrF+LTRoOXmrOgFKDg4BCdsjW8EnT69eqdYGmRpJwiPVYNrCaW3g==",
+                          "license": "MIT",
+                          "engines": {
+                            "node": ">= 0.4"
+                          }
+                        },
+                        "node_modules/es-errors": {
+                          "version": "1.3.0",
+                          "resolved": "https://registry.npmjs.org/es-errors/-/es-errors-1.3.0.tgz",
+                          "integrity": "sha512-Zf5H2Kxt2xjTvbJvP2ZWLEICxA6j+hAmMzIlypy4xcBg1vKVnx89Wy0GbS+kf5cwCVFFzdCFh2XSCFNULS6csw==",
+                          "license": "MIT",
+                          "engines": {
+                            "node": ">= 0.4"
+                          }
+                        },
+                        "node_modules/es-object-atoms": {
+                          "version": "1.1.1",
+                          "resolved": "https://registry.npmjs.org/es-object-atoms/-/es-object-atoms-1.1.1.tgz",
+                          "integrity": "sha512-FGgH2h8zKNim9ljj7dankFPcICIK9Cp5bm+c2gQSYePhpaG5+esrLODihIorn+Pe6FGJzWhXQotPv73jTaldXA==",
+                          "license": "MIT",
+                          "dependencies": {
+                            "es-errors": "^1.3.0"
+                          },
+                          "engines": {
+                            "node": ">= 0.4"
+                          }
+                        },
+                        "node_modules/es-set-tostringtag": {
+                          "version": "2.1.0",
+                          "resolved": "https://registry.npmjs.org/es-set-tostringtag/-/es-set-tostringtag-2.1.0.tgz",
+                          "integrity": "sha512-j6vWzfrGVfyXxge+O0x5sh6cvxAog0a/4Rdd2K36zCMV5eJ+/+tOAngRO8cODMNWbVRdVlmGZQL2YS3yR8bIUA==",
+                          "license": "MIT",
+                          "dependencies": {
+                            "es-errors": "^1.3.0",
+                            "get-intrinsic": "^1.2.6",
+                            "has-tostringtag": "^1.0.2",
+                            "hasown": "^2.0.2"
+                          },
+                          "engines": {
+                            "node": ">= 0.4"
+                          }
+                        },
+                        "node_modules/es6-promise": {
+                          "version": "3.3.1",
+                          "resolved": "https://registry.npmjs.org/es6-promise/-/es6-promise-3.3.1.tgz",
+                          "integrity": "sha512-SOp9Phqvqn7jtEUxPWdWfWoLmyt2VaJ6MpvP9Comy1MceMXqE6bxvaTu4iaxpYYPzhny28Lc+M87/c2cPK6lDg=="
+                        },
+                        "node_modules/fetch-factory": {
+                          "version": "0.2.1",
+                          "resolved": "https://registry.npmjs.org/fetch-factory/-/fetch-factory-0.2.1.tgz",
+                          "integrity": "sha512-sqt1ONiKIRec2E66VSBI6+vRQSTdpsfJc7ZF3T0N3MnG1q7thE0w6B8nGhiffLoqPF7yLcKY/y4CPjldBbT2wA==",
+                          "license": "ISC",
+                          "dependencies": {
+                            "es6-promise": "^3.0.2",
+                            "isomorphic-fetch": "^2.1.1",
+                            "lodash": "^3.10.1",
+                            "nock": "^2.18.0",
+                            "query-string": "^2.4.1",
+                            "url-pattern": "^0.10.0"
+                          }
+                        },
+                        "node_modules/fetch-factory/node_modules/lodash": {
+                          "version": "3.10.1",
+                          "resolved": "https://registry.npmjs.org/lodash/-/lodash-3.10.1.tgz",
+                          "integrity": "sha512-9mDDwqVIma6OZX79ZlDACZl8sBm0TEnkf99zV3iMA4GzkIT/9hiqP5mY0HoT1iNLCrKc/R1HByV+yJfRWVJryQ=="
+                        },
+                        "node_modules/follow-redirects": {
+                          "version": "1.16.0",
+                          "resolved": "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.16.0.tgz",
+                          "integrity": "sha512-y5rN/uOsadFT/JfYwhxRS5R7Qce+g3zG97+JrtFZlC9klX/W5hD7iiLzScI4nZqUS7DNUdhPgw4xI8W2LuXlUw==",
+                          "funding": [
+                            {
+                              "type": "individual",
+                              "url": "https://github.com/sponsors/RubenVerborgh"
+                            }
+                          ],
+                          "license": "MIT",
+                          "engines": {
+                            "node": ">=4.0"
+                          },
+                          "peerDependenciesMeta": {
+                            "debug": {
+                              "optional": true
+                            }
+                          }
+                        },
+                        "node_modules/form-data": {
+                          "version": "4.0.5",
+                          "resolved": "https://registry.npmjs.org/form-data/-/form-data-4.0.5.tgz",
+                          "integrity": "sha512-8RipRLol37bNs2bhoV67fiTEvdTrbMUYcFTiy3+wuuOnUog2QBHCZWXDRijWQfAkhBj2Uf5UnVaiWwA5vdd82w==",
+                          "license": "MIT",
+                          "dependencies": {
+                            "asynckit": "^0.4.0",
+                            "combined-stream": "^1.0.8",
+                            "es-set-tostringtag": "^2.1.0",
+                            "hasown": "^2.0.2",
+                            "mime-types": "^2.1.12"
+                          },
+                          "engines": {
+                            "node": ">= 6"
+                          }
+                        },
+                        "node_modules/function-bind": {
+                          "version": "1.1.2",
+                          "resolved": "https://registry.npmjs.org/function-bind/-/function-bind-1.1.2.tgz",
+                          "integrity": "sha512-7XHNxH7qX9xG5mIwxkhumTox/MIRNcOgDrxWsMt2pAr23WHp6MrRlN7FBSFpCpr+oVO0F744iUgR82nJMfG2SA==",
+                          "license": "MIT",
+                          "funding": {
+                            "url": "https://github.com/sponsors/ljharb"
+                          }
+                        },
+                        "node_modules/functions-have-names": {
+                          "version": "1.2.3",
+                          "resolved": "https://registry.npmjs.org/functions-have-names/-/functions-have-names-1.2.3.tgz",
+                          "integrity": "sha512-xckBUXyTIqT97tq2x2AMb+g163b5JFysYk0x4qxNFwbfQkmNZoiRHb6sPzI9/QV33WeuvVYBUIiD4NzNIyqaRQ==",
+                          "license": "MIT",
+                          "funding": {
+                            "url": "https://github.com/sponsors/ljharb"
+                          }
+                        },
+                        "node_modules/get-intrinsic": {
+                          "version": "1.3.0",
+                          "resolved": "https://registry.npmjs.org/get-intrinsic/-/get-intrinsic-1.3.0.tgz",
+                          "integrity": "sha512-9fSjSaos/fRIVIp+xSJlE6lfwhES7LNtKaCBIamHsjr2na1BiABJPo0mOjjz8GJDURarmCPGqaiVg5mfjb98CQ==",
+                          "license": "MIT",
+                          "dependencies": {
+                            "call-bind-apply-helpers": "^1.0.2",
+                            "es-define-property": "^1.0.1",
+                            "es-errors": "^1.3.0",
+                            "es-object-atoms": "^1.1.1",
+                            "function-bind": "^1.1.2",
+                            "get-proto": "^1.0.1",
+                            "gopd": "^1.2.0",
+                            "has-symbols": "^1.1.0",
+                            "hasown": "^2.0.2",
+                            "math-intrinsics": "^1.1.0"
+                          },
+                          "engines": {
+                            "node": ">= 0.4"
+                          },
+                          "funding": {
+                            "url": "https://github.com/sponsors/ljharb"
+                          }
+                        },
+                        "node_modules/get-proto": {
+                          "version": "1.0.1",
+                          "resolved": "https://registry.npmjs.org/get-proto/-/get-proto-1.0.1.tgz",
+                          "integrity": "sha512-sTSfBjoXBp89JvIKIefqw7U2CCebsc74kiY6awiGogKtoSGbgjYE/G/+l9sF3MWFPNc9IcoOC4ODfKHfxFmp0g==",
+                          "license": "MIT",
+                          "dependencies": {
+                            "dunder-proto": "^1.0.1",
+                            "es-object-atoms": "^1.0.0"
+                          },
+                          "engines": {
+                            "node": ">= 0.4"
+                          }
+                        },
+                        "node_modules/gopd": {
+                          "version": "1.2.0",
+                          "resolved": "https://registry.npmjs.org/gopd/-/gopd-1.2.0.tgz",
+                          "integrity": "sha512-ZUKRh6/kUFoAiTAtTYPZJ3hw9wNxx+BIBOijnlG9PnrJsCcSjs1wyyD6vJpaYtgnzDrKYRSqf3OO6Rfa93xsRg==",
+                          "license": "MIT",
+                          "engines": {
+                            "node": ">= 0.4"
+                          },
+                          "funding": {
+                            "url": "https://github.com/sponsors/ljharb"
+                          }
+                        },
+                        "node_modules/has-property-descriptors": {
+                          "version": "1.0.2",
+                          "resolved": "https://registry.npmjs.org/has-property-descriptors/-/has-property-descriptors-1.0.2.tgz",
+                          "integrity": "sha512-55JNKuIW+vq4Ke1BjOTjM2YctQIvCT7GFzHwmfZPGo5wnrgkid0YQtnAleFSqumZm4az3n2BS+erby5ipJdgrg==",
+                          "license": "MIT",
+                          "dependencies": {
+                            "es-define-property": "^1.0.0"
+                          },
+                          "funding": {
+                            "url": "https://github.com/sponsors/ljharb"
+                          }
+                        },
+                        "node_modules/has-symbols": {
+                          "version": "1.1.0",
+                          "resolved": "https://registry.npmjs.org/has-symbols/-/has-symbols-1.1.0.tgz",
+                          "integrity": "sha512-1cDNdwJ2Jaohmb3sg4OmKaMBwuC48sYni5HUw2DvsC8LjGTLK9h+eb1X6RyuOHe4hT0ULCW68iomhjUoKUqlPQ==",
+                          "license": "MIT",
+                          "engines": {
+                            "node": ">= 0.4"
+                          },
+                          "funding": {
+                            "url": "https://github.com/sponsors/ljharb"
+                          }
+                        },
+                        "node_modules/has-tostringtag": {
+                          "version": "1.0.2",
+                          "resolved": "https://registry.npmjs.org/has-tostringtag/-/has-tostringtag-1.0.2.tgz",
+                          "integrity": "sha512-NqADB8VjPFLM2V0VvHUewwwsw0ZWBaIdgo+ieHtK3hasLz4qeCRjYcqfB6AQrBggRKppKF8L52/VqdVsO47Dlw==",
+                          "license": "MIT",
+                          "dependencies": {
+                            "has-symbols": "^1.0.3"
+                          },
+                          "engines": {
+                            "node": ">= 0.4"
+                          },
+                          "funding": {
+                            "url": "https://github.com/sponsors/ljharb"
+                          }
+                        },
+                        "node_modules/hasown": {
+                          "version": "2.0.3",
+                          "resolved": "https://registry.npmjs.org/hasown/-/hasown-2.0.3.tgz",
+                          "integrity": "sha512-ej4AhfhfL2Q2zpMmLo7U1Uv9+PyhIZpgQLGT1F9miIGmiCJIoCgSmczFdrc97mWT4kVY72KA+WnnhJ5pghSvSg==",
+                          "license": "MIT",
+                          "dependencies": {
+                            "function-bind": "^1.1.2"
+                          },
+                          "engines": {
+                            "node": ">= 0.4"
+                          }
+                        },
+                        "node_modules/iconv-lite": {
+                          "version": "0.6.3",
+                          "resolved": "https://registry.npmjs.org/iconv-lite/-/iconv-lite-0.6.3.tgz",
+                          "integrity": "sha512-4fCk79wshMdzMp2rH06qWrJE4iolqLhCUH+OiuIgU++RB0+94NlDL81atO7GX55uUKueo0txHNtvEyI6D7WdMw==",
+                          "dependencies": {
+                            "safer-buffer": ">= 2.1.2 < 3.0.0"
+                          },
+                          "engines": {
+                            "node": ">=0.10.0"
+                          }
+                        },
+                        "node_modules/is-arguments": {
+                          "version": "1.2.0",
+                          "resolved": "https://registry.npmjs.org/is-arguments/-/is-arguments-1.2.0.tgz",
+                          "integrity": "sha512-7bVbi0huj/wrIAOzb8U1aszg9kdi3KN/CyU19CTI7tAoZYEZoL9yCDXpbXN+uPsuWnP02cyug1gleqq+TU+YCA==",
+                          "license": "MIT",
+                          "dependencies": {
+                            "call-bound": "^1.0.2",
+                            "has-tostringtag": "^1.0.2"
+                          },
+                          "engines": {
+                            "node": ">= 0.4"
+                          },
+                          "funding": {
+                            "url": "https://github.com/sponsors/ljharb"
+                          }
+                        },
+                        "node_modules/is-date-object": {
+                          "version": "1.1.0",
+                          "resolved": "https://registry.npmjs.org/is-date-object/-/is-date-object-1.1.0.tgz",
+                          "integrity": "sha512-PwwhEakHVKTdRNVOw+/Gyh0+MzlCl4R6qKvkhuvLtPMggI1WAHt9sOwZxQLSGpUaDnrdyDsomoRgNnCfKNSXXg==",
+                          "license": "MIT",
+                          "dependencies": {
+                            "call-bound": "^1.0.2",
+                            "has-tostringtag": "^1.0.2"
+                          },
+                          "engines": {
+                            "node": ">= 0.4"
+                          },
+                          "funding": {
+                            "url": "https://github.com/sponsors/ljharb"
+                          }
+                        },
+                        "node_modules/is-regex": {
+                          "version": "1.2.1",
+                          "resolved": "https://registry.npmjs.org/is-regex/-/is-regex-1.2.1.tgz",
+                          "integrity": "sha512-MjYsKHO5O7mCsmRGxWcLWheFqN9DJ/2TmngvjKXihe6efViPqc274+Fx/4fYj/r03+ESvBdTXK0V6tA3rgez1g==",
+                          "license": "MIT",
+                          "dependencies": {
+                            "call-bound": "^1.0.2",
+                            "gopd": "^1.2.0",
+                            "has-tostringtag": "^1.0.2",
+                            "hasown": "^2.0.2"
+                          },
+                          "engines": {
+                            "node": ">= 0.4"
+                          },
+                          "funding": {
+                            "url": "https://github.com/sponsors/ljharb"
+                          }
+                        },
+                        "node_modules/is-stream": {
+                          "version": "1.1.0",
+                          "resolved": "https://registry.npmjs.org/is-stream/-/is-stream-1.1.0.tgz",
+                          "integrity": "sha512-uQPm8kcs47jx38atAcWTVxyltQYoPT68y9aWYdV6yWXSyW8mzSat0TL6CiWdZeCdF3KrAvpVtnHbTv4RN+rqdQ==",
+                          "engines": {
+                            "node": ">=0.10.0"
+                          }
+                        },
+                        "node_modules/isomorphic-fetch": {
+                          "version": "2.2.1",
+                          "resolved": "https://registry.npmjs.org/isomorphic-fetch/-/isomorphic-fetch-2.2.1.tgz",
+                          "integrity": "sha512-9c4TNAKYXM5PRyVcwUZrF3W09nQ+sO7+jydgs4ZGW9dhsLG2VOlISJABombdQqQRXCwuYG3sYV/puGf5rp0qmA==",
+                          "dependencies": {
+                            "node-fetch": "^1.0.1",
+                            "whatwg-fetch": ">=0.10.0"
+                          }
+                        },
+                        "node_modules/lodash": {
+                          "version": "4.17.23",
+                          "resolved": "https://registry.npmjs.org/lodash/-/lodash-4.17.23.tgz",
+                          "integrity": "sha512-LgVTMpQtIopCi79SJeDiP0TfWi5CNEc/L/aRdTh3yIvmZXTnheWpKjSZhnvMl8iXbC1tFg9gdHHDMLoV7CnG+w==",
+                          "license": "MIT"
+                        },
+                        "node_modules/math-intrinsics": {
+                          "version": "1.1.0",
+                          "resolved": "https://registry.npmjs.org/math-intrinsics/-/math-intrinsics-1.1.0.tgz",
+                          "integrity": "sha512-/IXtbwEk5HTPyEwyKX6hGkYXxM9nbj64B+ilVJnC/R6B0pH5G4V3b0pVbL7DBj4tkhBAppbQUlf6F6Xl9LHu1g==",
+                          "license": "MIT",
+                          "engines": {
+                            "node": ">= 0.4"
+                          }
+                        },
+                        "node_modules/mime-db": {
+                          "version": "1.52.0",
+                          "resolved": "https://registry.npmjs.org/mime-db/-/mime-db-1.52.0.tgz",
+                          "integrity": "sha512-sPU4uV7dYlvtWJxwwxHD0PuihVNiE7TyAbQ5SWxDCB9mUYvOgroQOwYQQOKPJ8CIbE+1ETVlOoK1UC2nU3gYvg==",
+                          "engines": {
+                            "node": ">= 0.6"
+                          }
+                        },
+                        "node_modules/mime-types": {
+                          "version": "2.1.35",
+                          "resolved": "https://registry.npmjs.org/mime-types/-/mime-types-2.1.35.tgz",
+                          "integrity": "sha512-ZDY+bPm5zTTF+YpCrAU9nK0UgICYPT0QtT1NZWFv4s++TNkcgVaT0g6+4R2uI4MjQjzysHB1zxuWL50hzaeXiw==",
+                          "dependencies": {
+                            "mime-db": "1.52.0"
+                          },
+                          "engines": {
+                            "node": ">= 0.6"
+                          }
+                        },
+                        "node_modules/minimist": {
+                          "version": "1.2.8",
+                          "resolved": "https://registry.npmjs.org/minimist/-/minimist-1.2.8.tgz",
+                          "integrity": "sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==",
+                          "license": "MIT",
+                          "funding": {
+                            "url": "https://github.com/sponsors/ljharb"
+                          }
+                        },
+                        "node_modules/mkdirp": {
+                          "version": "0.5.6",
+                          "resolved": "https://registry.npmjs.org/mkdirp/-/mkdirp-0.5.6.tgz",
+                          "integrity": "sha512-FP+p8RB8OWpF3YZBCrP5gtADmtXApB5AMLn+vdyA+PyxCjrCs00mjyUozssO33cwDeT3wNGdLxJ5M//YqtHAJw==",
+                          "license": "MIT",
+                          "dependencies": {
+                            "minimist": "^1.2.6"
+                          },
+                          "bin": {
+                            "mkdirp": "bin/cmd.js"
+                          }
+                        },
+                        "node_modules/ms": {
+                          "version": "2.0.0",
+                          "resolved": "https://registry.npmjs.org/ms/-/ms-2.0.0.tgz",
+                          "integrity": "sha512-Tpp60P6IUJDTuOq/5Z8cdskzJujfwqfOTkrwIwj7IRISpnkJnT6SyJ4PCPnGMoFjC9ddhal5KVIYtAt97ix05A==",
+                          "license": "MIT"
+                        },
+                        "node_modules/nock": {
+                          "version": "2.18.2",
+                          "resolved": "https://registry.npmjs.org/nock/-/nock-2.18.2.tgz",
+                          "integrity": "sha512-g/+7KTdoMOUxH6HVKD7mmtlNe4K/OVEEiH/pyBG/TuRsHl0lrts894x72+LJFkQiGCkh/i05FEBwKnb15+WSVg==",
+                          "engines": [
+                            "node >= 0.10.0"
+                          ],
+                          "license": "MIT",
+                          "dependencies": {
+                            "chai": ">=1.9.2 <4.0.0",
+                            "debug": "^1.0.4",
+                            "deep-equal": "^1.0.0",
+                            "lodash": "2.4.1",
+                            "mkdirp": "^0.5.0",
+                            "propagate": "0.3.x"
+                          }
+                        },
+                        "node_modules/nock/node_modules/lodash": {
+                          "version": "2.4.1",
+                          "resolved": "https://registry.npmjs.org/lodash/-/lodash-2.4.1.tgz",
+                          "integrity": "sha512-qa6QqjA9jJB4AYw+NpD2GI4dzHL6Mv0hL+By6iIul4Ce0C1refrjZJmcGvWdnLUwl4LIPtvzje3UQfGH+nCEsQ==",
+                          "engines": [
+                            "node",
+                            "rhino"
+                          ],
+                          "license": "MIT"
+                        },
+                        "node_modules/node-fetch": {
+                          "version": "1.7.3",
+                          "resolved": "https://registry.npmjs.org/node-fetch/-/node-fetch-1.7.3.tgz",
+                          "integrity": "sha512-NhZ4CsKx7cYm2vSrBAr2PvFOe6sWDf0UYLRqA6svUYg7+/TSfVAu49jYC4BvQ4Sms9SZgdqGBgroqfDhJdTyKQ==",
+                          "dependencies": {
+                            "encoding": "^0.1.11",
+                            "is-stream": "^1.0.1"
+                          }
+                        },
+                        "node_modules/object-is": {
+                          "version": "1.1.6",
+                          "resolved": "https://registry.npmjs.org/object-is/-/object-is-1.1.6.tgz",
+                          "integrity": "sha512-F8cZ+KfGlSGi09lJT7/Nd6KJZ9ygtvYC0/UYYLI9nmQKLMnydpB9yvbv9K1uSkEu7FU9vYPmVwLg328tX+ot3Q==",
+                          "license": "MIT",
+                          "dependencies": {
+                            "call-bind": "^1.0.7",
+                            "define-properties": "^1.2.1"
+                          },
+                          "engines": {
+                            "node": ">= 0.4"
+                          },
+                          "funding": {
+                            "url": "https://github.com/sponsors/ljharb"
+                          }
+                        },
+                        "node_modules/object-keys": {
+                          "version": "1.1.1",
+                          "resolved": "https://registry.npmjs.org/object-keys/-/object-keys-1.1.1.tgz",
+                          "integrity": "sha512-NuAESUOUMrlIXOfHKzD6bpPu3tYt3xvjNdRIQ+FeT0lNb4K8WR70CaDxhuNguS2XG+GjkyMwOzsN5ZktImfhLA==",
+                          "license": "MIT",
+                          "engines": {
+                            "node": ">= 0.4"
+                          }
+                        },
+                        "node_modules/propagate": {
+                          "version": "0.3.1",
+                          "resolved": "https://registry.npmjs.org/propagate/-/propagate-0.3.1.tgz",
+                          "integrity": "sha512-GOc8Eoa3MWbN905b5l2PNNt1Pf+I/CF6uAPt3IGT+v9WExDE7WPT/kDfLe7vYXtG11KbTnBhTNfcoq9+umDrSw==",
+                          "engines": [
+                            "node >= 0.8.1"
+                          ],
+                          "license": "MIT"
+                        },
+                        "node_modules/query-string": {
+                          "version": "2.4.2",
+                          "resolved": "https://registry.npmjs.org/query-string/-/query-string-2.4.2.tgz",
+                          "integrity": "sha512-Y+OMYUuY7HxznI6WBN822fi/FMvnCTiuqd6KNcidPColOmMWPoV1RGYyyzObve1T/dD1i0ZgCCbO8ytu0ZUrkA==",
+                          "license": "MIT",
+                          "dependencies": {
+                            "strict-uri-encode": "^1.0.0"
+                          },
+                          "engines": {
+                            "node": ">=0.10.0"
+                          }
+                        },
+                        "node_modules/regexp.prototype.flags": {
+                          "version": "1.5.4",
+                          "resolved": "https://registry.npmjs.org/regexp.prototype.flags/-/regexp.prototype.flags-1.5.4.tgz",
+                          "integrity": "sha512-dYqgNSZbDwkaJ2ceRd9ojCGjBq+mOm9LmtXnAnEGyHhN/5R7iDW2TRw3h+o/jCFxus3P2LfWIIiwowAjANm7IA==",
+                          "license": "MIT",
+                          "dependencies": {
+                            "call-bind": "^1.0.8",
+                            "define-properties": "^1.2.1",
+                            "es-errors": "^1.3.0",
+                            "get-proto": "^1.0.1",
+                            "gopd": "^1.2.0",
+                            "set-function-name": "^2.0.2"
+                          },
+                          "engines": {
+                            "node": ">= 0.4"
+                          },
+                          "funding": {
+                            "url": "https://github.com/sponsors/ljharb"
+                          }
+                        },
+                        "node_modules/safer-buffer": {
+                          "version": "2.1.2",
+                          "resolved": "https://registry.npmjs.org/safer-buffer/-/safer-buffer-2.1.2.tgz",
+                          "integrity": "sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg=="
+                        },
+                        "node_modules/set-function-length": {
+                          "version": "1.2.2",
+                          "resolved": "https://registry.npmjs.org/set-function-length/-/set-function-length-1.2.2.tgz",
+                          "integrity": "sha512-pgRc4hJ4/sNjWCSS9AmnS40x3bNMDTknHgL5UaMBTMyJnU90EgWh1Rz+MC9eFu4BuN/UwZjKQuY/1v3rM7HMfg==",
+                          "license": "MIT",
+                          "dependencies": {
+                            "define-data-property": "^1.1.4",
+                            "es-errors": "^1.3.0",
+                            "function-bind": "^1.1.2",
+                            "get-intrinsic": "^1.2.4",
+                            "gopd": "^1.0.1",
+                            "has-property-descriptors": "^1.0.2"
+                          },
+                          "engines": {
+                            "node": ">= 0.4"
+                          }
+                        },
+                        "node_modules/set-function-name": {
+                          "version": "2.0.2",
+                          "resolved": "https://registry.npmjs.org/set-function-name/-/set-function-name-2.0.2.tgz",
+                          "integrity": "sha512-7PGFlmtwsEADb0WYyvCMa1t+yke6daIG4Wirafur5kcf+MhUnPms1UeR0CKQdTZD81yESwMHbtn+TR+dMviakQ==",
+                          "license": "MIT",
+                          "dependencies": {
+                            "define-data-property": "^1.1.4",
+                            "es-errors": "^1.3.0",
+                            "functions-have-names": "^1.2.3",
+                            "has-property-descriptors": "^1.0.2"
+                          },
+                          "engines": {
+                            "node": ">= 0.4"
+                          }
+                        },
+                        "node_modules/strict-uri-encode": {
+                          "version": "1.1.0",
+                          "resolved": "https://registry.npmjs.org/strict-uri-encode/-/strict-uri-encode-1.1.0.tgz",
+                          "integrity": "sha512-R3f198pcvnB+5IpnBlRkphuE9n46WyVl8I39W/ZUTZLz4nqSP/oLYUrcnJrw462Ds8he4YKMov2efsTIw1BDGQ==",
+                          "license": "MIT",
+                          "engines": {
+                            "node": ">=0.10.0"
+                          }
+                        },
+                        "node_modules/type-detect": {
+                          "version": "1.0.0",
+                          "resolved": "https://registry.npmjs.org/type-detect/-/type-detect-1.0.0.tgz",
+                          "integrity": "sha512-f9Uv6ezcpvCQjJU0Zqbg+65qdcszv3qUQsZfjdRbWiZ7AMenrX1u0lNk9EoWWX6e1F+NULyg27mtdeZ5WhpljA==",
+                          "license": "MIT",
+                          "engines": {
+                            "node": "*"
+                          }
+                        },
+                        "node_modules/url-pattern": {
+                          "version": "0.10.2",
+                          "resolved": "https://registry.npmjs.org/url-pattern/-/url-pattern-0.10.2.tgz",
+                          "integrity": "sha512-zv1iNlKB8XhUcHTaz68wdUwBWLQEji3AFbIKahCjxJftL6uOir1heHqM8EKymsgFWDO7ct8jRW/rMybOLo4OyQ==",
+                          "engines": {
+                            "node": ">=0.12.0"
+                          }
+                        },
+                        "node_modules/whatwg-fetch": {
+                          "version": "3.6.20",
+                          "resolved": "https://registry.npmjs.org/whatwg-fetch/-/whatwg-fetch-3.6.20.tgz",
+                          "integrity": "sha512-EqhiFU6daOA8kpjOWTL0olhVOF3i7OrFzSYiGsEMB8GcXS+RrzauAERX65xMeNWVqxA6HXH2m69Z9LaKKdisfg==",
+                          "license": "MIT"
+                        }
+                      }
+                    }
+                  content_encoding: utf-8
+                  deleted: false
+                  directory: /npm/semver
+                  name: package-lock.json
+                  operation: update
+                  support_file: false
+                  type: file
+            pr-title: Bump the not major group in /npm/semver with 5 updates
+            pr-body: |
+                Bumps the not major group in /npm/semver with 5 updates:
+
+                | Package | From | To |
+                | --- | --- | --- |
+                | fetch-factory | `0.0.1` | `0.2.1` |
+                | [lodash](https://github.com/lodash/lodash) | `4.16.6` | `4.17.23` |
+                | [follow-redirects](https://github.com/follow-redirects/follow-redirects) | `1.15.2` | `1.16.0` |
+                | [form-data](https://github.com/form-data/form-data) | `4.0.0` | `4.0.5` |
+                | [whatwg-fetch](https://github.com/github/fetch) | `3.6.17` | `3.6.20` |
+
+                Updates `fetch-factory` from 0.0.1 to 0.2.1
+                <details>
+                <summary>Install script changes</summary>
+                <p>This version modifies <code>prepublish</code> script that runs during installation. Review the package contents before updating.</p>
+                </details>
+                <br />
+
+                Updates `lodash` from 4.16.6 to 4.17.23
+                <details>
+                <summary>Commits</summary>
+                <ul>
+                <li><a href="https://github.com/lodash/lodash/commit/dec55b7a3b382da075e2eac90089b4cd00a26cbb"><code>dec55b7</code></a> Bump main to v4.17.23 (<a href="https://redirect.github.com/lodash/lodash/issues/6088">#6088</a>)</li>
+                <li><a href="https://github.com/lodash/lodash/commit/19c9251b3631d7cf220b43bc757eb33f1084f117"><code>19c9251</code></a> fix: setCacheHas JSDoc return type should be boolean (<a href="https://redirect.github.com/lodash/lodash/issues/6071">#6071</a>)</li>
+                <li><a href="https://github.com/lodash/lodash/commit/b5e672995ae26929d111a6e94589f8d03fb8e578"><code>b5e6729</code></a> jsdoc: Add -0 and BigInt zeros to _.compact falsey values list (<a href="https://redirect.github.com/lodash/lodash/issues/6062">#6062</a>)</li>
+                <li><a href="https://github.com/lodash/lodash/commit/edadd452146f7e4bad4ea684e955708931d84d81"><code>edadd45</code></a> Prevent prototype pollution on baseUnset function</li>
+                <li><a href="https://github.com/lodash/lodash/commit/4879a7a7d0a4494b0e83c7fa21bcc9fc6e7f1a6d"><code>4879a7a</code></a> doc: fix autoLink function, conversion of source links (<a href="https://redirect.github.com/lodash/lodash/issues/6056">#6056</a>)</li>
+                <li><a href="https://github.com/lodash/lodash/commit/9648f692b0fc7c2f6a7a763d754377200126c2e8"><code>9648f69</code></a> chore: remove <code>yarn.lock</code> file (<a href="https://redirect.github.com/lodash/lodash/issues/6053">#6053</a>)</li>
+                <li><a href="https://github.com/lodash/lodash/commit/dfa407db0bf5b200f2c7a9e4f06830ceaf074be9"><code>dfa407d</code></a> ci: remove legacy configuration files (<a href="https://redirect.github.com/lodash/lodash/issues/6052">#6052</a>)</li>
+                <li><a href="https://github.com/lodash/lodash/commit/156e1965ae78b121a88f81178ab81632304e8d64"><code>156e196</code></a> feat: add renovate setup (<a href="https://redirect.github.com/lodash/lodash/issues/6039">#6039</a>)</li>
+                <li><a href="https://github.com/lodash/lodash/commit/933e1061b8c344d3fc742cdc400175d5ffc99bce"><code>933e106</code></a> ci: add pipeline for Bun (<a href="https://redirect.github.com/lodash/lodash/issues/6023">#6023</a>)</li>
+                <li><a href="https://github.com/lodash/lodash/commit/072a807ff7ad8ffc7c1d2c3097266e815d138e20"><code>072a807</code></a> docs: update links related to Open JS Foundation (<a href="https://redirect.github.com/lodash/lodash/issues/5968">#5968</a>)</li>
+                <li>Additional commits viewable in <a href="https://github.com/lodash/lodash/compare/4.16.6...4.17.23">compare view</a></li>
+                </ul>
+                </details>
+                <br />
+
+                Updates `follow-redirects` from 1.15.2 to 1.16.0
+                <details>
+                <summary>Commits</summary>
+                <ul>
+                <li>See full diff in <a href="https://github.com/follow-redirects/follow-redirects/commits">compare view</a></li>
+                </ul>
+                </details>
+                <br />
+
+                Updates `form-data` from 4.0.0 to 4.0.5
+                <details>
+                <summary>Release notes</summary>
+                <p><em>Sourced from <a href="https://github.com/form-data/form-data/releases">form-data's releases</a>.</em></p>
+                <blockquote>
+                <h2>v4.0.4</h2>
+                <h2><a href="https://github.com/form-data/form-data/compare/v4.0.3...v4.0.4">v4.0.4</a> - 2025-07-16</h2>
+                <h3>Commits</h3>
+                <ul>
+                <li>[meta] add <code>auto-changelog</code> <a href="https://github.com/form-data/form-data/commit/811f68282fab0315209d0e2d1c44b6c32ea0d479"><code>811f682</code></a></li>
+                <li>[Tests] handle predict-v8-randomness failures in node &lt; 17 and node &gt; 23 <a href="https://github.com/form-data/form-data/commit/1d11a76434d101f22fdb26b8aef8615f28b98402"><code>1d11a76</code></a></li>
+                <li>[Fix] Switch to using <code>crypto</code> random for boundary values <a href="https://github.com/form-data/form-data/commit/3d1723080e6577a66f17f163ecd345a21d8d0fd0"><code>3d17230</code></a></li>
+                <li>[Tests] fix linting errors <a href="https://github.com/form-data/form-data/commit/5e340800b5f8914213e4e0378c084aae71cfd73a"><code>5e34080</code></a></li>
+                <li>[meta] actually ensure the readme backup isn’t published <a href="https://github.com/form-data/form-data/commit/316c82ba93fd4985af757b771b9a1f26d3b709ef"><code>316c82b</code></a></li>
+                <li>[Dev Deps] update <code>@ljharb/eslint-config</code> <a href="https://github.com/form-data/form-data/commit/58c25d76406a5b0dfdf54045cf252563f2bbda8d"><code>58c25d7</code></a></li>
+                <li>[meta] fix readme capitalization <a href="https://github.com/form-data/form-data/commit/2300ca19595b0ee96431e868fe2a40db79e41c61"><code>2300ca1</code></a></li>
+                </ul>
+                <h2>v4.0.3</h2>
+                <h2><a href="https://github.com/form-data/form-data/compare/v4.0.2...v4.0.3">v4.0.3</a> - 2025-06-05</h2>
+                <h3>Fixed</h3>
+                <ul>
+                <li>[Fix] <code>append</code>: avoid a crash on nullish values <a href="https://redirect.github.com/form-data/form-data/issues/577"><code>[#577](https://github.com/form-data/form-data/issues/577)</code></a></li>
+                </ul>
+                <h3>Commits</h3>
+                <ul>
+                <li>[eslint] use a shared config <a href="https://github.com/form-data/form-data/commit/426ba9ac440f95d1998dac9a5cd8d738043b048f"><code>426ba9a</code></a></li>
+                <li>[eslint] fix some spacing issues <a href="https://github.com/form-data/form-data/commit/20941917f0e9487e68c564ebc3157e23609e2939"><code>2094191</code></a></li>
+                <li>[Refactor] use <code>hasown</code> <a href="https://github.com/form-data/form-data/commit/81ab41b46fdf34f5d89d7ff30b513b0925febfaa"><code>81ab41b</code></a></li>
+                <li>[Fix] validate boundary type in <code>setBoundary()</code> method <a href="https://github.com/form-data/form-data/commit/8d8e4693093519f7f18e3c597d1e8df8c493de9e"><code>8d8e469</code></a></li>
+                <li>[Tests] add tests to check the behavior of <code>getBoundary</code> with non-strings <a href="https://github.com/form-data/form-data/commit/837b8a1f7562bfb8bda74f3fc538adb7a5858995"><code>837b8a1</code></a></li>
+                <li>[Dev Deps] remove unused deps <a href="https://github.com/form-data/form-data/commit/870e4e665935e701bf983a051244ab928e62d58e"><code>870e4e6</code></a></li>
+                <li>[meta] remove local commit hooks <a href="https://github.com/form-data/form-data/commit/e6e83ccb545a5619ed6cd04f31d5c2f655eb633e"><code>e6e83cc</code></a></li>
+                <li>[Dev Deps] update <code>eslint</code> <a href="https://github.com/form-data/form-data/commit/4066fd6f65992b62fa324a6474a9292a4f88c916"><code>4066fd6</code></a></li>
+                <li>[meta] fix scripts to use prepublishOnly <a href="https://github.com/form-data/form-data/commit/c4bbb13c0ef669916657bc129341301b1d331d75"><code>c4bbb13</code></a></li>
+                </ul>
+                <h2>v4.0.2</h2>
+                <h2><a href="https://github.com/form-data/form-data/compare/v4.0.1...v4.0.2">v4.0.2</a> - 2025-02-14</h2>
+                <h3>Merged</h3>
+                <ul>
+                <li>[Fix] set <code>Symbol.toStringTag</code> when available <a href="https://redirect.github.com/form-data/form-data/pull/573"><code>[#573](https://github.com/form-data/form-data/issues/573)</code></a></li>
+                <li>[Fix] set <code>Symbol.toStringTag</code> when available <a href="https://redirect.github.com/form-data/form-data/pull/573"><code>[#573](https://github.com/form-data/form-data/issues/573)</code></a></li>
+                <li>fix (npmignore): ignore temporary build files <a href="https://redirect.github.com/form-data/form-data/pull/532"><code>[#532](https://github.com/form-data/form-data/issues/532)</code></a></li>
+                <li>fix (npmignore): ignore temporary build files <a href="https://redirect.github.com/form-data/form-data/pull/532"><code>[#532](https://github.com/form-data/form-data/issues/532)</code></a></li>
+                </ul>
+                <h3>Fixed</h3>
+                <ul>
+                <li>[Fix] set <code>Symbol.toStringTag</code> when available (<a href="https://redirect.github.com/form-data/form-data/issues/573">#573</a>) <a href="https://redirect.github.com/form-data/form-data/issues/396"><code>[#396](https://github.com/form-data/form-data/issues/396)</code></a></li>
+                <li>[Fix] set <code>Symbol.toStringTag</code> when available (<a href="https://redirect.github.com/form-data/form-data/issues/573">#573</a>) <a href="https://redirect.github.com/form-data/form-data/issues/396"><code>[#396](https://github.com/form-data/form-data/issues/396)</code></a></li>
+                <li>[Fix] set <code>Symbol.toStringTag</code> when available <a href="https://redirect.github.com/form-data/form-data/issues/396"><code>[#396](https://github.com/form-data/form-data/issues/396)</code></a></li>
+                </ul>
+                <h3>Commits</h3>
+                <!-- raw HTML omitted -->
+                </blockquote>
+                <p>... (truncated)</p>
+                </details>
+                <details>
+                <summary>Changelog</summary>
+                <p><em>Sourced from <a href="https://github.com/form-data/form-data/blob/master/CHANGELOG.md">form-data's changelog</a>.</em></p>
+                <blockquote>
+                <h2><a href="https://github.com/form-data/form-data/compare/v4.0.4...v4.0.5">v4.0.5</a> - 2025-11-17</h2>
+                <h3>Commits</h3>
+                <ul>
+                <li>[Tests] Switch to newer v8 prediction library; enable node 24 testing <a href="https://github.com/form-data/form-data/commit/16e00765342106876f98a1c9703314006c9e937a"><code>16e0076</code></a></li>
+                <li>[Dev Deps] update <code>@ljharb/eslint-config</code>, <code>eslint</code> <a href="https://github.com/form-data/form-data/commit/5822467f0ec21f6ad613c1c90856375e498793c7"><code>5822467</code></a></li>
+                <li>[Fix] set Symbol.toStringTag in the proper place <a href="https://github.com/form-data/form-data/commit/76d0dee43933b5e167f7f09e5d9cbbd1cf911aa7"><code>76d0dee</code></a></li>
+                </ul>
+                <h2><a href="https://github.com/form-data/form-data/compare/v4.0.3...v4.0.4">v4.0.4</a> - 2025-07-16</h2>
+                <h3>Commits</h3>
+                <ul>
+                <li>[meta] add <code>auto-changelog</code> <a href="https://github.com/form-data/form-data/commit/811f68282fab0315209d0e2d1c44b6c32ea0d479"><code>811f682</code></a></li>
+                <li>[Tests] handle predict-v8-randomness failures in node &lt; 17 and node &gt; 23 <a href="https://github.com/form-data/form-data/commit/1d11a76434d101f22fdb26b8aef8615f28b98402"><code>1d11a76</code></a></li>
+                <li>[Fix] Switch to using <code>crypto</code> random for boundary values <a href="https://github.com/form-data/form-data/commit/3d1723080e6577a66f17f163ecd345a21d8d0fd0"><code>3d17230</code></a></li>
+                <li>[Tests] fix linting errors <a href="https://github.com/form-data/form-data/commit/5e340800b5f8914213e4e0378c084aae71cfd73a"><code>5e34080</code></a></li>
+                <li>[meta] actually ensure the readme backup isn’t published <a href="https://github.com/form-data/form-data/commit/316c82ba93fd4985af757b771b9a1f26d3b709ef"><code>316c82b</code></a></li>
+                <li>[Dev Deps] update <code>@ljharb/eslint-config</code> <a href="https://github.com/form-data/form-data/commit/58c25d76406a5b0dfdf54045cf252563f2bbda8d"><code>58c25d7</code></a></li>
+                <li>[meta] fix readme capitalization <a href="https://github.com/form-data/form-data/commit/2300ca19595b0ee96431e868fe2a40db79e41c61"><code>2300ca1</code></a></li>
+                </ul>
+                <h2><a href="https://github.com/form-data/form-data/compare/v4.0.2...v4.0.3">v4.0.3</a> - 2025-06-05</h2>
+                <h3>Fixed</h3>
+                <ul>
+                <li>[Fix] <code>append</code>: avoid a crash on nullish values <a href="https://redirect.github.com/form-data/form-data/issues/577"><code>[#577](https://github.com/form-data/form-data/issues/577)</code></a></li>
+                </ul>
+                <h3>Commits</h3>
+                <ul>
+                <li>[eslint] use a shared config <a href="https://github.com/form-data/form-data/commit/426ba9ac440f95d1998dac9a5cd8d738043b048f"><code>426ba9a</code></a></li>
+                <li>[eslint] fix some spacing issues <a href="https://github.com/form-data/form-data/commit/20941917f0e9487e68c564ebc3157e23609e2939"><code>2094191</code></a></li>
+                <li>[Refactor] use <code>hasown</code> <a href="https://github.com/form-data/form-data/commit/81ab41b46fdf34f5d89d7ff30b513b0925febfaa"><code>81ab41b</code></a></li>
+                <li>[Fix] validate boundary type in <code>setBoundary()</code> method <a href="https://github.com/form-data/form-data/commit/8d8e4693093519f7f18e3c597d1e8df8c493de9e"><code>8d8e469</code></a></li>
+                <li>[Tests] add tests to check the behavior of <code>getBoundary</code> with non-strings <a href="https://github.com/form-data/form-data/commit/837b8a1f7562bfb8bda74f3fc538adb7a5858995"><code>837b8a1</code></a></li>
+                <li>[Dev Deps] remove unused deps <a href="https://github.com/form-data/form-data/commit/870e4e665935e701bf983a051244ab928e62d58e"><code>870e4e6</code></a></li>
+                <li>[meta] remove local commit hooks <a href="https://github.com/form-data/form-data/commit/e6e83ccb545a5619ed6cd04f31d5c2f655eb633e"><code>e6e83cc</code></a></li>
+                <li>[Dev Deps] update <code>eslint</code> <a href="https://github.com/form-data/form-data/commit/4066fd6f65992b62fa324a6474a9292a4f88c916"><code>4066fd6</code></a></li>
+                <li>[meta] fix scripts to use prepublishOnly <a href="https://github.com/form-data/form-data/commit/c4bbb13c0ef669916657bc129341301b1d331d75"><code>c4bbb13</code></a></li>
+                </ul>
+                <h2><a href="https://github.com/form-data/form-data/compare/v4.0.1...v4.0.2">v4.0.2</a> - 2025-02-14</h2>
+                <h3>Merged</h3>
+                <ul>
+                <li>[Fix] set <code>Symbol.toStringTag</code> when available <a href="https://redirect.github.com/form-data/form-data/pull/573"><code>[#573](https://github.com/form-data/form-data/issues/573)</code></a></li>
+                <li>[Fix] set <code>Symbol.toStringTag</code> when available <a href="https://redirect.github.com/form-data/form-data/pull/573"><code>[#573](https://github.com/form-data/form-data/issues/573)</code></a></li>
+                <li>fix (npmignore): ignore temporary build files <a href="https://redirect.github.com/form-data/form-data/pull/532"><code>[#532](https://github.com/form-data/form-data/issues/532)</code></a></li>
+                <li>fix (npmignore): ignore temporary build files <a href="https://redirect.github.com/form-data/form-data/pull/532"><code>[#532](https://github.com/form-data/form-data/issues/532)</code></a></li>
+                </ul>
+                <h3>Fixed</h3>
+                <ul>
+                <li>[Fix] set <code>Symbol.toStringTag</code> when available (<a href="https://redirect.github.com/form-data/form-data/issues/573">#573</a>) <a href="https://redirect.github.com/form-data/form-data/issues/396"><code>[#396](https://github.com/form-data/form-data/issues/396)</code></a></li>
+                </ul>
+                <!-- raw HTML omitted -->
+                </blockquote>
+                <p>... (truncated)</p>
+                </details>
+                <details>
+                <summary>Commits</summary>
+                <ul>
+                <li><a href="https://github.com/form-data/form-data/commit/68ff7dda8834d6de095a7008cef0e03bc252ca98"><code>68ff7dd</code></a> v4.0.5</li>
+                <li><a href="https://github.com/form-data/form-data/commit/5822467f0ec21f6ad613c1c90856375e498793c7"><code>5822467</code></a> [Dev Deps] update <code>@ljharb/eslint-config</code>, <code>eslint</code></li>
+                <li><a href="https://github.com/form-data/form-data/commit/76d0dee43933b5e167f7f09e5d9cbbd1cf911aa7"><code>76d0dee</code></a> [Fix] set Symbol.toStringTag in the proper place</li>
+                <li><a href="https://github.com/form-data/form-data/commit/16e00765342106876f98a1c9703314006c9e937a"><code>16e0076</code></a> [Tests] Switch to newer v8 prediction library; enable node 24 testing</li>
+                <li><a href="https://github.com/form-data/form-data/commit/41996f5ac73a867046d48512cab62e64fc846dad"><code>41996f5</code></a> v4.0.4</li>
+                <li><a href="https://github.com/form-data/form-data/commit/316c82ba93fd4985af757b771b9a1f26d3b709ef"><code>316c82b</code></a> [meta] actually ensure the readme backup isn’t published</li>
+                <li><a href="https://github.com/form-data/form-data/commit/2300ca19595b0ee96431e868fe2a40db79e41c61"><code>2300ca1</code></a> [meta] fix readme capitalization</li>
+                <li><a href="https://github.com/form-data/form-data/commit/811f68282fab0315209d0e2d1c44b6c32ea0d479"><code>811f682</code></a> [meta] add <code>auto-changelog</code></li>
+                <li><a href="https://github.com/form-data/form-data/commit/5e340800b5f8914213e4e0378c084aae71cfd73a"><code>5e34080</code></a> [Tests] fix linting errors</li>
+                <li><a href="https://github.com/form-data/form-data/commit/1d11a76434d101f22fdb26b8aef8615f28b98402"><code>1d11a76</code></a> [Tests] handle predict-v8-randomness failures in node &lt; 17 and node &gt; 23</li>
+                <li>Additional commits viewable in <a href="https://github.com/form-data/form-data/compare/v4.0.0...v4.0.5">compare view</a></li>
+                </ul>
+                </details>
+                <details>
+                <summary>Maintainer changes</summary>
+                <p>This version was pushed to npm by <a href="https://www.npmjs.com/~ljharb">ljharb</a>, a new releaser for form-data since your current version.</p>
+                </details>
+                <details>
+                <summary>Install script changes</summary>
+                <p>This version modifies <code>prepublish</code> script that runs during installation. Review the package contents before updating.</p>
+                </details>
+                <br />
+
+                Updates `whatwg-fetch` from 3.6.17 to 3.6.20
+                <details>
+                <summary>Release notes</summary>
+                <p><em>Sourced from <a href="https://github.com/github/fetch/releases">whatwg-fetch's releases</a>.</em></p>
+                <blockquote>
+                <h2>v3.6.20</h2>
+                <h2><a href="https://github.com/JakeChampion/fetch/compare/v3.6.19...v3.6.20">3.6.20</a> (2023-12-13)</h2>
+                <h3>Bug Fixes</h3>
+                <ul>
+                <li>Response.error().ok === false (<a href="https://redirect.github.com/JakeChampion/fetch/issues/1412">#1412</a>) (<a href="https://github.com/JakeChampion/fetch/commit/27e1c75f830f0b70a40b511e03652776951aca75">27e1c75</a>)</li>
+                </ul>
+                <h2>v3.6.19</h2>
+                <h2><a href="https://github.com/JakeChampion/fetch/compare/v3.6.18...v3.6.19">3.6.19</a> (2023-09-11)</h2>
+                <h3>Bug Fixes</h3>
+                <ul>
+                <li>Have unique error messages for xhr timeouts and errors (<a href="https://redirect.github.com/JakeChampion/fetch/issues/1380">#1380</a>) (<a href="https://github.com/JakeChampion/fetch/commit/7170f0b127d16c5895aba61c9168482834809046">7170f0b</a>)</li>
+                </ul>
+                <h2>v3.6.18</h2>
+                <h2>What's Changed</h2>
+                <ul>
+                <li>Fix - File fetching broken since commit 0c1d2b9 by <a href="https://github.com/mercpls"><code>@​mercpls</code></a> in <a href="https://redirect.github.com/JakeChampion/fetch/pull/1375">JakeChampion/fetch#1375</a></li>
+                </ul>
+                <h2>New Contributors</h2>
+                <ul>
+                <li><a href="https://github.com/mercpls"><code>@​mercpls</code></a> made their first contribution in <a href="https://redirect.github.com/JakeChampion/fetch/pull/1375">JakeChampion/fetch#1375</a></li>
+                </ul>
+                <p><strong>Full Changelog</strong>: <a href="https://github.com/JakeChampion/fetch/compare/v3.6.17...v3.6.18">https://github.com/JakeChampion/fetch/compare/v3.6.17...v3.6.18</a></p>
+                </blockquote>
+                </details>
+                <details>
+                <summary>Changelog</summary>
+                <p><em>Sourced from <a href="https://github.com/JakeChampion/fetch/blob/main/CHANGELOG.md">whatwg-fetch's changelog</a>.</em></p>
+                <blockquote>
+                <h2><a href="https://github.com/JakeChampion/fetch/compare/v3.6.19...v3.6.20">3.6.20</a> (2023-12-13)</h2>
+                <h3>Bug Fixes</h3>
+                <ul>
+                <li>Response.error().ok === false (<a href="https://redirect.github.com/JakeChampion/fetch/issues/1412">#1412</a>) (<a href="https://github.com/JakeChampion/fetch/commit/27e1c75f830f0b70a40b511e03652776951aca75">27e1c75</a>)</li>
+                </ul>
+                <h2><a href="https://github.com/JakeChampion/fetch/compare/v3.6.18...v3.6.19">3.6.19</a> (2023-09-11)</h2>
+                <h3>Bug Fixes</h3>
+                <ul>
+                <li>Have unique error messages for xhr timeouts and errors (<a href="https://redirect.github.com/JakeChampion/fetch/issues/1380">#1380</a>) (<a href="https://github.com/JakeChampion/fetch/commit/7170f0b127d16c5895aba61c9168482834809046">7170f0b</a>)</li>
+                </ul>
+                <h2><a href="https://github.com/JakeChampion/fetch/compare/v3.6.17...v3.6.18">v3.6.18</a></h2>
+                <ul>
+                <li>Fix - File fetching broken since commit 0c1d2b9 <a href="https://redirect.github.com/JakeChampion/fetch/pull/1375"><code>[#1375](https://github.com/github/fetch/issues/1375)</code></a></li>
+                <li>Remove broken links <a href="https://github.com/JakeChampion/fetch/commit/1dc07c6064a32e989306fb2324204c56c93140fe"><code>1dc07c6</code></a></li>
+                <li>automatically generate a changelog <a href="https://github.com/JakeChampion/fetch/commit/0e7d1dd95826b3b76510f0832784207f2609145e"><code>0e7d1dd</code></a></li>
+                </ul>
+                </blockquote>
+                </details>
+                <details>
+                <summary>Commits</summary>
+                <ul>
+                <li><a href="https://github.com/JakeChampion/fetch/commit/a0aea1004830a1976c0c70d2f23c42a71da21cc7"><code>a0aea10</code></a> chore(main): release 3.6.20 (<a href="https://redirect.github.com/github/fetch/issues/1417">#1417</a>)</li>
+                <li><a href="https://github.com/JakeChampion/fetch/commit/7d1998d211736ec49fc151eb4205d8d5790c58cb"><code>7d1998d</code></a> remove umd section from readme</li>
+                <li><a href="https://github.com/JakeChampion/fetch/commit/27e1c75f830f0b70a40b511e03652776951aca75"><code>27e1c75</code></a> Fix: Response.error().ok === false (<a href="https://redirect.github.com/github/fetch/issues/1412">#1412</a>)</li>
+                <li><a href="https://github.com/JakeChampion/fetch/commit/84256c8d91de08d6bf7a53e7798f7ae05b1d2f77"><code>84256c8</code></a> Bump the github-actions group with 1 update (<a href="https://redirect.github.com/github/fetch/issues/1416">#1416</a>)</li>
+                <li><a href="https://github.com/JakeChampion/fetch/commit/806ea66b1c42a0cbc252957c03f33b6f1fe35d37"><code>806ea66</code></a> Bump the github-actions group with 2 updates (<a href="https://redirect.github.com/github/fetch/issues/1414">#1414</a>)</li>
+                <li><a href="https://github.com/JakeChampion/fetch/commit/af519560bea0f7906d2aa6904f7c76298dcfb55c"><code>af51956</code></a> Bump the github-actions group with 1 update (<a href="https://redirect.github.com/github/fetch/issues/1413">#1413</a>)</li>
+                <li><a href="https://github.com/JakeChampion/fetch/commit/a71a60df483dcbd13ad5b5b5f7434d47e7b85c86"><code>a71a60d</code></a> Bump the github-actions group with 2 updates (<a href="https://redirect.github.com/github/fetch/issues/1410">#1410</a>)</li>
+                <li><a href="https://github.com/JakeChampion/fetch/commit/af5cf4b3b017c5821c48bc62d26e6a6236616820"><code>af5cf4b</code></a> Bump the github-actions group with 2 updates (<a href="https://redirect.github.com/github/fetch/issues/1407">#1407</a>)</li>
+                <li><a href="https://github.com/JakeChampion/fetch/commit/a686358611c631a8846e61683eccde75c30b487b"><code>a686358</code></a> enhance: replaced str.startsWith with str.indexOf (<a href="https://redirect.github.com/github/fetch/issues/1404">#1404</a>)</li>
+                <li><a href="https://github.com/JakeChampion/fetch/commit/b5cee5093bb4929239b74b9394e51355b231c460"><code>b5cee50</code></a> Bump the github-actions group with 1 update (<a href="https://redirect.github.com/github/fetch/issues/1402">#1402</a>)</li>
+                <li>Additional commits viewable in <a href="https://github.com/github/fetch/compare/v3.6.17...v3.6.20">compare view</a></li>
+                </ul>
+                </details>
+                <br />
+            commit-message: |-
+                Bump the not major group in /npm/semver with 5 updates
+
+                Bumps the not major group in /npm/semver with 5 updates:
+
+                | Package | From | To |
+                | --- | --- | --- |
+                | fetch-factory | `0.0.1` | `0.2.1` |
+                | [lodash](https://github.com/lodash/lodash) | `4.16.6` | `4.17.23` |
+                | [follow-redirects](https://github.com/follow-redirects/follow-redirects) | `1.15.2` | `1.16.0` |
+                | [form-data](https://github.com/form-data/form-data) | `4.0.0` | `4.0.5` |
+                | [whatwg-fetch](https://github.com/github/fetch) | `3.6.17` | `3.6.20` |
+
+
+                Updates `fetch-factory` from 0.0.1 to 0.2.1
+
+                Updates `lodash` from 4.16.6 to 4.17.23
+                - [Release notes](https://github.com/lodash/lodash/releases)
+                - [Commits](https://github.com/lodash/lodash/compare/4.16.6...4.17.23)
+
+                Updates `follow-redirects` from 1.15.2 to 1.16.0
+                - [Release notes](https://github.com/follow-redirects/follow-redirects/releases)
+                - [Commits](https://github.com/follow-redirects/follow-redirects/commits)
+
+                Updates `form-data` from 4.0.0 to 4.0.5
+                - [Release notes](https://github.com/form-data/form-data/releases)
+                - [Changelog](https://github.com/form-data/form-data/blob/master/CHANGELOG.md)
+                - [Commits](https://github.com/form-data/form-data/compare/v4.0.0...v4.0.5)
+
+                Updates `whatwg-fetch` from 3.6.17 to 3.6.20
+                - [Release notes](https://github.com/github/fetch/releases)
+                - [Changelog](https://github.com/JakeChampion/fetch/blob/main/CHANGELOG.md)
+                - [Commits](https://github.com/github/fetch/compare/v3.6.17...v3.6.20)
+            dependency-group:
+                name: not major
+    - type: create_pull_request
+      expect:
+        data:
+            base-commit-sha: deb769e795beb877414bdc5aea2df16d4ff8d4df
+            dependencies:
+                - name: axios
+                  previous-requirements:
+                    - file: package.json
+                      groups:
+                        - dependencies
+                      requirement: 0.27.1
+                      source:
+                        type: registry
+                        url: https://registry.npmjs.org
+                  previous-version: 0.27.1
+                  requirements:
+                    - file: package.json
+                      groups:
+                        - dependencies
+                      requirement: 1.13.5
+                      source:
+                        type: registry
+                        url: https://registry.npmjs.org
+                  version: 1.13.5
+                  directory: /npm/semver
+            updated-dependency-files:
+                - content: |
+                    {
+                      "name": "npm-test",
+                      "version": "1.0.0",
+                      "description": "",
+                      "main": "index.js",
+                      "repository": {
+                        "type": "git",
+                        "url": "git+https://github.com/dsp-testing/dependabot-all-updates-test.git"
+                      },
+                      "author": "",
+                      "license": "ISC",
+                      "bugs": {
+                        "url": "https://github.com/dsp-testing/dependabot-all-updates-test/issues"
+                      },
+                      "homepage": "https://github.com/dsp-testing/dependabot-all-updates-test",
+                      "dependencies": {
+                        "axios": "1.13.5",
+                        "fetch-factory": "0.0.1",
+                        "lodash": "4.16.6"
+                      }
+                    }
+                  content_encoding: utf-8
+                  deleted: false
+                  directory: /npm/semver
+                  name: package.json
+                  operation: update
+                  support_file: false
+                  type: file
+                - content: |
+                    {
+                      "name": "npm-test",
+                      "version": "1.0.0",
+                      "lockfileVersion": 3,
+                      "requires": true,
+                      "packages": {
+                        "": {
+                          "name": "npm-test",
+                          "version": "1.0.0",
+                          "license": "ISC",
+                          "dependencies": {
+                            "axios": "1.13.5",
+                            "fetch-factory": "0.0.1",
+                            "lodash": "4.16.6"
+                          }
+                        },
+                        "node_modules/asynckit": {
+                          "version": "0.4.0",
+                          "resolved": "https://registry.npmjs.org/asynckit/-/asynckit-0.4.0.tgz",
+                          "integrity": "sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==",
+                          "license": "MIT"
+                        },
+                        "node_modules/axios": {
+                          "version": "1.13.5",
+                          "resolved": "https://registry.npmjs.org/axios/-/axios-1.13.5.tgz",
+                          "integrity": "sha512-cz4ur7Vb0xS4/KUN0tPWe44eqxrIu31me+fbang3ijiNscE129POzipJJA6zniq2C/Z6sJCjMimjS8Lc/GAs8Q==",
+                          "license": "MIT",
+                          "dependencies": {
+                            "follow-redirects": "^1.15.11",
+                            "form-data": "^4.0.5",
+                            "proxy-from-env": "^1.1.0"
+                          }
+                        },
+                        "node_modules/call-bind-apply-helpers": {
+                          "version": "1.0.2",
+                          "resolved": "https://registry.npmjs.org/call-bind-apply-helpers/-/call-bind-apply-helpers-1.0.2.tgz",
+                          "integrity": "sha512-Sp1ablJ0ivDkSzjcaJdxEunN5/XvksFJ2sMBFfq6x0ryhQV/2b/KwFe21cMpmHtPOSij8K99/wSfoEuTObmuMQ==",
+                          "license": "MIT",
+                          "dependencies": {
+                            "es-errors": "^1.3.0",
+                            "function-bind": "^1.1.2"
+                          },
+                          "engines": {
+                            "node": ">= 0.4"
+                          }
+                        },
+                        "node_modules/combined-stream": {
+                          "version": "1.0.8",
+                          "resolved": "https://registry.npmjs.org/combined-stream/-/combined-stream-1.0.8.tgz",
+                          "integrity": "sha512-FQN4MRfuJeHf7cBbBMJFXhKSDq+2kAArBlmRBvcvFE5BB1HZKXtSFASDhdlz9zOYwxh8lDdnvmMOe/+5cdoEdg==",
+                          "license": "MIT",
+                          "dependencies": {
+                            "delayed-stream": "~1.0.0"
+                          },
+                          "engines": {
+                            "node": ">= 0.8"
+                          }
+                        },
+                        "node_modules/delayed-stream": {
+                          "version": "1.0.0",
+                          "resolved": "https://registry.npmjs.org/delayed-stream/-/delayed-stream-1.0.0.tgz",
+                          "integrity": "sha512-ZySD7Nf91aLB0RxL4KGrKHBXl7Eds1DAmEdcoVawXnLD7SDhpNgtuII2aAkg7a7QS41jxPSZ17p4VdGnMHk3MQ==",
+                          "license": "MIT",
+                          "engines": {
+                            "node": ">=0.4.0"
+                          }
+                        },
+                        "node_modules/dunder-proto": {
+                          "version": "1.0.1",
+                          "resolved": "https://registry.npmjs.org/dunder-proto/-/dunder-proto-1.0.1.tgz",
+                          "integrity": "sha512-KIN/nDJBQRcXw0MLVhZE9iQHmG68qAVIBg9CqmUYjmQIhgij9U5MFvrqkUL5FbtyyzZuOeOt0zdeRe4UY7ct+A==",
+                          "license": "MIT",
+                          "dependencies": {
+                            "call-bind-apply-helpers": "^1.0.1",
+                            "es-errors": "^1.3.0",
+                            "gopd": "^1.2.0"
+                          },
+                          "engines": {
+                            "node": ">= 0.4"
+                          }
+                        },
+                        "node_modules/encoding": {
+                          "version": "0.1.13",
+                          "resolved": "https://registry.npmjs.org/encoding/-/encoding-0.1.13.tgz",
+                          "integrity": "sha512-ETBauow1T35Y/WZMkio9jiM0Z5xjHHmJ4XmjZOq1l/dXz3lr2sRn87nJy20RupqSh1F2m3HHPSp8ShIPQJrJ3A==",
+                          "dependencies": {
+                            "iconv-lite": "^0.6.2"
+                          }
+                        },
+                        "node_modules/es-define-property": {
+                          "version": "1.0.1",
+                          "resolved": "https://registry.npmjs.org/es-define-property/-/es-define-property-1.0.1.tgz",
+                          "integrity": "sha512-e3nRfgfUZ4rNGL232gUgX06QNyyez04KdjFrF+LTRoOXmrOgFKDg4BCdsjW8EnT69eqdYGmRpJwiPVYNrCaW3g==",
+                          "license": "MIT",
+                          "engines": {
+                            "node": ">= 0.4"
+                          }
+                        },
+                        "node_modules/es-errors": {
+                          "version": "1.3.0",
+                          "resolved": "https://registry.npmjs.org/es-errors/-/es-errors-1.3.0.tgz",
+                          "integrity": "sha512-Zf5H2Kxt2xjTvbJvP2ZWLEICxA6j+hAmMzIlypy4xcBg1vKVnx89Wy0GbS+kf5cwCVFFzdCFh2XSCFNULS6csw==",
+                          "license": "MIT",
+                          "engines": {
+                            "node": ">= 0.4"
+                          }
+                        },
+                        "node_modules/es-object-atoms": {
+                          "version": "1.1.1",
+                          "resolved": "https://registry.npmjs.org/es-object-atoms/-/es-object-atoms-1.1.1.tgz",
+                          "integrity": "sha512-FGgH2h8zKNim9ljj7dankFPcICIK9Cp5bm+c2gQSYePhpaG5+esrLODihIorn+Pe6FGJzWhXQotPv73jTaldXA==",
+                          "license": "MIT",
+                          "dependencies": {
+                            "es-errors": "^1.3.0"
+                          },
+                          "engines": {
+                            "node": ">= 0.4"
+                          }
+                        },
+                        "node_modules/es-set-tostringtag": {
+                          "version": "2.1.0",
+                          "resolved": "https://registry.npmjs.org/es-set-tostringtag/-/es-set-tostringtag-2.1.0.tgz",
+                          "integrity": "sha512-j6vWzfrGVfyXxge+O0x5sh6cvxAog0a/4Rdd2K36zCMV5eJ+/+tOAngRO8cODMNWbVRdVlmGZQL2YS3yR8bIUA==",
+                          "license": "MIT",
+                          "dependencies": {
+                            "es-errors": "^1.3.0",
+                            "get-intrinsic": "^1.2.6",
+                            "has-tostringtag": "^1.0.2",
+                            "hasown": "^2.0.2"
+                          },
+                          "engines": {
+                            "node": ">= 0.4"
+                          }
+                        },
+                        "node_modules/es6-promise": {
+                          "version": "3.3.1",
+                          "resolved": "https://registry.npmjs.org/es6-promise/-/es6-promise-3.3.1.tgz",
+                          "integrity": "sha512-SOp9Phqvqn7jtEUxPWdWfWoLmyt2VaJ6MpvP9Comy1MceMXqE6bxvaTu4iaxpYYPzhny28Lc+M87/c2cPK6lDg=="
+                        },
+                        "node_modules/fetch-factory": {
+                          "version": "0.0.1",
+                          "resolved": "https://registry.npmjs.org/fetch-factory/-/fetch-factory-0.0.1.tgz",
+                          "integrity": "sha512-gexRwqIhwzDJ2pJvL0UYfiZwW06/bdYWxAmswFFts7C87CF8i6liApihTk7TZFYMDcQjvvDIvyHv0q379z0aWA==",
+                          "dependencies": {
+                            "es6-promise": "^3.0.2",
+                            "isomorphic-fetch": "^2.1.1",
+                            "lodash": "^3.10.1"
+                          }
+                        },
+                        "node_modules/fetch-factory/node_modules/lodash": {
+                          "version": "3.10.1",
+                          "resolved": "https://registry.npmjs.org/lodash/-/lodash-3.10.1.tgz",
+                          "integrity": "sha512-9mDDwqVIma6OZX79ZlDACZl8sBm0TEnkf99zV3iMA4GzkIT/9hiqP5mY0HoT1iNLCrKc/R1HByV+yJfRWVJryQ=="
+                        },
+                        "node_modules/follow-redirects": {
+                          "version": "1.16.0",
+                          "resolved": "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.16.0.tgz",
+                          "integrity": "sha512-y5rN/uOsadFT/JfYwhxRS5R7Qce+g3zG97+JrtFZlC9klX/W5hD7iiLzScI4nZqUS7DNUdhPgw4xI8W2LuXlUw==",
+                          "funding": [
+                            {
+                              "type": "individual",
+                              "url": "https://github.com/sponsors/RubenVerborgh"
+                            }
+                          ],
+                          "license": "MIT",
+                          "engines": {
+                            "node": ">=4.0"
+                          },
+                          "peerDependenciesMeta": {
+                            "debug": {
+                              "optional": true
+                            }
+                          }
+                        },
+                        "node_modules/form-data": {
+                          "version": "4.0.5",
+                          "resolved": "https://registry.npmjs.org/form-data/-/form-data-4.0.5.tgz",
+                          "integrity": "sha512-8RipRLol37bNs2bhoV67fiTEvdTrbMUYcFTiy3+wuuOnUog2QBHCZWXDRijWQfAkhBj2Uf5UnVaiWwA5vdd82w==",
+                          "license": "MIT",
+                          "dependencies": {
+                            "asynckit": "^0.4.0",
+                            "combined-stream": "^1.0.8",
+                            "es-set-tostringtag": "^2.1.0",
+                            "hasown": "^2.0.2",
+                            "mime-types": "^2.1.12"
+                          },
+                          "engines": {
+                            "node": ">= 6"
+                          }
+                        },
+                        "node_modules/function-bind": {
+                          "version": "1.1.2",
+                          "resolved": "https://registry.npmjs.org/function-bind/-/function-bind-1.1.2.tgz",
+                          "integrity": "sha512-7XHNxH7qX9xG5mIwxkhumTox/MIRNcOgDrxWsMt2pAr23WHp6MrRlN7FBSFpCpr+oVO0F744iUgR82nJMfG2SA==",
+                          "license": "MIT",
+                          "funding": {
+                            "url": "https://github.com/sponsors/ljharb"
+                          }
+                        },
+                        "node_modules/get-intrinsic": {
+                          "version": "1.3.0",
+                          "resolved": "https://registry.npmjs.org/get-intrinsic/-/get-intrinsic-1.3.0.tgz",
+                          "integrity": "sha512-9fSjSaos/fRIVIp+xSJlE6lfwhES7LNtKaCBIamHsjr2na1BiABJPo0mOjjz8GJDURarmCPGqaiVg5mfjb98CQ==",
+                          "license": "MIT",
+                          "dependencies": {
+                            "call-bind-apply-helpers": "^1.0.2",
+                            "es-define-property": "^1.0.1",
+                            "es-errors": "^1.3.0",
+                            "es-object-atoms": "^1.1.1",
+                            "function-bind": "^1.1.2",
+                            "get-proto": "^1.0.1",
+                            "gopd": "^1.2.0",
+                            "has-symbols": "^1.1.0",
+                            "hasown": "^2.0.2",
+                            "math-intrinsics": "^1.1.0"
+                          },
+                          "engines": {
+                            "node": ">= 0.4"
+                          },
+                          "funding": {
+                            "url": "https://github.com/sponsors/ljharb"
+                          }
+                        },
+                        "node_modules/get-proto": {
+                          "version": "1.0.1",
+                          "resolved": "https://registry.npmjs.org/get-proto/-/get-proto-1.0.1.tgz",
+                          "integrity": "sha512-sTSfBjoXBp89JvIKIefqw7U2CCebsc74kiY6awiGogKtoSGbgjYE/G/+l9sF3MWFPNc9IcoOC4ODfKHfxFmp0g==",
+                          "license": "MIT",
+                          "dependencies": {
+                            "dunder-proto": "^1.0.1",
+                            "es-object-atoms": "^1.0.0"
+                          },
+                          "engines": {
+                            "node": ">= 0.4"
+                          }
+                        },
+                        "node_modules/gopd": {
+                          "version": "1.2.0",
+                          "resolved": "https://registry.npmjs.org/gopd/-/gopd-1.2.0.tgz",
+                          "integrity": "sha512-ZUKRh6/kUFoAiTAtTYPZJ3hw9wNxx+BIBOijnlG9PnrJsCcSjs1wyyD6vJpaYtgnzDrKYRSqf3OO6Rfa93xsRg==",
+                          "license": "MIT",
+                          "engines": {
+                            "node": ">= 0.4"
+                          },
+                          "funding": {
+                            "url": "https://github.com/sponsors/ljharb"
+                          }
+                        },
+                        "node_modules/has-symbols": {
+                          "version": "1.1.0",
+                          "resolved": "https://registry.npmjs.org/has-symbols/-/has-symbols-1.1.0.tgz",
+                          "integrity": "sha512-1cDNdwJ2Jaohmb3sg4OmKaMBwuC48sYni5HUw2DvsC8LjGTLK9h+eb1X6RyuOHe4hT0ULCW68iomhjUoKUqlPQ==",
+                          "license": "MIT",
+                          "engines": {
+                            "node": ">= 0.4"
+                          },
+                          "funding": {
+                            "url": "https://github.com/sponsors/ljharb"
+                          }
+                        },
+                        "node_modules/has-tostringtag": {
+                          "version": "1.0.2",
+                          "resolved": "https://registry.npmjs.org/has-tostringtag/-/has-tostringtag-1.0.2.tgz",
+                          "integrity": "sha512-NqADB8VjPFLM2V0VvHUewwwsw0ZWBaIdgo+ieHtK3hasLz4qeCRjYcqfB6AQrBggRKppKF8L52/VqdVsO47Dlw==",
+                          "license": "MIT",
+                          "dependencies": {
+                            "has-symbols": "^1.0.3"
+                          },
+                          "engines": {
+                            "node": ">= 0.4"
+                          },
+                          "funding": {
+                            "url": "https://github.com/sponsors/ljharb"
+                          }
+                        },
+                        "node_modules/hasown": {
+                          "version": "2.0.3",
+                          "resolved": "https://registry.npmjs.org/hasown/-/hasown-2.0.3.tgz",
+                          "integrity": "sha512-ej4AhfhfL2Q2zpMmLo7U1Uv9+PyhIZpgQLGT1F9miIGmiCJIoCgSmczFdrc97mWT4kVY72KA+WnnhJ5pghSvSg==",
+                          "license": "MIT",
+                          "dependencies": {
+                            "function-bind": "^1.1.2"
+                          },
+                          "engines": {
+                            "node": ">= 0.4"
+                          }
+                        },
+                        "node_modules/iconv-lite": {
+                          "version": "0.6.3",
+                          "resolved": "https://registry.npmjs.org/iconv-lite/-/iconv-lite-0.6.3.tgz",
+                          "integrity": "sha512-4fCk79wshMdzMp2rH06qWrJE4iolqLhCUH+OiuIgU++RB0+94NlDL81atO7GX55uUKueo0txHNtvEyI6D7WdMw==",
+                          "dependencies": {
+                            "safer-buffer": ">= 2.1.2 < 3.0.0"
+                          },
+                          "engines": {
+                            "node": ">=0.10.0"
+                          }
+                        },
+                        "node_modules/is-stream": {
+                          "version": "1.1.0",
+                          "resolved": "https://registry.npmjs.org/is-stream/-/is-stream-1.1.0.tgz",
+                          "integrity": "sha512-uQPm8kcs47jx38atAcWTVxyltQYoPT68y9aWYdV6yWXSyW8mzSat0TL6CiWdZeCdF3KrAvpVtnHbTv4RN+rqdQ==",
+                          "engines": {
+                            "node": ">=0.10.0"
+                          }
+                        },
+                        "node_modules/isomorphic-fetch": {
+                          "version": "2.2.1",
+                          "resolved": "https://registry.npmjs.org/isomorphic-fetch/-/isomorphic-fetch-2.2.1.tgz",
+                          "integrity": "sha512-9c4TNAKYXM5PRyVcwUZrF3W09nQ+sO7+jydgs4ZGW9dhsLG2VOlISJABombdQqQRXCwuYG3sYV/puGf5rp0qmA==",
+                          "dependencies": {
+                            "node-fetch": "^1.0.1",
+                            "whatwg-fetch": ">=0.10.0"
+                          }
+                        },
+                        "node_modules/lodash": {
+                          "version": "4.16.6",
+                          "resolved": "https://registry.npmjs.org/lodash/-/lodash-4.16.6.tgz",
+                          "integrity": "sha512-QXrLkYI2gXjL0QoQ9j932ca+Oh/wCUBeZULjqsJy78KjntrohXawEoOfgA2fXwy4vKh7OTD00p757/pUROtv+w=="
+                        },
+                        "node_modules/math-intrinsics": {
+                          "version": "1.1.0",
+                          "resolved": "https://registry.npmjs.org/math-intrinsics/-/math-intrinsics-1.1.0.tgz",
+                          "integrity": "sha512-/IXtbwEk5HTPyEwyKX6hGkYXxM9nbj64B+ilVJnC/R6B0pH5G4V3b0pVbL7DBj4tkhBAppbQUlf6F6Xl9LHu1g==",
+                          "license": "MIT",
+                          "engines": {
+                            "node": ">= 0.4"
+                          }
+                        },
+                        "node_modules/mime-db": {
+                          "version": "1.52.0",
+                          "resolved": "https://registry.npmjs.org/mime-db/-/mime-db-1.52.0.tgz",
+                          "integrity": "sha512-sPU4uV7dYlvtWJxwwxHD0PuihVNiE7TyAbQ5SWxDCB9mUYvOgroQOwYQQOKPJ8CIbE+1ETVlOoK1UC2nU3gYvg==",
+                          "license": "MIT",
+                          "engines": {
+                            "node": ">= 0.6"
+                          }
+                        },
+                        "node_modules/mime-types": {
+                          "version": "2.1.35",
+                          "resolved": "https://registry.npmjs.org/mime-types/-/mime-types-2.1.35.tgz",
+                          "integrity": "sha512-ZDY+bPm5zTTF+YpCrAU9nK0UgICYPT0QtT1NZWFv4s++TNkcgVaT0g6+4R2uI4MjQjzysHB1zxuWL50hzaeXiw==",
+                          "license": "MIT",
+                          "dependencies": {
+                            "mime-db": "1.52.0"
+                          },
+                          "engines": {
+                            "node": ">= 0.6"
+                          }
+                        },
+                        "node_modules/node-fetch": {
+                          "version": "1.7.3",
+                          "resolved": "https://registry.npmjs.org/node-fetch/-/node-fetch-1.7.3.tgz",
+                          "integrity": "sha512-NhZ4CsKx7cYm2vSrBAr2PvFOe6sWDf0UYLRqA6svUYg7+/TSfVAu49jYC4BvQ4Sms9SZgdqGBgroqfDhJdTyKQ==",
+                          "dependencies": {
+                            "encoding": "^0.1.11",
+                            "is-stream": "^1.0.1"
+                          }
+                        },
+                        "node_modules/proxy-from-env": {
+                          "version": "1.1.0",
+                          "resolved": "https://registry.npmjs.org/proxy-from-env/-/proxy-from-env-1.1.0.tgz",
+                          "integrity": "sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==",
+                          "license": "MIT"
+                        },
+                        "node_modules/safer-buffer": {
+                          "version": "2.1.2",
+                          "resolved": "https://registry.npmjs.org/safer-buffer/-/safer-buffer-2.1.2.tgz",
+                          "integrity": "sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg=="
+                        },
+                        "node_modules/whatwg-fetch": {
+                          "version": "3.6.17",
+                          "resolved": "https://registry.npmjs.org/whatwg-fetch/-/whatwg-fetch-3.6.17.tgz",
+                          "integrity": "sha512-c4ghIvG6th0eudYwKZY5keb81wtFz9/WeAHAoy8+r18kcWlitUIrmGFQ2rWEl4UCKUilD3zCLHOIPheHx5ypRQ=="
+                        }
+                      }
+                    }
+                  content_encoding: utf-8
+                  deleted: false
+                  directory: /npm/semver
+                  name: package-lock.json
+                  operation: update
+                  support_file: false
+                  type: file
+            pr-title: Bump axios from 0.27.1 to 1.13.5 in /npm/semver
+            pr-body: |
+                Bumps [axios](https://github.com/axios/axios) from 0.27.1 to 1.13.5.
+                <details>
+                <summary>Release notes</summary>
+                <p><em>Sourced from <a href="https://github.com/axios/axios/releases">axios's releases</a>.</em></p>
+                <blockquote>
+                <h2>v1.13.5</h2>
+                <h2>Release 1.13.5</h2>
+                <h3>Highlights</h3>
+                <ul>
+                <li><strong>Security:</strong> Fixed a potential <strong>Denial of Service</strong> issue involving the <code>__proto__</code> key in <code>mergeConfig</code>. (PR <a href="https://redirect.github.com/axios/axios/pull/7369">#7369</a>)</li>
+                <li><strong>Bug fix:</strong> Resolved an issue where <code>AxiosError</code> could be missing the <code>status</code> field on and after <strong>v1.13.3</strong>. (PR <a href="https://redirect.github.com/axios/axios/pull/7368">#7368</a>)</li>
+                </ul>
+                <h3>Changes</h3>
+                <h4>Security</h4>
+                <ul>
+                <li>Fix Denial of Service via <code>__proto__</code> key in <code>mergeConfig</code>. (PR <a href="https://redirect.github.com/axios/axios/pull/7369">#7369</a>)</li>
+                </ul>
+                <h4>Fixes</h4>
+                <ul>
+                <li>Fix/5657. (PR <a href="https://redirect.github.com/axios/axios/pull/7313">#7313</a>)</li>
+                <li>Ensure <code>status</code> is present in <code>AxiosError</code> on and after v1.13.3. (PR <a href="https://redirect.github.com/axios/axios/pull/7368">#7368</a>)</li>
+                </ul>
+                <h4>Features / Improvements</h4>
+                <ul>
+                <li>Add input validation to <code>isAbsoluteURL</code>. (PR <a href="https://redirect.github.com/axios/axios/pull/7326">#7326</a>)</li>
+                <li>Refactor: bump minor package versions. (PR <a href="https://redirect.github.com/axios/axios/pull/7356">#7356</a>)</li>
+                </ul>
+                <h4>Documentation</h4>
+                <ul>
+                <li>Clarify object-check comment. (PR <a href="https://redirect.github.com/axios/axios/pull/7323">#7323</a>)</li>
+                <li>Fix deprecated <code>Buffer</code> constructor usage and README formatting. (PR <a href="https://redirect.github.com/axios/axios/pull/7371">#7371</a>)</li>
+                </ul>
+                <h4>CI / Maintenance</h4>
+                <ul>
+                <li>Chore: fix issues with YAML. (PR <a href="https://redirect.github.com/axios/axios/pull/7355">#7355</a>)</li>
+                <li>CI: update workflow YAMLs. (PR <a href="https://redirect.github.com/axios/axios/pull/7372">#7372</a>)</li>
+                <li>CI: fix run condition. (PR <a href="https://redirect.github.com/axios/axios/pull/7373">#7373</a>)</li>
+                <li>Dev deps: bump <code>karma-sourcemap-loader</code> from 0.3.8 to 0.4.0. (PR <a href="https://redirect.github.com/axios/axios/pull/7360">#7360</a>)</li>
+                <li>Chore(release): prepare release 1.13.5. (PR <a href="https://redirect.github.com/axios/axios/pull/7379">#7379</a>)</li>
+                </ul>
+                <h3>New Contributors</h3>
+                <ul>
+                <li><a href="https://github.com/sachin11063"><code>@​sachin11063</code></a> (first contribution — PR <a href="https://redirect.github.com/axios/axios/pull/7323">#7323</a>)</li>
+                <li><a href="https://github.com/asmitha-16"><code>@​asmitha-16</code></a> (first contribution — PR <a href="https://redirect.github.com/axios/axios/pull/7326">#7326</a>)</li>
+                </ul>
+                <p><strong>Full Changelog:</strong> <a href="https://github.com/axios/axios/compare/v1.13.4...v1.13.5">https://github.com/axios/axios/compare/v1.13.4...v1.13.5</a></p>
+                <h2>v1.13.4</h2>
+                <h2>Overview</h2>
+                <p>The release addresses issues discovered in v1.13.3 and includes significant CI/CD improvements.</p>
+                <p><strong>Full Changelog</strong>: <a href="https://github.com/axios/axios/compare/v1.13.3...v1.13.4">v1.13.3...v1.13.4</a></p>
+                <h2>What's New in v1.13.4</h2>
+                <h3>Bug Fixes</h3>
+                <ul>
+                <li><strong>fix: issues with version 1.13.3</strong> (<a href="https://redirect.github.com/axios/axios/issues/7352">#7352</a>) (<a href="https://github.com/axios/axios/commit/ee90dfc28abffbb61e24974b2bd3139a4a40ac76">ee90dfc</a>)
+                <ul>
+                <li>Fixed issues discovered in v1.13.3 release</li>
+                </ul>
+                </li>
+                </ul>
+                <!-- raw HTML omitted -->
+                </blockquote>
+                <p>... (truncated)</p>
+                </details>
+                <details>
+                <summary>Commits</summary>
+                <ul>
+                <li><a href="https://github.com/axios/axios/commit/29f75425f0c9f73021f5eedc869c176e30e05fe7"><code>29f7542</code></a> chore(release): prepare release 1.13.5 (<a href="https://redirect.github.com/axios/axios/issues/7379">#7379</a>)</li>
+                <li><a href="https://github.com/axios/axios/commit/431c3a361490a2e3d5ac5d9e08d66d4bb5f3cd2a"><code>431c3a3</code></a> ci: fix run condition (<a href="https://redirect.github.com/axios/axios/issues/7373">#7373</a>)</li>
+                <li><a href="https://github.com/axios/axios/commit/9ff3a78ad72ecd665a4b673686f1517d824284bf"><code>9ff3a78</code></a> ci: update ymls (<a href="https://redirect.github.com/axios/axios/issues/7372">#7372</a>)</li>
+                <li><a href="https://github.com/axios/axios/commit/265b71234c20fabbd6d691858c65a7e9c978659f"><code>265b712</code></a> docs: fix deprecated Buffer constructor and formatting issues in README (<a href="https://redirect.github.com/axios/axios/issues/7371">#7371</a>)</li>
+                <li><a href="https://github.com/axios/axios/commit/475e75a260668d227aec9f77735a49748c9041ff"><code>475e75a</code></a> feat: add input validation to isAbsoluteURL (<a href="https://redirect.github.com/axios/axios/issues/7326">#7326</a>)</li>
+                <li><a href="https://github.com/axios/axios/commit/28c721588c7a77e7503d0a434e016f852c597b57"><code>28c7215</code></a> fix: Denial of Service via <strong>proto</strong> Key in mergeConfig (<a href="https://redirect.github.com/axios/axios/issues/7369">#7369</a>)</li>
+                <li><a href="https://github.com/axios/axios/commit/04cf01969ed58f96920da032f340bfe4614aab90"><code>04cf019</code></a> docs: clarify object check comment (<a href="https://redirect.github.com/axios/axios/issues/7323">#7323</a>)</li>
+                <li><a href="https://github.com/axios/axios/commit/696fa753c5366afbd21859c294c64c9ff2b359ab"><code>696fa75</code></a> fix: status is missing in AxiosError on and after v1.13.3 (<a href="https://redirect.github.com/axios/axios/issues/7368">#7368</a>)</li>
+                <li><a href="https://github.com/axios/axios/commit/569f028a5878faaec8d7d138ba686aac407bda4c"><code>569f028</code></a> fix: added a option to choose between legacy and the new request/response int...</li>
+                <li><a href="https://github.com/axios/axios/commit/44b7c9f0c4900fd8784f18e871199402f07fc69f"><code>44b7c9f</code></a> chore(deps-dev): bump karma-sourcemap-loader (<a href="https://redirect.github.com/axios/axios/issues/7360">#7360</a>)</li>
+                <li>Additional commits viewable in <a href="https://github.com/axios/axios/compare/v0.27.1...v1.13.5">compare view</a></li>
+                </ul>
+                </details>
+                <details>
+                <summary>Maintainer changes</summary>
+                <p>This version was pushed to npm by <a href="https://www.npmjs.com/~GitHub%20Actions">GitHub Actions</a>, a new releaser for axios since your current version.</p>
+                </details>
+                <details>
+                <summary>Install script changes</summary>
+                <p>This version adds <code>prepare</code> script that runs during installation. Review the package contents before updating.</p>
+                </details>
+                <br />
+            commit-message: |-
+                Bump axios from 0.27.1 to 1.13.5 in /npm/semver
+
+                Bumps [axios](https://github.com/axios/axios) from 0.27.1 to 1.13.5.
+                - [Release notes](https://github.com/axios/axios/releases)
+                - [Changelog](https://github.com/axios/axios/blob/v1.x/CHANGELOG.md)
+                - [Commits](https://github.com/axios/axios/compare/v0.27.1...v1.13.5)
+    - type: mark_as_processed
+      expect:
+        data:
+            base-commit-sha: deb769e795beb877414bdc5aea2df16d4ff8d4df

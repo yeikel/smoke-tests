@@ -1,0 +1,29 @@
+# Downloads and then uploads the artifacts to keep them from expiring.
+name: Refresh artifacts
+
+on:  # yamllint disable-line rule:truthy
+  workflow_dispatch:
+  schedule:
+    - cron: "0 12 * * 1" # Every Monday at 12:00 UTC
+
+env:
+  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  suites:
+    uses: ./.github/workflows/list-suites.yml
+  refresh:
+    runs-on: ubuntu-latest
+    needs: suites
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: ${{ fromJSON(needs.suites.outputs.suites) }}
+    steps:
+      - uses: actions/checkout@v6
+      - name: Download artifacts
+        run: script/download-cache.sh ${{ matrix.suite }}
+      - uses: actions/upload-artifact@v6
+        with:
+          name: cache-${{ matrix.suite }}
+          path: cache/

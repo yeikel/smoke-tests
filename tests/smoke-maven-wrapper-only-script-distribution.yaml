@@ -1,0 +1,25 @@
+input:
+    job:
+        command: update
+        package-manager: maven
+        allowed-updates:
+            - update-type: all
+        source:
+            provider: github
+            repo: yeikel/smoke-tests
+            directories:
+                - maven-wrapper/only-script-distribution
+            commit: 2dddc8b2a87e756d77429034f1c97400a72de643
+            hostname: github.com
+            api-endpoint: https://api.github.com
+output:
+    - type: update_dependency_list
+      expect:
+        data:
+            dependencies: []
+            dependency_files:
+                - /maven-wrapper/only-script-distribution/pom.xml
+    - type: mark_as_processed
+      expect:
+        data:
+            base-commit-sha: 2dddc8b2a87e756d77429034f1c97400a72de643

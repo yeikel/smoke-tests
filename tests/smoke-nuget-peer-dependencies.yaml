@@ -1,0 +1,262 @@
+input:
+    job:
+        package-manager: nuget
+        allowed-updates:
+            - update-type: all
+        experiments:
+            nuget_generate_simple_pr_body: true
+            nuget_install_dotnet_sdks: true
+            nuget_native_updater: true
+            nuget_use_direct_discovery: true
+            nuget_use_new_file_updater: true
+        ignore-conditions:
+            - dependency-name: Microsoft.Extensions.Http
+              source: tests/smoke-nuget-peer-dependencies.yaml
+              version-requirement: '>8.0.0'
+            - dependency-name: Microsoft.Extensions.Logging
+              source: tests/smoke-nuget-peer-dependencies.yaml
+              version-requirement: '>8.0.0'
+            - dependency-name: Microsoft.Extensions.Logging
+              source: tests/smoke-nuget-peer-dependencies.yaml
+              version-requirement: '>8.0.0'
+        source:
+            provider: github
+            repo: dependabot/smoke-tests
+            directory: /nuget/peer-dependencies
+            commit: 7dbbef7b02f40ddfa7d32fc3099caf19f370bb9b
+    credentials:
+        - host: github.com
+          password: $LOCAL_GITHUB_ACCESS_TOKEN
+          type: git_source
+          username: x-access-token
+output:
+    - type: update_dependency_list
+      expect:
+        data:
+            dependencies:
+                - name: Microsoft.Extensions.Configuration
+                  requirements:
+                    - file: /nuget/peer-dependencies/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 2.2.0
+                      source: null
+                  version: 2.2.0
+                - name: Microsoft.Extensions.Configuration.Abstractions
+                  requirements:
+                    - file: /nuget/peer-dependencies/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 2.2.0
+                      source: null
+                  version: 2.2.0
+                - name: Microsoft.Extensions.Configuration.Binder
+                  requirements:
+                    - file: /nuget/peer-dependencies/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 2.2.0
+                      source: null
+                  version: 2.2.0
+                - name: Microsoft.Extensions.DependencyInjection.Abstractions
+                  requirements:
+                    - file: /nuget/peer-dependencies/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 2.2.0
+                      source: null
+                  version: 2.2.0
+                - name: Microsoft.Extensions.Http
+                  requirements:
+                    - file: /nuget/peer-dependencies/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 2.2.0
+                      source: null
+                  version: 2.2.0
+                - name: Microsoft.Extensions.Logging
+                  requirements:
+                    - file: /nuget/peer-dependencies/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 2.2.0
+                      source: null
+                  version: 2.2.0
+                - name: Microsoft.Extensions.Logging.Abstractions
+                  requirements:
+                    - file: /nuget/peer-dependencies/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 2.2.0
+                      source: null
+                  version: 2.2.0
+                - name: Microsoft.Extensions.Options
+                  requirements:
+                    - file: /nuget/peer-dependencies/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 2.2.0
+                      source: null
+                  version: 2.2.0
+                - name: Microsoft.Extensions.Primitives
+                  requirements:
+                    - file: /nuget/peer-dependencies/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 2.2.0
+                      source: null
+                  version: 2.2.0
+                - name: System.ComponentModel.Annotations
+                  requirements:
+                    - file: /nuget/peer-dependencies/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 4.5.0
+                      source: null
+                  version: 4.5.0
+                - name: System.Memory
+                  requirements:
+                    - file: /nuget/peer-dependencies/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 4.5.1
+                      source: null
+                  version: 4.5.1
+                - name: System.Runtime.CompilerServices.Unsafe
+                  requirements:
+                    - file: /nuget/peer-dependencies/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 6.0.0
+                      source: null
+                  version: 6.0.0
+            dependency_files:
+                - /nuget/peer-dependencies/project.csproj
+    - type: create_pull_request
+      expect:
+        data:
+            base-commit-sha: 7dbbef7b02f40ddfa7d32fc3099caf19f370bb9b
+            dependencies:
+                - name: Microsoft.Extensions.Http
+                  previous-requirements:
+                    - file: /nuget/peer-dependencies/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 2.2.0
+                      source: null
+                  previous-version: 2.2.0
+                  requirements:
+                    - file: /nuget/peer-dependencies/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 8.0.0
+                      source:
+                        source_url: https://github.com/dotnet/runtime
+                        type: nuget_repo
+                  version: 8.0.0
+                - name: Microsoft.Extensions.Logging
+                  previous-requirements:
+                    - file: /nuget/peer-dependencies/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 2.2.0
+                      source: null
+                  previous-version: 2.2.0
+                  requirements:
+                    - file: /nuget/peer-dependencies/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 8.0.0
+                      source:
+                        source_url: https://github.com/dotnet/runtime
+                        type: nuget_repo
+                  version: 8.0.0
+            updated-dependency-files:
+                - content: |-
+                    <Project Sdk="Microsoft.NET.Sdk">
+
+                      <PropertyGroup>
+                        <OutputType>Exe</OutputType>
+                        <TargetFramework>net6.0</TargetFramework>
+                        <ImplicitUsings>enable</ImplicitUsings>
+                        <Nullable>enable</Nullable>
+                      </PropertyGroup>
+
+                      <ItemGroup>
+                        <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0" />
+                        <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0" />
+                      </ItemGroup>
+
+                    </Project>
+                  content_encoding: utf-8
+                  deleted: false
+                  directory: /nuget/peer-dependencies
+                  name: project.csproj
+                  operation: update
+                  support_file: false
+                  type: file
+            pr-title: Bump Microsoft.Extensions.Http and Microsoft.Extensions.Logging
+            pr-body: |-
+                Performed the following updates:
+                - Updated Microsoft.Extensions.Http from 2.2.0 to 8.0.0
+                - Updated Microsoft.Extensions.Logging from 2.2.0 to 8.0.0
+            commit-message: |-
+                Bump Microsoft.Extensions.Http and Microsoft.Extensions.Logging
+
+                Bumps Microsoft.Extensions.Http from 2.2.0 to 8.0.0
+                Bumps Microsoft.Extensions.Logging from 2.2.0 to 8.0.0
+    - type: create_pull_request
+      expect:
+        data:
+            base-commit-sha: 7dbbef7b02f40ddfa7d32fc3099caf19f370bb9b
+            dependencies:
+                - name: Microsoft.Extensions.Logging
+                  previous-requirements:
+                    - file: /nuget/peer-dependencies/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 2.2.0
+                      source: null
+                  previous-version: 2.2.0
+                  requirements:
+                    - file: /nuget/peer-dependencies/project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 8.0.0
+                      source:
+                        source_url: https://github.com/dotnet/runtime
+                        type: nuget_repo
+                  version: 8.0.0
+            updated-dependency-files:
+                - content: |-
+                    <Project Sdk="Microsoft.NET.Sdk">
+
+                      <PropertyGroup>
+                        <OutputType>Exe</OutputType>
+                        <TargetFramework>net6.0</TargetFramework>
+                        <ImplicitUsings>enable</ImplicitUsings>
+                        <Nullable>enable</Nullable>
+                      </PropertyGroup>
+
+                      <ItemGroup>
+                        <PackageReference Include="Microsoft.Extensions.Http" Version="2.2.0" />
+                        <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0" />
+                      </ItemGroup>
+
+                    </Project>
+                  content_encoding: utf-8
+                  deleted: false
+                  directory: /nuget/peer-dependencies
+                  name: project.csproj
+                  operation: update
+                  support_file: false
+                  type: file
+            pr-title: Bump Microsoft.Extensions.Logging from 2.2.0 to 8.0.0
+            pr-body: |-
+                Performed the following updates:
+                - Updated Microsoft.Extensions.Logging from 2.2.0 to 8.0.0
+            commit-message: Bump Microsoft.Extensions.Logging from 2.2.0 to 8.0.0
+    - type: mark_as_processed
+      expect:
+        data:
+            base-commit-sha: 7dbbef7b02f40ddfa7d32fc3099caf19f370bb9b
