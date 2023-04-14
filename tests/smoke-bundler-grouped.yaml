@@ -9,7 +9,7 @@ input:
         ignore-conditions:
             - dependency-name: rubocop
               source: tests/smoke-bundler-grouped.yaml
-              version-requirement: '< 1.48.1'
+              version-requirement: = 1.50.1
         source:
             provider: github
             repo: dependabot/smoke-tests
@@ -112,9 +112,9 @@ output:
                     - file: Gemfile
                       groups:
                         - default
-                      requirement: 1.50.1
+                      requirement: 1.50.0
                       source: null
-                  version: 1.50.1
+                  version: 1.50.0
                 - name: rack
                   previous-requirements:
                     - file: Gemfile
@@ -144,7 +144,7 @@ output:
 
                     source "https://rubygems.org"
 
-                    gem "rubocop", "1.50.1"
+                    gem "rubocop", "1.50.0"
                     gem "toml-rb", "2.2.0"
                     gem 'rack', git: 'git@github.com:rack/rack.git', tag: 'v3.0.7'
                   content_encoding: utf-8
@@ -174,7 +174,7 @@ output:
                         rainbow (3.1.1)
                         regexp_parser (2.7.0)
                         rexml (3.2.5)
-                        rubocop (1.50.1)
+                        rubocop (1.50.0)
                           json (~> 2.3)
                           parallel (~> 1.10)
                           parser (>= 3.2.0.0)
@@ -196,7 +196,7 @@ output:
 
                     DEPENDENCIES
                       rack!
-                      rubocop (= 1.50.1)
+                      rubocop (= 1.50.0)
                       toml-rb (= 2.2.0)
 
                     BUNDLED WITH
@@ -211,18 +211,11 @@ output:
             pr-title: Bump rubocop and rack in /bundler
             pr-body: |
                 Bumps [rubocop](https://github.com/rubocop/rubocop) and [rack](https://github.com/rack/rack). These dependencies needed to be updated together.
-                Updates `rubocop` from 0.76.0 to 1.50.1
+                Updates `rubocop` from 0.76.0 to 1.50.0
                 <details>
                 <summary>Release notes</summary>
                 <p><em>Sourced from <a href="https://github.com/rubocop/rubocop/releases">rubocop's releases</a>.</em></p>
                 <blockquote>
-                <h2>RuboCop 1.50.1</h2>
-                <h3>Bug fixes</h3>
-                <ul>
-                <li><a href="https://redirect.github.com/rubocop/rubocop/issues/11787">#11787</a>: Fix a false positive for <code>Lint/DuplicateMatchPattern</code> when repeated <code>in</code> patterns but different <code>if</code> guard is used. (<a href="https://github.com/koic"><code>@​koic</code></a>)</li>
-                <li><a href="https://redirect.github.com/rubocop/rubocop/pull/11789">#11789</a>: Fix false negatives for <code>Style/ParallelAssignment</code> when Ruby 2.7+. (<a href="https://github.com/koic"><code>@​koic</code></a>)</li>
-                <li><a href="https://redirect.github.com/rubocop/rubocop/issues/11783">#11783</a>: Fix a false positive for <code>Style/RedundantLineContinuation</code> using line concatenation for assigning a return value and without argument parentheses. (<a href="https://github.com/koic"><code>@​koic</code></a>)</li>
-                </ul>
                 <h2>RuboCop 1.50</h2>
                 <h3>New features</h3>
                 <ul>
@@ -261,7 +254,14 @@ output:
                 <li><a href="https://redirect.github.com/rubocop/rubocop/issues/11715">#11715</a>: Ensure default configuration loads. (<a href="https://github.com/koic"><code>@​koic</code></a>)</li>
                 <li><a href="https://redirect.github.com/rubocop/rubocop/pull/11742">#11742</a>: Fix error handling in bundler standalone mode. ([<a href="https://github.com/composerinteralia"><code>@​composerinteralia</code></a>][])</li>
                 <li><a href="https://redirect.github.com/rubocop/rubocop/pull/11712">#11712</a>: Fix a crash in <code>Lint/EmptyConditionalBody</code>. ([<a href="https://github.com/gsamokovarov"><code>@​gsamokovarov</code></a>][])</li>
+                <li><a href="https://redirect.github.com/rubocop/rubocop/issues/11641">#11641</a>: Fix a false negative for <code>Layout/ExtraSpacing</code> when there are many comments with extra spaces. ([<a href="https://github.com/nobuyo"><code>@​nobuyo</code></a>][])</li>
+                <li><a href="https://redirect.github.com/rubocop/rubocop/pull/11740">#11740</a>: Fix a false positive for <code>Lint/NestedMethodDefinition</code> when nested definition inside <code>*_eval</code> and <code>*_exec</code> method call with a numblock. (<a href="https://github.com/ydah"><code>@​ydah</code></a>)</li>
+                <li><a href="https://redirect.github.com/rubocop/rubocop/issues/11685">#11685</a>: Fix incorrect directive comment insertion when percent array violates <code>Layout/LineLength</code> cop. ([<a href="https://github.com/nobuyo"><code>@​nobuyo</code></a>][])</li>
+                <li><a href="https://redirect.github.com/rubocop/rubocop/issues/11706">#11706</a>: Fix infinite loop when <code>--disable-uncorrectable</code> option and there is a multi-line percent array violates <code>Layout/LineLength</code>. ([<a href="https://github.com/nobuyo"><code>@​nobuyo</code></a>][])</li>
+                <li><a href="https://redirect.github.com/rubocop/rubocop/issues/11697">#11697</a>: Fix <code>Lint/Syntax</code> behavior when <code>--only</code> is not given the cop name. (<a href="https://github.com/koic"><code>@​koic</code></a>)</li>
+                <li><a href="https://redirect.github.com/rubocop/rubocop/pull/11709">#11709</a>: Fix value omission false positive in <code>Style/MethodCallWithArgsParentheses</code>. ([<a href="https://github.com/gsamokovarov"><code>@​gsamokovarov</code></a>][])</li>
                 </ul>
+                <h3>Changes</h3>
                 <!-- raw HTML omitted -->
                 </blockquote>
                 <p>... (truncated)</p>
@@ -270,13 +270,6 @@ output:
                 <summary>Changelog</summary>
                 <p><em>Sourced from <a href="https://github.com/rubocop/rubocop/blob/master/CHANGELOG.md">rubocop's changelog</a>.</em></p>
                 <blockquote>
-                <h2>1.50.1 (2023-04-12)</h2>
-                <h3>Bug fixes</h3>
-                <ul>
-                <li><a href="https://redirect.github.com/rubocop/rubocop/issues/11787">#11787</a>: Fix a false positive for <code>Lint/DuplicateMatchPattern</code> when repeated <code>in</code> patterns but different <code>if</code> guard is used. ([<a href="https://github.com/koic"><code>@​koic</code></a>][])</li>
-                <li><a href="https://redirect.github.com/rubocop/rubocop/pull/11789">#11789</a>: Fix false negatives for <code>Style/ParallelAssignment</code> when Ruby 2.7+. ([<a href="https://github.com/koic"><code>@​koic</code></a>][])</li>
-                <li><a href="https://redirect.github.com/rubocop/rubocop/issues/11783">#11783</a>: Fix a false positive for <code>Style/RedundantLineContinuation</code> using line concatenation for assigning a return value and without argument parentheses. ([<a href="https://github.com/koic"><code>@​koic</code></a>][])</li>
-                </ul>
                 <h2>1.50.0 (2023-04-11)</h2>
                 <h3>New features</h3>
                 <ul>
@@ -317,6 +310,14 @@ output:
                 <li><a href="https://redirect.github.com/rubocop/rubocop/pull/11712">#11712</a>: Fix a crash in <code>Lint/EmptyConditionalBody</code>. ([<a href="https://github.com/gsamokovarov"><code>@​gsamokovarov</code></a>][])</li>
                 <li><a href="https://redirect.github.com/rubocop/rubocop/issues/11641">#11641</a>: Fix a false negative for <code>Layout/ExtraSpacing</code> when there are many comments with extra spaces. ([<a href="https://github.com/nobuyo"><code>@​nobuyo</code></a>][])</li>
                 <li><a href="https://redirect.github.com/rubocop/rubocop/pull/11740">#11740</a>: Fix a false positive for <code>Lint/NestedMethodDefinition</code> when nested definition inside <code>*_eval</code> and <code>*_exec</code> method call with a numblock. ([<a href="https://github.com/ydah"><code>@​ydah</code></a>][])</li>
+                <li><a href="https://redirect.github.com/rubocop/rubocop/issues/11685">#11685</a>: Fix incorrect directive comment insertion when percent array violates <code>Layout/LineLength</code> cop. ([<a href="https://github.com/nobuyo"><code>@​nobuyo</code></a>][])</li>
+                <li><a href="https://redirect.github.com/rubocop/rubocop/issues/11706">#11706</a>: Fix infinite loop when <code>--disable-uncorrectable</code> option and there is a multi-line percent array violates <code>Layout/LineLength</code>. ([<a href="https://github.com/nobuyo"><code>@​nobuyo</code></a>][])</li>
+                <li><a href="https://redirect.github.com/rubocop/rubocop/issues/11697">#11697</a>: Fix <code>Lint/Syntax</code> behavior when <code>--only</code> is not given the cop name. ([<a href="https://github.com/koic"><code>@​koic</code></a>][])</li>
+                <li><a href="https://redirect.github.com/rubocop/rubocop/pull/11709">#11709</a>: Fix value omission false positive in <code>Style/MethodCallWithArgsParentheses</code>. ([<a href="https://github.com/gsamokovarov"><code>@​gsamokovarov</code></a>][])</li>
+                </ul>
+                <h3>Changes</h3>
+                <ul>
+                <li><a href="https://redirect.github.com/rubocop/rubocop/pull/11739">#11739</a>: Make <code>Style/RedundantParentheses</code> aware of redundant method argument parentheses. ([<a href="https://github.com/koic"><code>@​koic</code></a>][])</li>
                 </ul>
                 <!-- raw HTML omitted -->
                 </blockquote>
@@ -325,17 +326,17 @@ output:
                 <details>
                 <summary>Commits</summary>
                 <ul>
-                <li><a href="https://github.com/rubocop/rubocop/commit/dd97afff88f419bb8307e29faf49cb96e03c2c55"><code>dd97aff</code></a> Cut 1.50.1</li>
-                <li><a href="https://github.com/rubocop/rubocop/commit/d012208207d0dc3e1f939e6f364d68414d85cd26"><code>d012208</code></a> Update Changelog</li>
-                <li><a href="https://github.com/rubocop/rubocop/commit/4524ec4a73d424858ad7ba3f1df69f24e3c62b02"><code>4524ec4</code></a> [Docs] Remove a redundant blank line</li>
-                <li><a href="https://github.com/rubocop/rubocop/commit/cc232d95dcbe32ee888e3a0fc34e952cd6969dd2"><code>cc232d9</code></a> [Fix <a href="https://redirect.github.com/rubocop/rubocop/issues/11787">#11787</a>] Fix a false positive for <code>Lint/DuplicateMatchPattern</code></li>
-                <li><a href="https://github.com/rubocop/rubocop/commit/5c6f1030c3d97e51c33a71af2bb2913d890a7a9d"><code>5c6f103</code></a> Fix false negatives for <code>Style/ParallelAssignment</code></li>
-                <li><a href="https://github.com/rubocop/rubocop/commit/67c5ab5ab34c2cbe3ce9c67928cb4806e285ca31"><code>67c5ab5</code></a> Add spec for <code>Style/RescueModifier</code></li>
-                <li><a href="https://github.com/rubocop/rubocop/commit/2d20ed273363a5dd604653805f9313631035596c"><code>2d20ed2</code></a> [Fix <a href="https://redirect.github.com/rubocop/rubocop/issues/11783">#11783</a>] Fix a false positive for <code>Style/RedundantLineContinuation</code></li>
-                <li><a href="https://github.com/rubocop/rubocop/commit/121ffc742ab7c16b3ecbba591fd2727d217f93ca"><code>121ffc7</code></a> Switch back the docs version</li>
                 <li><a href="https://github.com/rubocop/rubocop/commit/b71808e7d26885625c91d49a9d001af166030c87"><code>b71808e</code></a> Cut 1.50</li>
                 <li><a href="https://github.com/rubocop/rubocop/commit/fbf99491e76dd7edf04a286eb418b60190963a2f"><code>fbf9949</code></a> Update Changelog</li>
-                <li>Additional commits viewable in <a href="https://github.com/rubocop/rubocop/compare/v0.76.0...v1.50.1">compare view</a></li>
+                <li><a href="https://github.com/rubocop/rubocop/commit/d2bbe3a14e8bd86d317bd357bdacfb6ab352b1d3"><code>d2bbe3a</code></a> Make <code>Lint/RedundantStringCoercion</code> aware of print method arguments</li>
+                <li><a href="https://github.com/rubocop/rubocop/commit/b0e6591de88bb6055f9a5ccf0fdc8f37900ac6b4"><code>b0e6591</code></a> Add specs for redundant <code>SafeAutoCorrect: true</code> and <code>AutoCorrect: true</code></li>
+                <li><a href="https://github.com/rubocop/rubocop/commit/27b7ceb2d4b92bf490f10afc1187bd4da2163118"><code>27b7ceb</code></a> Use RuboCop 1.17.1+</li>
+                <li><a href="https://github.com/rubocop/rubocop/commit/f06037902db4a5543a00363e95e4703e037b84d3"><code>f060379</code></a> Use RuboCop Performance 1.17</li>
+                <li><a href="https://github.com/rubocop/rubocop/commit/a03573cfe09e2ceb0e18bb144f898bd3b763d2ff"><code>a03573c</code></a> Make <code>Metrics/ClassLength</code> aware of singleton class</li>
+                <li><a href="https://github.com/rubocop/rubocop/commit/78d5dd552cc1a4fe7e374b71c6c3654baa0480dc"><code>78d5dd5</code></a> Merge pull request <a href="https://redirect.github.com/rubocop/rubocop/issues/11775">#11775</a> from koic/make_style_trailing_body_on_class_aware_o...</li>
+                <li><a href="https://github.com/rubocop/rubocop/commit/2c1f11599938ec226feb6524b78606b5f90874aa"><code>2c1f115</code></a> Make <code>Style/TrailingBodyOnClass</code> aware of singleton class</li>
+                <li><a href="https://github.com/rubocop/rubocop/commit/f1a7b6ae1408a5b47afc2b59b6513ee50f382251"><code>f1a7b6a</code></a> Make <code>Style/ClassStructure</code> aware of singleton class</li>
+                <li>Additional commits viewable in <a href="https://github.com/rubocop/rubocop/compare/v0.76.0...v1.50.0">compare view</a></li>
                 </ul>
                 </details>
                 <br />
@@ -447,10 +448,10 @@ output:
 
                 Bumps [rubocop](https://github.com/rubocop/rubocop) and [rack](https://github.com/rack/rack). These dependencies needed to be updated together.
 
-                Updates `rubocop` from 0.76.0 to 1.50.1
+                Updates `rubocop` from 0.76.0 to 1.50.0
                 - [Release notes](https://github.com/rubocop/rubocop/releases)
                 - [Changelog](https://github.com/rubocop/rubocop/blob/master/CHANGELOG.md)
-                - [Commits](https://github.com/rubocop/rubocop/compare/v0.76.0...v1.50.1)
+                - [Commits](https://github.com/rubocop/rubocop/compare/v0.76.0...v1.50.0)
 
                 Updates `rack` from 2.1.4 to v3.0.7
                 - [Release notes](https://github.com/rack/rack/releases)
