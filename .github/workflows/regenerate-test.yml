@@ -144,7 +144,7 @@ jobs:
 
       - name: Regenerate tests
         env:
-          LOCAL_GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          LOCAL_GITHUB_ACCESS_TOKEN: ${{ secrets.LOCAL_GITHUB_ACCESS_TOKEN }}
           TEST_LIST: ${{ steps.tests.outputs.list }}
           UPDATER_IMAGE: ${{ steps.build.outputs.image }}
         run: |
