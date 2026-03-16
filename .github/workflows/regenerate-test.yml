@@ -31,7 +31,7 @@ permissions:
   pull-requests: write
 
 env:
-  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  GH_TOKEN: ${{ secrets.LOCAL_GITHUB_ACCESS_TOKEN }}
   INPUT_TEST: ${{ inputs.test }}
   INPUT_ECOSYSTEM: ${{ inputs.ecosystem }}
   INPUT_CORE_BRANCH: ${{ inputs['core-branch'] }}
