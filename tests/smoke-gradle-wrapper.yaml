@@ -713,13 +713,8 @@ output:
                   operation: update
                   support_file: false
                   type: file
-            pr-title: Bump gradle-wrapper from 7.5 to 9.2.0 in /gradle-wrapper
-            pr-body: |
-                Bumps gradle-wrapper from 7.5 to 9.2.0.
-            commit-message: |-
-                Bump gradle-wrapper from 7.5 to 9.2.0 in /gradle-wrapper
-
-                Bumps gradle-wrapper from 7.5 to 9.2.0.
+            pr-title: bump gradle-wrapper from 7.5 to 9.2.0 in /gradle-wrapper
+            commit-message: bump gradle-wrapper from 7.5 to 9.2.0 in /gradle-wrapper
     - type: mark_as_processed
       expect:
         data:
