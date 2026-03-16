@@ -105,6 +105,7 @@ jobs:
           repository: dependabot/dependabot-core
           path: dependabot-core
           submodules: recursive
+          ref: main
 
       - name: Checkout core branch or PR
         if: inputs.core-branch != '' || inputs.core-pr-number != ''
